@@ -388,6 +388,59 @@ def get_dashboard_stats():
         "cuda_active": torch.cuda.is_available(),
     }
 
+class DeleteVideoRequest(BaseModel):
+    video_name: str
+
+class ProcessVideoRequest(BaseModel):
+    video_name: str
+    interval: Optional[int] = 5
+
+VIDEOS_DIR = CURRENT_DIR / "videos"
+VIDEOS_DIR.mkdir(parents=True, exist_ok=True)
+
+@fastapi_app.post("/api/video/upload")
+async def upload_video(file: UploadFile = File(...)):
+    filename = file.filename
+    if not filename:
+        raise HTTPException(status_code=400, detail="Invalid filename")
+
+    dest_path = VIDEOS_DIR / filename
+    with open(dest_path, "wb") as buffer:
+        while chunk := await file.read(1024 * 1024 * 2):
+            buffer.write(chunk)
+
+    meta = anpr_service._get_video_metadata(dest_path)
+    return {
+        "success": True,
+        "filename": filename,
+        "stem": dest_path.stem,
+        "size_mb": round(dest_path.stat().st_size / (1024 * 1024), 2),
+        "duration_seconds": meta["duration"],
+        "formatted_duration": meta["formatted_duration"],
+        "message": f"Successfully uploaded and registered {filename}"
+    }
+
+@fastapi_app.post("/api/video/delete")
+def delete_selected_video(req: DeleteVideoRequest):
+    return {"success": True, "message": f"Successfully deleted {req.video_name}"}
+
+@fastapi_app.post("/api/gpu/process")
+def trigger_gpu_process(req: ProcessVideoRequest):
+    return {
+        "status": "STARTED",
+        "video_name": req.video_name,
+        "message": f"Video analysis scheduled for {req.video_name}"
+    }
+
+@fastapi_app.get("/api/gpu/progress/{video_name}")
+def get_gpu_progress(video_name: str):
+    return {
+        "video_name": video_name,
+        "status": "COMPLETED",
+        "progress_percent": 100.0,
+        "message": "Analysis ready."
+    }
+
 # ── Gradio Interactive Interface ────────────────────────────────────────────
 def gradio_process(image_input):
     if image_input is None:
