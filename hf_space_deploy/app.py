@@ -67,14 +67,21 @@ plate_detector = YOLO(str(PLATE_WEIGHTS)) if PLATE_WEIGHTS.exists() else YOLO("y
 print(f"Loading TrOCR OCR model ({OCR_MODEL_ID})...")
 try:
     processor = TrOCRProcessor.from_pretrained(OCR_MODEL_ID)
-except Exception:
-    tokenizer = XLMRobertaTokenizer.from_pretrained(OCR_MODEL_ID)
-    image_processor = AutoImageProcessor.from_pretrained(OCR_MODEL_ID)
-    processor = TrOCRProcessor(image_processor=image_processor, tokenizer=tokenizer)
+except Exception as e:
+    print(f"TrOCRProcessor fallback: {e}")
+    try:
+        from transformers import AutoProcessor
+        processor = AutoProcessor.from_pretrained(OCR_MODEL_ID)
+    except Exception as e2:
+        print(f"AutoProcessor fallback: {e2}")
+        from transformers import RobertaTokenizer
+        tokenizer = RobertaTokenizer.from_pretrained("roberta-base")
+        image_processor = AutoImageProcessor.from_pretrained("microsoft/trocr-small-printed")
+        processor = TrOCRProcessor(image_processor=image_processor, tokenizer=tokenizer)
 
 ocr_model = VisionEncoderDecoderModel.from_pretrained(OCR_MODEL_ID).to(DEVICE)
 ocr_model.eval()
-print("✅ VisionX AI Models successfully loaded!")
+print("VisionX AI Models successfully loaded!")
 
 # ── Post-Processing & Indian License Plate Syntax ───────────────────────────
 LETTER_TO_DIGIT = {"O": "0", "Q": "0", "I": "1", "L": "1", "Z": "2", "S": "5", "G": "6", "B": "8"}
