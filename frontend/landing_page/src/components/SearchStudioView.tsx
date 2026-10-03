@@ -80,10 +80,11 @@ export const SearchStudioView: React.FC = () => {
       .then((res) => res.json())
       .then((data: SearchResult) => {
         setIsSearching(false);
-        if (data.matched && data.best_match) {
-          setMatchedVehicle(data.best_match);
-          if (data.best_match.timeline_markers.length > 0) {
-            setSelectedTimestamp(data.best_match.timeline_markers[0].timestamp);
+        const match = data.best_match || (data.all_matches && data.all_matches[0]) || null;
+        if (data.matched && match) {
+          setMatchedVehicle(match);
+          if (match.timeline_markers && match.timeline_markers.length > 0) {
+            setSelectedTimestamp(match.timeline_markers[0].timestamp);
           }
         } else {
           setMatchedVehicle(null);

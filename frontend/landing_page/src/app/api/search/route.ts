@@ -17,14 +17,22 @@ export async function POST(req: NextRequest) {
       return p.includes(cleanQuery);
     });
 
+    const matches = matchingVehicles.map((v: any) => ({
+      ...v,
+      is_exact_match: (v.plate || "").replace(/[^A-Za-z0-9]/g, "").toUpperCase() === cleanQuery,
+    }));
+
     return NextResponse.json({
       video_name,
       query,
       cleaned_query: cleanQuery,
-      matched: matchingVehicles.length > 0,
-      total_matches: matchingVehicles.length,
-      matching_vehicles: matchingVehicles,
-      primary_match: matchingVehicles[0] || null,
+      matched: matches.length > 0,
+      total_matches: matches.length,
+      best_match: matches[0] || null,
+      primary_match: matches[0] || null,
+      all_matches: matches,
+      matching_vehicles: matches,
+      video_duration: analysis.duration || 10,
     });
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 400 });
