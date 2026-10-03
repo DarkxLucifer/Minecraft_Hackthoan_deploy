@@ -4,6 +4,7 @@ import { Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import "./rekor.css";
 import "./spacex.css";
+import "leaflet/dist/leaflet.css";
 import { AuthProvider } from "@/context/AuthContext";
 
 const inter = Inter({

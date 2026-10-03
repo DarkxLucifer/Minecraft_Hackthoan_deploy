@@ -2,7 +2,6 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
 import { Layers, Maximize2, Globe, Key, CheckCircle2, ShieldCheck, ExternalLink } from 'lucide-react';
 import type { CameraNode, TransitTrajectory, DistrictInfo } from './GpsTransitMapPage';
 import { BACKEND_URL } from '@/lib/config';
