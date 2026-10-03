@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 
 const BACKEND_URL =
-  process.env.BACKEND_API_URL || process.env.NEXT_PUBLIC_BACKEND_URL || "http://127.0.0.1:8000";
+  process.env.BACKEND_API_URL || process.env.NEXT_PUBLIC_BACKEND_URL || "https://yashraj9696-test.hf.space";
 
 export async function GET() {
   try {
