@@ -50,8 +50,16 @@ export const VideoTimelinePlayer: React.FC<VideoTimelinePlayerProps> = ({
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
   const [showControlsInFullscreen, setShowControlsInFullscreen] = useState<boolean>(true);
 
-  // Always use the H.264 raw video stream with range support and moov atom at the front
-  const videoUrl = `${BACKEND_URL}/api/video/stream/${videoName}`;
+  // Prefer inbuilt preprocessed video for zero-latency direct CDN streaming
+  const localVideoUrl = `/videos/${videoName}`;
+  const remoteVideoUrl = BACKEND_URL ? `${BACKEND_URL}/api/video/stream/${videoName}` : localVideoUrl;
+  const [videoUrl, setVideoUrl] = useState<string>(localVideoUrl);
+
+  useEffect(() => {
+    setVideoUrl(`/videos/${videoName}`);
+    setHasError(false);
+  }, [videoName]);
+
   const markers: TimelineMarker[] = matchedVehicle?.timeline_markers || [];
 
   // Draw bounding box & OCR plate tags on overlay canvas with exact letterbox/pillarbox compensation
@@ -474,18 +482,27 @@ export const VideoTimelinePlayer: React.FC<VideoTimelinePlayerProps> = ({
           crossOrigin="anonymous"
           onTimeUpdate={handleTimeUpdate}
           onLoadedMetadata={handleLoadedMetadata}
-          onLoadedData={() => setIsBuffering(false)}
+          onLoadedData={() => {
+            setIsBuffering(false);
+            setHasError(false);
+          }}
           onWaiting={() => setIsBuffering(true)}
           onPlaying={() => {
             setIsBuffering(false);
             setIsPlaying(true);
+            setHasError(false);
           }}
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
           onError={(e) => {
-            console.error('Video error:', e);
-            setHasError(true);
-            setIsBuffering(false);
+            if (videoUrl !== remoteVideoUrl && remoteVideoUrl) {
+              console.log('Inbuilt video feed missed, trying remote stream:', remoteVideoUrl);
+              setVideoUrl(remoteVideoUrl);
+            } else {
+              console.error('Video error:', e);
+              setHasError(true);
+              setIsBuffering(false);
+            }
           }}
           className="w-full h-full object-contain cursor-pointer"
           onClick={togglePlay}

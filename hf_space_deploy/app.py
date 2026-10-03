@@ -19,7 +19,9 @@ import numpy as np
 import torch
 from PIL import Image
 import gradio as gr
-from fastapi import FastAPI, File, UploadFile, HTTPException
+from fastapi import FastAPI, File, UploadFile, HTTPException, Request, Response, status
+from fastapi.responses import JSONResponse, FileResponse, StreamingResponse
+from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from ultralytics import YOLO
@@ -247,6 +249,143 @@ async def detect_anpr(file: UploadFile = File(...)):
         "vehicles": vehicles,
         "plates": plates,
         "annotated_image": f"data:image/jpeg;base64,{b64_img}",
+    }
+
+# ── VisionX Video Streaming & Surveillance Database Services ────────────────
+from anpr_service import anpr_service
+
+CROPS_CACHE_DIR = CURRENT_DIR / "cache" / "crops"
+CROPS_CACHE_DIR.mkdir(parents=True, exist_ok=True)
+fastapi_app.mount("/crops", StaticFiles(directory=str(CROPS_CACHE_DIR)), name="crops")
+
+def range_streamer(file_path: Path, start: int, end: int, chunk_size: int = 1024 * 512):
+    with open(file_path, "rb") as f:
+        f.seek(start)
+        remaining = end - start + 1
+        while remaining > 0:
+            bytes_to_read = min(remaining, chunk_size)
+            data = f.read(bytes_to_read)
+            if not data:
+                break
+            remaining -= len(data)
+            yield data
+
+def stream_video_file(file_path: Path, request: Request):
+    if not file_path or not file_path.exists():
+        raise HTTPException(status_code=404, detail="Video file not found")
+
+    file_size = file_path.stat().st_size
+    range_header = request.headers.get("range")
+
+    if not range_header:
+        return FileResponse(
+            file_path,
+            media_type="video/mp4",
+            headers={"Accept-Ranges": "bytes"}
+        )
+
+    try:
+        range_val = range_header.replace("bytes=", "").strip()
+        parts = range_val.split("-")
+        start = int(parts[0]) if parts[0] else 0
+        end = int(parts[1]) if len(parts) > 1 and parts[1] else file_size - 1
+        end = min(end, file_size - 1)
+        content_length = end - start + 1
+    except Exception:
+        raise HTTPException(status_code=416, detail="Requested Range Not Satisfiable")
+
+    headers = {
+        "Content-Range": f"bytes {start}-{end}/{file_size}",
+        "Accept-Ranges": "bytes",
+        "Content-Length": str(content_length),
+        "Content-Type": "video/mp4",
+    }
+
+    return StreamingResponse(
+        range_streamer(file_path, start, end),
+        status_code=status.HTTP_206_PARTIAL_CONTENT,
+        headers=headers,
+        media_type="video/mp4"
+    )
+
+class SearchRequest(BaseModel):
+    video_name: str
+    query: str
+
+class MultiCameraSearchRequest(BaseModel):
+    query: str
+
+@fastapi_app.get("/api/videos")
+def list_videos():
+    videos = anpr_service.get_available_videos()
+    return {"videos": videos}
+
+@fastapi_app.get("/api/video/stream/{video_name}")
+def get_raw_video(video_name: str, request: Request):
+    file_path = anpr_service.find_video_path(video_name)
+    if not file_path or not file_path.exists():
+        raise HTTPException(status_code=404, detail=f"Video '{video_name}' not found")
+    return stream_video_file(file_path, request)
+
+@fastapi_app.get("/api/annotated-video/stream/{video_name}")
+def get_annotated_video(video_name: str, request: Request):
+    raw = anpr_service.find_video_path(video_name)
+    if raw and raw.exists():
+        return stream_video_file(raw, request)
+    raise HTTPException(status_code=404, detail="Video not found")
+
+@fastapi_app.get("/api/analysis/{video_name}")
+def get_analysis(video_name: str):
+    return anpr_service.get_video_analysis(video_name)
+
+@fastapi_app.post("/api/search")
+def search_vehicle_plate(req: SearchRequest):
+    return anpr_service.search_plate(req.video_name, req.query)
+
+@fastapi_app.post("/api/multi-camera-search")
+def multi_camera_search(req: MultiCameraSearchRequest):
+    return anpr_service.search_all_cameras(req.query)
+
+@fastapi_app.get("/api/database/records")
+def get_surveillance_database(
+    valid_only: bool = True,
+    camera: Optional[str] = None,
+    search: Optional[str] = None,
+):
+    return anpr_service.get_surveillance_database_records(
+        valid_only=valid_only,
+        camera_filter=camera,
+        search=search,
+    )
+
+@fastapi_app.get("/api/crop/{video_name}")
+def get_vehicle_crop(
+    video_name: str,
+    frame: int,
+    x1: int,
+    y1: int,
+    x2: int,
+    y2: int,
+    plate: Optional[str] = "plate",
+):
+    box = [x1, y1, x2, y2]
+    crop_path = anpr_service.extract_crop_thumbnail(video_name, frame, box, plate)
+    if crop_path and crop_path.exists():
+        return FileResponse(crop_path, media_type="image/jpeg")
+    raise HTTPException(status_code=404, detail="Crop could not be generated")
+
+@fastapi_app.get("/api/stats")
+def get_dashboard_stats():
+    db_records = anpr_service.get_surveillance_database_records(valid_only=False)
+    videos = anpr_service.get_available_videos()
+    return {
+        "status": "online",
+        "total_active_cameras": len(videos),
+        "total_plates_captured": db_records.get("total_records", 0),
+        "verified_standard_plates": db_records.get("verified_standard_count", 0),
+        "raw_noise_suppressed": db_records.get("raw_noise_count", 0),
+        "hardware_engine": "VisionX Cloud AI Engine (YOLO11 + TrOCR)",
+        "cuda_active": torch.cuda.is_available(),
     }
 
 # ── Gradio Interactive Interface ────────────────────────────────────────────

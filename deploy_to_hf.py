@@ -34,17 +34,13 @@ def deploy():
     print(f"Connecting to Hugging Face Space: {REPO_ID}...")
     api = HfApi(token=TOKEN)
 
-    files_to_upload = list(SRC_DIR.glob("*"))
-    for f in files_to_upload:
-        if f.is_file():
-            print(f"Uploading {f.name} ({f.stat().st_size / (1024*1024):.2f} MB)...")
-            api.upload_file(
-                path_or_fileobj=str(f),
-                path_in_repo=f.name,
-                repo_id=REPO_ID,
-                repo_type="space",
-                commit_message=f"Deploy {f.name} to VisionX ANPR Space"
-            )
+    print(f"Uploading entire {SRC_DIR} to Space {REPO_ID}...")
+    api.upload_folder(
+        folder_path=str(SRC_DIR),
+        repo_id=REPO_ID,
+        repo_type="space",
+        commit_message="Deploy full VisionX backend with video streaming, runs, and surveillance database"
+    )
 
     info = api.space_info(REPO_ID)
     print("\n[OK] Space deployed successfully!")

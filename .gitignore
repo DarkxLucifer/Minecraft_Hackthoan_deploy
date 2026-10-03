@@ -21,8 +21,9 @@ tmp*
 logs/
 *.log
 test_anpr_trocr_result.jpg
-test_anpr_result.jpg
 backend/cache/crops/
+hf_space_deploy/videos/
+hf_space_deploy/cache/
 
 # Node / Next.js
 node_modules/

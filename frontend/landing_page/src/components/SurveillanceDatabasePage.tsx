@@ -43,13 +43,21 @@ export const SurveillanceDatabasePage: React.FC<SurveillanceDatabasePageProps> =
     }
 
     fetch(`${BACKEND_URL}/api/database/records?${params.toString()}`)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+        return res.json();
+      })
       .then((resData: DatabaseResponse) => {
-        setData(resData);
+        if (resData && Array.isArray(resData.records)) {
+          setData(resData);
+        } else {
+          setData({ records: [], total_records: 0, verified_standard_count: 0 } as any);
+        }
         setIsLoading(false);
       })
       .catch((err) => {
         console.error('Database fetch error:', err);
+        setData({ records: [], total_records: 0, verified_standard_count: 0 } as any);
         setIsLoading(false);
       });
   };
@@ -65,7 +73,7 @@ export const SurveillanceDatabasePage: React.FC<SurveillanceDatabasePageProps> =
 
   // Export to CSV
   const handleExportCSV = () => {
-    if (!data || !data.records.length) return;
+    if (!data || !Array.isArray(data.records) || !data.records.length) return;
     const headers = [
       'Record ID',
       'Plate (Standardized)',
@@ -262,7 +270,7 @@ export const SurveillanceDatabasePage: React.FC<SurveillanceDatabasePageProps> =
             {/* Export Button */}
             <button
               onClick={handleExportCSV}
-              disabled={!data || !data.records.length}
+              disabled={!data || !Array.isArray(data.records) || data.records.length === 0}
               className="flex items-center gap-1.5 px-4 py-3 rounded-2xl border border-black/10 bg-white hover:bg-black/5 text-black text-xs font-medium transition-all disabled:opacity-40 cursor-pointer shadow-xs"
               title="Download database as CSV"
             >
@@ -333,7 +341,7 @@ export const SurveillanceDatabasePage: React.FC<SurveillanceDatabasePageProps> =
                     <span>Loading surveillance database records...</span>
                   </td>
                 </tr>
-              ) : !data || data.records.length === 0 ? (
+              ) : !data || !Array.isArray(data.records) || data.records.length === 0 ? (
                 <tr>
                   <td colSpan={8} className="py-16 text-center text-[#6F6F6F]">
                     <AlertTriangle className="w-8 h-8 mx-auto mb-2 text-amber-500" />
