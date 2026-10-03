@@ -32,8 +32,7 @@ import { DetectedVehiclesGallery } from "./DetectedVehiclesGallery";
 import { GpsTransitMapPage } from "./GpsTransitMapPage";
 import LiveAnprTester from "./LiveAnprTester";
 import type { VideoItem, Vehicle, SearchResult, VideoAnalysis, DashboardStats } from "../types/anpr";
-
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://127.0.0.1:8000";
+import { BACKEND_URL } from "@/lib/config";
 
 const GRID = 16;
 const CORRIDORS = [

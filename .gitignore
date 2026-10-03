@@ -22,6 +22,7 @@ logs/
 *.log
 test_anpr_trocr_result.jpg
 test_anpr_result.jpg
+backend/cache/crops/
 
 # Node / Next.js
 node_modules/

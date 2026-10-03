@@ -8,8 +8,7 @@ import { CameraInvestigationBlog } from "@/components/CameraInvestigationBlog";
 import { DetectedVehiclesGallery } from "@/components/DetectedVehiclesGallery";
 import LiveAnprTester from "@/components/LiveAnprTester";
 import type { VideoItem, Vehicle, SearchResult, VideoAnalysis } from "@/types/anpr";
-
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://127.0.0.1:8000";
+import { BACKEND_URL } from "@/lib/config";
 
 export const SearchStudioView: React.FC = () => {
   const [videos, setVideos] = useState<VideoItem[]>([]);

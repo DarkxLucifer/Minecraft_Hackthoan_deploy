@@ -11,7 +11,7 @@ interface DetectedVehiclesGalleryProps {
   onSelectVehicle: (vehicle: Vehicle) => void;
 }
 
-const BACKEND_URL = 'http://127.0.0.1:8000';
+import { BACKEND_URL } from "@/lib/config";
 
 export const DetectedVehiclesGallery: React.FC<DetectedVehiclesGalleryProps> = ({
   vehicles,

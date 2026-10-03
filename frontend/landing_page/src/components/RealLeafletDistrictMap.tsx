@@ -5,6 +5,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Layers, Maximize2, Globe, Key, CheckCircle2, ShieldCheck, ExternalLink } from 'lucide-react';
 import type { CameraNode, TransitTrajectory, DistrictInfo } from './GpsTransitMapPage';
+import { BACKEND_URL } from '@/lib/config';
 
 interface RealLeafletDistrictMapProps {
   currentTrajectory: TransitTrajectory;
@@ -592,7 +593,7 @@ export const RealLeafletDistrictMap: React.FC<RealLeafletDistrictMapProps> = ({
               GPS: ${cam.lat}° N, ${cam.lng}° E
             </div>
             <div style="border-radius: 8px; overflow: hidden; background: #000; border: 1px solid #CBD5E1;">
-              <img src="http://127.0.0.1:8000/crops/1_frame2_KA05MR9633.jpg" style="width: 100%; height: 80px; object-fit: cover;" onerror="this.style.display='none'" />
+              <img src="${BACKEND_URL}/crops/1_frame2_KA05MR9633.jpg" style="width: 100%; height: 80px; object-fit: cover;" onerror="this.style.display='none'" />
             </div>
           </div>
         `);

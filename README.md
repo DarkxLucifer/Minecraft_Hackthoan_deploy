@@ -181,6 +181,55 @@ cv2.imwrite("output_annotated.jpg", results["annotated"])
 
 ---
 
+## 🚀 Cloud & Production Deployment Options
+
+### Option 1: Docker & Docker Compose (One-Click Full Stack)
+Run the complete production stack (Next.js frontend + FastAPI AI backend) using Docker Compose:
+
+```bash
+# Build and start all services
+docker compose up --build
+
+# Access services:
+# -> Frontend: http://localhost:3000
+# -> Backend API: http://localhost:8000
+# -> Swagger Docs: http://localhost:8000/docs
+```
+
+---
+
+### Option 2: Hugging Face Spaces (Cloud AI Model & Backend)
+Deploy the AI models and FastAPI inference backend directly to **Hugging Face Spaces**:
+
+```bash
+# Run the automated deployment script
+python deploy_to_hf.py
+```
+- **Live Space URL**: [https://huggingface.co/spaces/Yashraj9696/Test](https://huggingface.co/spaces/Yashraj9696/Test)
+- **Direct API & Gradio Endpoint**: [https://yashraj9696-test.hf.space](https://yashraj9696-test.hf.space)
+
+To connect your Vercel or cloud frontend to the Hugging Face backend, set the environment variable:
+```bash
+NEXT_PUBLIC_BACKEND_URL=https://yashraj9696-test.hf.space
+```
+
+---
+
+### Option 3: Vercel (Frontend Next.js)
+1. Import `https://github.com/DarkxLucifer/Minecraft_Hackthoan_deploy` into [Vercel](https://vercel.com).
+2. Set Root Directory to: `frontend/landing_page`.
+3. Add Environment Variable:
+   - `NEXT_PUBLIC_BACKEND_URL`: URL of your deployed backend (e.g. `https://yashraj9696-test.hf.space`).
+4. Click **Deploy**.
+
+---
+
+### Option 4: Render / Railway / Cloud VPS
+- **Backend Service**: Deploy with `Dockerfile.backend` (Port `8000`).
+- **Frontend Service**: Deploy with `Dockerfile.frontend` (Port `3000`).
+
+---
+
 ## 👥 Contributors
 
 - **Frontend & Web Platform**: [awejofficial](https://github.com/awejofficial)

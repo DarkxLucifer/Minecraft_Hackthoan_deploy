@@ -20,7 +20,7 @@ interface SurveillanceDatabasePageProps {
   onJumpToCamera: (videoName: string, timestamp: number, plate: string) => void;
 }
 
-const BACKEND_URL = 'http://127.0.0.1:8000';
+import { BACKEND_URL } from "@/lib/config";
 
 export const SurveillanceDatabasePage: React.FC<SurveillanceDatabasePageProps> = ({
   onJumpToCamera,
