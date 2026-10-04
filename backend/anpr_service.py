@@ -91,8 +91,56 @@ CAMERA_META_MAP = {
     "2": {"id": "CAM-02", "location": "East Expressway - Toll Plaza", "zone": "Zone B (Expressway)"},
     "4": {"id": "CAM-04", "location": "South Boulevard - Ring Intersection", "zone": "Zone C (South Arterial)"},
     "crash": {"id": "CAM-CRASH", "location": "Outer Highway Incident Unit", "zone": "Zone D (Highway Patrol)"},
-    "army": {"id": "CAM-ARMY", "location": "Tactical Sector - Convoy Perimeter", "zone": "Zone E (Defense Sector)"}
+    "army": {"id": "CAM-ARMY", "location": "Tactical Sector - Convoy Perimeter", "zone": "Zone E (Defense Sector)"},
+    "toll": {"id": "CAM-TOLL", "location": "Interstate Toll Plaza", "zone": "Zone E (Toll Access)"},
+    "15698741_2160_3840_30fps": {"id": "CAM-07", "location": "Highway Perimeter Gantry (AJ13LVN)", "zone": "Zone Arterial Highway"}
 }
+
+# ── Fuzzy Plate Matching Helpers ──────────────────────────────────────────────
+_GLYPH_MAP = {
+    "I": "1", "L": "1", "O": "0", "Q": "0", "D": "0",
+    "Z": "2", "S": "5", "B": "8", "G": "6", "U": "V"
+}
+
+def normalize_fuzzy_key(text: str) -> str:
+    """Normalize OCR-confusable characters to canonical digit/letter."""
+    t = clean_plate_text(text)
+    return "".join(_GLYPH_MAP.get(c, c) for c in t)
+
+def calculate_plate_similarity(p1: str, p2: str) -> float:
+    """Levenshtein similarity [0.0-1.0] with optical-substitution discount."""
+    s1 = clean_plate_text(p1)
+    s2 = clean_plate_text(p2)
+    if not s1 or not s2:
+        return 0.0
+    if s1 == s2:
+        return 1.0
+    k1, k2 = normalize_fuzzy_key(s1), normalize_fuzzy_key(s2)
+    if k1 == k2:
+        return 0.98
+    if k1 in k2 or k2 in k1:
+        return 0.94
+    if s1 in s2 or s2 in s1:
+        return 0.90
+    m, n = len(s1), len(s2)
+    dp = [[0.0] * (n + 1) for _ in range(m + 1)]
+    for i in range(m + 1):
+        dp[i][0] = float(i)
+    for j in range(n + 1):
+        dp[0][j] = float(j)
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            c1, c2 = s1[i - 1], s2[j - 1]
+            if c1 == c2:
+                cost = 0.0
+            elif _GLYPH_MAP.get(c1, c1) == _GLYPH_MAP.get(c2, c2):
+                cost = 0.2  # optical confusion
+            else:
+                cost = 1.0
+            dp[i][j] = min(dp[i-1][j] + 1, dp[i][j-1] + 1, dp[i-1][j-1] + cost)
+    return max(0.0, 1.0 - dp[m][n] / max(m, n))
+
+FUZZY_THRESHOLD = 0.70  # min similarity to consider a plate "nearby"
 
 def get_camera_info(stem: str) -> Dict[str, str]:
     if stem in CAMERA_META_MAP:
@@ -613,7 +661,8 @@ class ANPRService:
     def search_plate(self, video_name: str, query: str) -> Dict[str, Any]:
         """
         Search for a license plate in the specified video.
-        Supports exact match and substring/fuzzy match.
+        Supports exact match, substring, and fuzzy nearby-number prediction
+        (e.g. AJI3LVN matches AJ13LVN via I↔1 optical substitution).
         """
         analysis = self.get_video_analysis(video_name)
         cleaned_query = clean_plate_text(query)
@@ -630,15 +679,34 @@ class ANPRService:
         matches = []
         for v in analysis.get("vehicles", []):
             plate = v["plate"]
-            if cleaned_query in plate or plate in cleaned_query:
+            sim = calculate_plate_similarity(cleaned_query, plate)
+
+            # Also check against nearby_predictions list
+            for np_entry in v.get("nearby_predictions", []):
+                np_plate = np_entry if isinstance(np_entry, str) else np_entry.get("plate", "")
+                np_sim = calculate_plate_similarity(cleaned_query, np_plate)
+                if np_sim > sim:
+                    sim = np_sim
+
+            if sim >= FUZZY_THRESHOLD or cleaned_query in plate or plate in cleaned_query:
                 is_exact = (plate == cleaned_query)
+                is_nearby = not is_exact and sim >= FUZZY_THRESHOLD
                 matches.append({
                     **v,
                     "is_exact_match": is_exact,
-                    "match_score": 100 if is_exact else 75
+                    "is_nearby_match": is_nearby,
+                    "match_type": "EXACT_MATCH" if is_exact else "NEARBY_NUMBER_PREDICTION",
+                    "similarity_score": round(sim, 3),
+                    "match_score": 100 if is_exact else round(sim * 100),
+                    "resolved_plate": plate,
+                    "matched_against": cleaned_query,
+                    "prediction_explanation": (
+                        "Exact plate recognition" if is_exact
+                        else f"Fuzzy nearby-number prediction (score={round(sim*100)}%, e.g. optical I↔1)"
+                    )
                 })
 
-        matches.sort(key=lambda x: (x["is_exact_match"], x["best_ocr_confidence"]), reverse=True)
+        matches.sort(key=lambda x: (x["is_exact_match"], x["similarity_score"], x["best_ocr_confidence"]), reverse=True)
         best_match = matches[0] if matches else None
 
         return {
@@ -647,7 +715,9 @@ class ANPRService:
             "matched": len(matches) > 0,
             "total_matches": len(matches),
             "best_match": best_match,
+            "primary_match": best_match,
             "all_matches": matches,
+            "matching_vehicles": matches,
             "video_duration": analysis.get("duration", 0.0)
         }
 

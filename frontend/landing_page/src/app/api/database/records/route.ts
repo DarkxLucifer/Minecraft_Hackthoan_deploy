@@ -3,11 +3,31 @@ import preprocessedData from "@/lib/data/preprocessed_data.json";
 
 export const dynamic = "force-dynamic";
 
+function normalizeFuzzyKey(text: string): string {
+  const t = (text || "").replace(/[^A-Za-z0-9]/g, "").toUpperCase();
+  const glyphMap: Record<string, string> = {
+    I: "1",
+    L: "1",
+    O: "0",
+    Q: "0",
+    D: "0",
+    Z: "2",
+    S: "5",
+    B: "8",
+    G: "6",
+    U: "V",
+  };
+  return t
+    .split("")
+    .map((c) => glyphMap[c] || c)
+    .join("");
+}
+
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const validOnly = searchParams.get("valid_only") !== "false";
   const camera = searchParams.get("camera");
-  const search = searchParams.get("search")?.toUpperCase().trim();
+  const rawSearch = searchParams.get("search")?.toUpperCase().trim();
 
   const source = validOnly
     ? (preprocessedData.database_valid as any)
@@ -23,13 +43,27 @@ export async function GET(req: NextRequest) {
     );
   }
 
-  if (search) {
-    records = records.filter(
-      (r: any) =>
-        r.plate?.toUpperCase().includes(search) ||
-        r.raw_plate?.toUpperCase().includes(search) ||
-        r.state_name?.toUpperCase().includes(search)
-    );
+  if (rawSearch) {
+    const fuzzySearch = normalizeFuzzyKey(rawSearch);
+    records = records.filter((r: any) => {
+      const p = (r.plate || "").toUpperCase();
+      const rawP = (r.raw_plate || "").toUpperCase();
+      const st = (r.state_name || "").toUpperCase();
+
+      if (p.includes(rawSearch) || rawP.includes(rawSearch) || st.includes(rawSearch)) {
+        return true;
+      }
+      if (normalizeFuzzyKey(p).includes(fuzzySearch) || normalizeFuzzyKey(rawP).includes(fuzzySearch)) {
+        return true;
+      }
+      if (Array.isArray(r.nearby_predictions)) {
+        return r.nearby_predictions.some((np: any) => {
+          const npStr = (typeof np === "string" ? np : np.plate || "").toUpperCase();
+          return npStr.includes(rawSearch) || normalizeFuzzyKey(npStr).includes(fuzzySearch);
+        });
+      }
+      return false;
+    });
   }
 
   return NextResponse.json({
