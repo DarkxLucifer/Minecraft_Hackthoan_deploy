@@ -25,6 +25,7 @@ export async function POST(req: NextRequest) {
       const res = await fetch(`${BACKEND_URL}/api/video/upload`, {
         method: "POST",
         body: forwardData,
+        signal: AbortSignal.timeout(6000),
       });
       if (res.ok) {
         const data = await res.json();
