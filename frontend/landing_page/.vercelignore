@@ -2,6 +2,6 @@
 backend
 reference
 new
-*.jpg
 *.log
 .git
+
