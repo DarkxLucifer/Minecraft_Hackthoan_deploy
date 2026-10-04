@@ -23,6 +23,7 @@ interface VideoTimelinePlayerProps {
   videoDuration: number;
   onSelectTimestamp?: (timestamp: number) => void;
   selectedTimestamp?: number | null;
+  customVideoUrl?: string | null;
 }
 
 import { BACKEND_URL } from "@/lib/config";
@@ -34,6 +35,7 @@ export const VideoTimelinePlayer: React.FC<VideoTimelinePlayerProps> = ({
   videoDuration,
   onSelectTimestamp,
   selectedTimestamp,
+  customVideoUrl,
 }) => {
   const screenContainerRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -51,14 +53,18 @@ export const VideoTimelinePlayer: React.FC<VideoTimelinePlayerProps> = ({
   const [showControlsInFullscreen, setShowControlsInFullscreen] = useState<boolean>(true);
 
   // Prefer inbuilt preprocessed video for zero-latency direct CDN streaming
-  const localVideoUrl = `/videos/${videoName}`;
-  const remoteVideoUrl = BACKEND_URL ? `${BACKEND_URL}/api/video/stream/${videoName}` : localVideoUrl;
+  const localVideoUrl = customVideoUrl || `/videos/${videoName}`;
+  const remoteVideoUrl = customVideoUrl ? null : (BACKEND_URL ? `${BACKEND_URL}/api/video/stream/${videoName}` : null);
   const [videoUrl, setVideoUrl] = useState<string>(localVideoUrl);
 
   useEffect(() => {
-    setVideoUrl(`/videos/${videoName}`);
+    if (customVideoUrl) {
+      setVideoUrl(customVideoUrl);
+    } else {
+      setVideoUrl(`/videos/${videoName}`);
+    }
     setHasError(false);
-  }, [videoName]);
+  }, [videoName, customVideoUrl]);
 
   const markers: TimelineMarker[] = matchedVehicle?.timeline_markers || [];
   const pendingSeekRef = useRef<number | null>(null);
@@ -170,8 +176,8 @@ export const VideoTimelinePlayer: React.FC<VideoTimelinePlayerProps> = ({
 
         if (beforeMarker && afterMarker && beforeMarker !== afterMarker && beforeMarker.box && afterMarker.box) {
           const tSpan = afterMarker.timestamp - beforeMarker.timestamp;
-          // Only interpolate if consecutive markers are reasonably close (<= 0.8s), preventing erratic drift
-          if (tSpan > 0 && tSpan <= 0.8) {
+          // Smoothly interpolate between markers up to 3.0s apart
+          if (tSpan > 0 && tSpan <= 3.0) {
             const factor = Math.max(0, Math.min(1, (time - beforeMarker.timestamp) / tSpan));
             const b1 = beforeMarker.box;
             const b2 = afterMarker.box;
@@ -181,10 +187,10 @@ export const VideoTimelinePlayer: React.FC<VideoTimelinePlayerProps> = ({
               b1[2] + (b2[2] - b1[2]) * factor,
               b1[3] + (b2[3] - b1[3]) * factor,
             ];
-          } else if (minDiff <= 0.35 && closest?.box) {
+          } else if (minDiff <= 1.2 && closest?.box) {
             activeBox = closest.box;
           }
-        } else if (minDiff <= 0.35 && closest?.box) {
+        } else if (minDiff <= 1.2 && closest?.box) {
           activeBox = closest.box;
         }
       } else if (veh.best_box && isWithinPresence && vehMarkers.length === 0) {
@@ -341,7 +347,7 @@ export const VideoTimelinePlayer: React.FC<VideoTimelinePlayerProps> = ({
     };
   }, [isPlaying, drawBoundingBoxOverlay]);
 
-  // Reload video element whenever videoName changes
+  // Reload video element whenever videoName or customVideoUrl changes
   useEffect(() => {
     const video = videoRef.current;
     if (video) {
@@ -352,7 +358,7 @@ export const VideoTimelinePlayer: React.FC<VideoTimelinePlayerProps> = ({
       video.pause();
       video.load();
     }
-  }, [videoName]);
+  }, [videoName, customVideoUrl]);
 
   // Handle external selectedTimestamp seek
   useEffect(() => {

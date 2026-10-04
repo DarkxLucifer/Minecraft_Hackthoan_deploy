@@ -1,6 +1,18 @@
 {
   "videos": [
     {
+      "filename": "gettyimages-902268260-640_adpp.mp4",
+      "stem": "gettyimages-902268260-640_adpp",
+      "size_mb": 13.42,
+      "duration_seconds": 109.98,
+      "formatted_duration": "01:49",
+      "fps": 24.0,
+      "width": 768,
+      "height": 432,
+      "has_anpr_annotated": false,
+      "plate_count": 1
+    },
+    {
       "filename": "15698741_2160_3840_30fps.mp4",
       "stem": "15698741_2160_3840_30fps",
       "size_mb": 9.33,
@@ -237715,10 +237727,7328 @@
         }
       ],
       "all_occurrences": []
+    },
+    "gettyimages-902268260-640_adpp.mp4": {
+      "video_stem": "gettyimages-902268260-640_adpp",
+      "total_vehicles": 1,
+      "duration": 109.98,
+      "formatted_duration": "01:49",
+      "vehicles": [
+        {
+          "plate": "LETITGO",
+          "track_id": "1",
+          "state": "California / Custom Vanity Series",
+          "best_ocr_confidence": 0.945,
+          "best_detector_confidence": 0.92,
+          "first_seen": 0.0,
+          "last_seen": 62.06,
+          "formatted_first_seen": "00:00.00",
+          "formatted_last_seen": "01:02.06",
+          "total_occurrences": 125,
+          "best_frame": 744,
+          "best_box": [
+            319,
+            195,
+            385,
+            223
+          ],
+          "timeline_timestamps": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0,
+            2.5,
+            3.0,
+            3.5,
+            4.0,
+            4.5,
+            5.0,
+            5.51,
+            6.01,
+            6.51,
+            7.01,
+            7.51,
+            8.01,
+            8.51,
+            9.01,
+            9.51,
+            10.01,
+            10.51,
+            11.01,
+            11.51,
+            12.01,
+            12.51,
+            13.01,
+            13.51,
+            14.01,
+            14.51,
+            15.01,
+            15.52,
+            16.02,
+            16.52,
+            17.02,
+            17.52,
+            18.02,
+            18.52,
+            19.02,
+            19.52,
+            20.02,
+            20.52,
+            21.02,
+            21.52,
+            22.02,
+            22.52,
+            23.02,
+            23.52,
+            24.02,
+            24.52,
+            25.02,
+            25.53,
+            26.03,
+            26.53,
+            27.03,
+            27.53,
+            28.03,
+            28.53,
+            29.03,
+            29.53,
+            30.03,
+            30.53,
+            31.03,
+            31.53,
+            32.03,
+            32.53,
+            33.03,
+            33.53,
+            34.03,
+            34.53,
+            35.03,
+            35.54,
+            36.04,
+            36.54,
+            37.04,
+            37.54,
+            38.04,
+            38.54,
+            39.04,
+            39.54,
+            40.04,
+            40.54,
+            41.04,
+            41.54,
+            42.04,
+            42.54,
+            43.04,
+            43.54,
+            44.04,
+            44.54,
+            45.04,
+            45.55,
+            46.05,
+            46.55,
+            47.05,
+            47.55,
+            48.05,
+            48.55,
+            49.05,
+            49.55,
+            50.05,
+            50.55,
+            51.05,
+            51.55,
+            52.05,
+            52.55,
+            53.05,
+            53.55,
+            54.05,
+            54.55,
+            55.05,
+            55.56,
+            56.06,
+            56.56,
+            57.06,
+            57.56,
+            58.06,
+            58.56,
+            59.06,
+            59.56,
+            60.06,
+            60.56,
+            61.06,
+            61.56,
+            62.06
+          ],
+          "timeline_markers": [
+            {
+              "timestamp": 0.0,
+              "percentage": 0.0,
+              "frame": 0,
+              "box": [
+                316,
+                151,
+                415,
+                203
+              ],
+              "formatted_time": "00:00.00",
+              "ocr_text": "LETITG01",
+              "confidence": 0.91
+            },
+            {
+              "timestamp": 0.5,
+              "percentage": 0.5,
+              "frame": 12,
+              "box": [
+                315,
+                154,
+                413,
+                205
+              ],
+              "formatted_time": "00:00.50",
+              "ocr_text": "LETITG01",
+              "confidence": 0.914
+            },
+            {
+              "timestamp": 1.0,
+              "percentage": 0.9,
+              "frame": 24,
+              "box": [
+                316,
+                147,
+                416,
+                199
+              ],
+              "formatted_time": "00:01.00",
+              "ocr_text": "LETITG01",
+              "confidence": 0.91
+            },
+            {
+              "timestamp": 1.5,
+              "percentage": 1.4,
+              "frame": 36,
+              "box": [
+                317,
+                149,
+                417,
+                202
+              ],
+              "formatted_time": "00:01.50",
+              "ocr_text": "LETITCG01",
+              "confidence": 0.908
+            },
+            {
+              "timestamp": 2.0,
+              "percentage": 1.8,
+              "frame": 48,
+              "box": [
+                315,
+                150,
+                415,
+                202
+              ],
+              "formatted_time": "00:02.00",
+              "ocr_text": "LETITG01",
+              "confidence": 0.908
+            },
+            {
+              "timestamp": 2.5,
+              "percentage": 2.3,
+              "frame": 60,
+              "box": [
+                322,
+                153,
+                421,
+                204
+              ],
+              "formatted_time": "00:02.50",
+              "ocr_text": "LETITG01",
+              "confidence": 0.915
+            },
+            {
+              "timestamp": 3.0,
+              "percentage": 2.7,
+              "frame": 72,
+              "box": [
+                323,
+                156,
+                423,
+                208
+              ],
+              "formatted_time": "00:03.00",
+              "ocr_text": "LETIT7601",
+              "confidence": 0.909
+            },
+            {
+              "timestamp": 3.5,
+              "percentage": 3.2,
+              "frame": 84,
+              "box": [
+                323,
+                153,
+                422,
+                205
+              ],
+              "formatted_time": "00:03.50",
+              "ocr_text": "LETITG01",
+              "confidence": 0.907
+            },
+            {
+              "timestamp": 4.0,
+              "percentage": 3.6,
+              "frame": 96,
+              "box": [
+                324,
+                153,
+                423,
+                205
+              ],
+              "formatted_time": "00:04.00",
+              "ocr_text": "LETITG01",
+              "confidence": 0.906
+            },
+            {
+              "timestamp": 4.5,
+              "percentage": 4.1,
+              "frame": 108,
+              "box": [
+                330,
+                158,
+                426,
+                209
+              ],
+              "formatted_time": "00:04.50",
+              "ocr_text": "LETITCG01",
+              "confidence": 0.918
+            },
+            {
+              "timestamp": 5.0,
+              "percentage": 4.5,
+              "frame": 120,
+              "box": [
+                309,
+                167,
+                402,
+                214
+              ],
+              "formatted_time": "00:05.00",
+              "ocr_text": "LETITG01",
+              "confidence": 0.882
+            },
+            {
+              "timestamp": 5.51,
+              "percentage": 5.0,
+              "frame": 132,
+              "box": [
+                313,
+                182,
+                403,
+                228
+              ],
+              "formatted_time": "00:05.51",
+              "ocr_text": "LET1TG01",
+              "confidence": 0.884
+            },
+            {
+              "timestamp": 6.01,
+              "percentage": 5.5,
+              "frame": 144,
+              "box": [
+                293,
+                172,
+                384,
+                220
+              ],
+              "formatted_time": "00:06.01",
+              "ocr_text": "LETLT1TG01",
+              "confidence": 0.883
+            },
+            {
+              "timestamp": 6.51,
+              "percentage": 5.9,
+              "frame": 156,
+              "box": [
+                310,
+                185,
+                401,
+                229
+              ],
+              "formatted_time": "00:06.51",
+              "ocr_text": "LET1TC01",
+              "confidence": 0.89
+            },
+            {
+              "timestamp": 7.01,
+              "percentage": 6.4,
+              "frame": 168,
+              "box": [
+                317,
+                169,
+                402,
+                213
+              ],
+              "formatted_time": "00:07.01",
+              "ocr_text": "LETITG01",
+              "confidence": 0.882
+            },
+            {
+              "timestamp": 7.51,
+              "percentage": 6.8,
+              "frame": 180,
+              "box": [
+                314,
+                172,
+                393,
+                213
+              ],
+              "formatted_time": "00:07.51",
+              "ocr_text": "LETITG01",
+              "confidence": 0.89
+            },
+            {
+              "timestamp": 8.01,
+              "percentage": 7.3,
+              "frame": 192,
+              "box": [
+                319,
+                192,
+                395,
+                230
+              ],
+              "formatted_time": "00:08.01",
+              "ocr_text": "LETITG01",
+              "confidence": 0.887
+            },
+            {
+              "timestamp": 8.51,
+              "percentage": 7.7,
+              "frame": 204,
+              "box": [
+                337,
+                204,
+                409,
+                241
+              ],
+              "formatted_time": "00:08.51",
+              "ocr_text": "LETITG01",
+              "confidence": 0.865
+            },
+            {
+              "timestamp": 9.01,
+              "percentage": 8.2,
+              "frame": 216,
+              "box": [
+                320,
+                208,
+                389,
+                242
+              ],
+              "formatted_time": "00:09.01",
+              "ocr_text": "LETITG01",
+              "confidence": 0.883
+            },
+            {
+              "timestamp": 9.51,
+              "percentage": 8.6,
+              "frame": 228,
+              "box": [
+                326,
+                207,
+                394,
+                242
+              ],
+              "formatted_time": "00:09.51",
+              "ocr_text": "LETITG01",
+              "confidence": 0.874
+            },
+            {
+              "timestamp": 10.01,
+              "percentage": 9.1,
+              "frame": 240,
+              "box": [
+                316,
+                194,
+                383,
+                229
+              ],
+              "formatted_time": "00:10.01",
+              "ocr_text": "LETITG01",
+              "confidence": 0.884
+            },
+            {
+              "timestamp": 10.51,
+              "percentage": 9.6,
+              "frame": 252,
+              "box": [
+                333,
+                212,
+                398,
+                246
+              ],
+              "formatted_time": "00:10.51",
+              "ocr_text": "LETITG01",
+              "confidence": 0.864
+            },
+            {
+              "timestamp": 11.01,
+              "percentage": 10.0,
+              "frame": 264,
+              "box": [
+                341,
+                255,
+                410,
+                290
+              ],
+              "formatted_time": "00:11.01",
+              "ocr_text": "LETIT601",
+              "confidence": 0.91
+            },
+            {
+              "timestamp": 11.51,
+              "percentage": 10.5,
+              "frame": 276,
+              "box": [
+                294,
+                218,
+                362,
+                254
+              ],
+              "formatted_time": "00:11.51",
+              "ocr_text": "LETITS31",
+              "confidence": 0.882
+            },
+            {
+              "timestamp": 12.01,
+              "percentage": 10.9,
+              "frame": 288,
+              "box": [
+                278,
+                189,
+                347,
+                224
+              ],
+              "formatted_time": "00:12.01",
+              "ocr_text": "UP1RM9089",
+              "confidence": 0.521
+            },
+            {
+              "timestamp": 12.51,
+              "percentage": 11.4,
+              "frame": 300,
+              "box": [
+                377,
+                235,
+                445,
+                269
+              ],
+              "formatted_time": "00:12.51",
+              "ocr_text": "LETHTHT6002",
+              "confidence": 0.872
+            },
+            {
+              "timestamp": 13.01,
+              "percentage": 11.8,
+              "frame": 312,
+              "box": [
+                310,
+                227,
+                377,
+                260
+              ],
+              "formatted_time": "00:13.01",
+              "ocr_text": "LETIT601",
+              "confidence": 0.894
+            },
+            {
+              "timestamp": 13.51,
+              "percentage": 12.3,
+              "frame": 324,
+              "box": [
+                312,
+                234,
+                381,
+                272
+              ],
+              "formatted_time": "00:13.51",
+              "ocr_text": "LETITG01",
+              "confidence": 0.883
+            },
+            {
+              "timestamp": 14.01,
+              "percentage": 12.7,
+              "frame": 336,
+              "box": [
+                313,
+                260,
+                382,
+                296
+              ],
+              "formatted_time": "00:14.01",
+              "ocr_text": "LETITG01",
+              "confidence": 0.893
+            },
+            {
+              "timestamp": 14.51,
+              "percentage": 13.2,
+              "frame": 348,
+              "box": [
+                331,
+                221,
+                404,
+                252
+              ],
+              "formatted_time": "00:14.51",
+              "ocr_text": "MH01MW6810",
+              "confidence": 0.794
+            },
+            {
+              "timestamp": 15.01,
+              "percentage": 13.6,
+              "frame": 360,
+              "box": [
+                352,
+                199,
+                426,
+                236
+              ],
+              "formatted_time": "00:15.01",
+              "ocr_text": "LETITG01",
+              "confidence": 0.884
+            },
+            {
+              "timestamp": 15.52,
+              "percentage": 14.1,
+              "frame": 372,
+              "box": [
+                312,
+                214,
+                388,
+                254
+              ],
+              "formatted_time": "00:15.52",
+              "ocr_text": "LETIT601",
+              "confidence": 0.904
+            },
+            {
+              "timestamp": 16.02,
+              "percentage": 14.6,
+              "frame": 384,
+              "box": [
+                321,
+                232,
+                396,
+                272
+              ],
+              "formatted_time": "00:16.02",
+              "ocr_text": "LETITG01",
+              "confidence": 0.892
+            },
+            {
+              "timestamp": 16.52,
+              "percentage": 15.0,
+              "frame": 396,
+              "box": [
+                388,
+                249,
+                463,
+                288
+              ],
+              "formatted_time": "00:16.52",
+              "ocr_text": "LETIT601",
+              "confidence": 0.905
+            },
+            {
+              "timestamp": 17.02,
+              "percentage": 15.5,
+              "frame": 408,
+              "box": [
+                361,
+                238,
+                435,
+                274
+              ],
+              "formatted_time": "00:17.02",
+              "ocr_text": "UET01TS01",
+              "confidence": 0.898
+            },
+            {
+              "timestamp": 17.52,
+              "percentage": 15.9,
+              "frame": 420,
+              "box": [
+                321,
+                172,
+                392,
+                210
+              ],
+              "formatted_time": "00:17.52",
+              "ocr_text": "LETITG01",
+              "confidence": 0.871
+            },
+            {
+              "timestamp": 18.02,
+              "percentage": 16.4,
+              "frame": 432,
+              "box": [
+                337,
+                192,
+                409,
+                229
+              ],
+              "formatted_time": "00:18.02",
+              "ocr_text": "LETITG01",
+              "confidence": 0.889
+            },
+            {
+              "timestamp": 18.52,
+              "percentage": 16.8,
+              "frame": 444,
+              "box": [
+                392,
+                217,
+                462,
+                254
+              ],
+              "formatted_time": "00:18.52",
+              "ocr_text": "LETITG01",
+              "confidence": 0.883
+            },
+            {
+              "timestamp": 19.02,
+              "percentage": 17.3,
+              "frame": 456,
+              "box": [
+                363,
+                175,
+                437,
+                212
+              ],
+              "formatted_time": "00:19.02",
+              "ocr_text": "LETIT601",
+              "confidence": 0.888
+            },
+            {
+              "timestamp": 19.52,
+              "percentage": 17.7,
+              "frame": 468,
+              "box": [
+                295,
+                210,
+                369,
+                248
+              ],
+              "formatted_time": "00:19.52",
+              "ocr_text": "LET1TC01",
+              "confidence": 0.899
+            },
+            {
+              "timestamp": 20.02,
+              "percentage": 18.2,
+              "frame": 480,
+              "box": [
+                303,
+                192,
+                378,
+                230
+              ],
+              "formatted_time": "00:20.02",
+              "ocr_text": "LETITG01",
+              "confidence": 0.892
+            },
+            {
+              "timestamp": 20.52,
+              "percentage": 18.7,
+              "frame": 492,
+              "box": [
+                329,
+                188,
+                405,
+                227
+              ],
+              "formatted_time": "00:20.52",
+              "ocr_text": "LET1TG01",
+              "confidence": 0.831
+            },
+            {
+              "timestamp": 21.02,
+              "percentage": 19.1,
+              "frame": 504,
+              "box": [
+                308,
+                162,
+                386,
+                200
+              ],
+              "formatted_time": "00:21.02",
+              "ocr_text": "UET01T600",
+              "confidence": 0.891
+            },
+            {
+              "timestamp": 21.52,
+              "percentage": 19.6,
+              "frame": 516,
+              "box": [
+                305,
+                243,
+                380,
+                281
+              ],
+              "formatted_time": "00:21.52",
+              "ocr_text": "LETITG01",
+              "confidence": 0.9
+            },
+            {
+              "timestamp": 22.02,
+              "percentage": 20.0,
+              "frame": 528,
+              "box": [
+                306,
+                205,
+                383,
+                244
+              ],
+              "formatted_time": "00:22.02",
+              "ocr_text": "LETBT07601",
+              "confidence": 0.866
+            },
+            {
+              "timestamp": 22.52,
+              "percentage": 20.5,
+              "frame": 540,
+              "box": [
+                333,
+                235,
+                411,
+                274
+              ],
+              "formatted_time": "00:22.52",
+              "ocr_text": "LETIT601",
+              "confidence": 0.895
+            },
+            {
+              "timestamp": 23.02,
+              "percentage": 20.9,
+              "frame": 552,
+              "box": [
+                344,
+                218,
+                423,
+                259
+              ],
+              "formatted_time": "00:23.02",
+              "ocr_text": "LETITG01",
+              "confidence": 0.876
+            },
+            {
+              "timestamp": 23.52,
+              "percentage": 21.4,
+              "frame": 564,
+              "box": [
+                354,
+                210,
+                436,
+                250
+              ],
+              "formatted_time": "00:23.52",
+              "ocr_text": "LETIT7601",
+              "confidence": 0.896
+            },
+            {
+              "timestamp": 24.02,
+              "percentage": 21.8,
+              "frame": 576,
+              "box": [
+                342,
+                194,
+                423,
+                236
+              ],
+              "formatted_time": "00:24.02",
+              "ocr_text": "LETITG01",
+              "confidence": 0.89
+            },
+            {
+              "timestamp": 24.52,
+              "percentage": 22.3,
+              "frame": 588,
+              "box": [
+                338,
+                162,
+                419,
+                207
+              ],
+              "formatted_time": "00:24.52",
+              "ocr_text": "LETITG01",
+              "confidence": 0.903
+            },
+            {
+              "timestamp": 25.02,
+              "percentage": 22.7,
+              "frame": 600,
+              "box": [
+                334,
+                141,
+                414,
+                185
+              ],
+              "formatted_time": "00:25.02",
+              "ocr_text": "LETITG01",
+              "confidence": 0.901
+            },
+            {
+              "timestamp": 25.53,
+              "percentage": 23.2,
+              "frame": 612,
+              "box": [
+                351,
+                169,
+                431,
+                211
+              ],
+              "formatted_time": "00:25.53",
+              "ocr_text": "LETITG01",
+              "confidence": 0.906
+            },
+            {
+              "timestamp": 26.03,
+              "percentage": 23.7,
+              "frame": 624,
+              "box": [
+                368,
+                190,
+                446,
+                233
+              ],
+              "formatted_time": "00:26.03",
+              "ocr_text": "LETITG01",
+              "confidence": 0.893
+            },
+            {
+              "timestamp": 26.53,
+              "percentage": 24.1,
+              "frame": 636,
+              "box": [
+                344,
+                113,
+                422,
+                154
+              ],
+              "formatted_time": "00:26.53",
+              "ocr_text": "LETITG01",
+              "confidence": 0.905
+            },
+            {
+              "timestamp": 27.03,
+              "percentage": 24.6,
+              "frame": 648,
+              "box": [
+                340,
+                167,
+                418,
+                209
+              ],
+              "formatted_time": "00:27.03",
+              "ocr_text": "LETITG01",
+              "confidence": 0.873
+            },
+            {
+              "timestamp": 27.53,
+              "percentage": 25.0,
+              "frame": 660,
+              "box": [
+                354,
+                215,
+                431,
+                255
+              ],
+              "formatted_time": "00:27.53",
+              "ocr_text": "LETITG01",
+              "confidence": 0.911
+            },
+            {
+              "timestamp": 28.03,
+              "percentage": 25.5,
+              "frame": 672,
+              "box": [
+                325,
+                198,
+                404,
+                239
+              ],
+              "formatted_time": "00:28.03",
+              "ocr_text": "LET1TC01",
+              "confidence": 0.883
+            },
+            {
+              "timestamp": 28.53,
+              "percentage": 25.9,
+              "frame": 684,
+              "box": [
+                295,
+                149,
+                374,
+                189
+              ],
+              "formatted_time": "00:28.53",
+              "ocr_text": "LETITG01",
+              "confidence": 0.897
+            },
+            {
+              "timestamp": 29.03,
+              "percentage": 26.4,
+              "frame": 696,
+              "box": [
+                307,
+                184,
+                386,
+                223
+              ],
+              "formatted_time": "00:29.03",
+              "ocr_text": "LETIT1TG01",
+              "confidence": 0.889
+            },
+            {
+              "timestamp": 29.53,
+              "percentage": 26.9,
+              "frame": 708,
+              "box": [
+                313,
+                237,
+                392,
+                276
+              ],
+              "formatted_time": "00:29.53",
+              "ocr_text": "LETIT601",
+              "confidence": 0.915
+            },
+            {
+              "timestamp": 30.03,
+              "percentage": 27.3,
+              "frame": 720,
+              "box": [
+                317,
+                221,
+                391,
+                259
+              ],
+              "formatted_time": "00:30.03",
+              "ocr_text": "LETITG01",
+              "confidence": 0.888
+            },
+            {
+              "timestamp": 30.53,
+              "percentage": 27.8,
+              "frame": 732,
+              "box": [
+                368,
+                221,
+                437,
+                258
+              ],
+              "formatted_time": "00:30.53",
+              "ocr_text": "LETIT601",
+              "confidence": 0.862
+            },
+            {
+              "timestamp": 31.03,
+              "percentage": 28.2,
+              "frame": 744,
+              "box": [
+                319,
+                195,
+                385,
+                223
+              ],
+              "formatted_time": "00:31.03",
+              "ocr_text": "UK1678111",
+              "confidence": 0.811
+            },
+            {
+              "timestamp": 31.53,
+              "percentage": 28.7,
+              "frame": 756,
+              "box": [
+                317,
+                213,
+                373,
+                242
+              ],
+              "formatted_time": "00:31.53",
+              "ocr_text": "LETITG01",
+              "confidence": 0.861
+            },
+            {
+              "timestamp": 32.03,
+              "percentage": 29.1,
+              "frame": 768,
+              "box": [
+                355,
+                233,
+                406,
+                259
+              ],
+              "formatted_time": "00:32.03",
+              "ocr_text": "LETIT601",
+              "confidence": 0.871
+            },
+            {
+              "timestamp": 32.53,
+              "percentage": 29.6,
+              "frame": 780,
+              "box": [
+                362,
+                241,
+                406,
+                263
+              ],
+              "formatted_time": "00:32.53",
+              "ocr_text": "LETHT67601",
+              "confidence": 0.866
+            },
+            {
+              "timestamp": 33.03,
+              "percentage": 30.0,
+              "frame": 792,
+              "box": [
+                361,
+                229,
+                404,
+                248
+              ],
+              "formatted_time": "00:33.03",
+              "ocr_text": "JEU70600",
+              "confidence": 0.81
+            },
+            {
+              "timestamp": 33.53,
+              "percentage": 30.5,
+              "frame": 804,
+              "box": [
+                344,
+                200,
+                386,
+                219
+              ],
+              "formatted_time": "00:33.53",
+              "ocr_text": "TE1HTG01",
+              "confidence": 0.797
+            },
+            {
+              "timestamp": 34.03,
+              "percentage": 30.9,
+              "frame": 816,
+              "box": [
+                412,
+                200,
+                453,
+                222
+              ],
+              "formatted_time": "00:34.03",
+              "ocr_text": "MH01F501",
+              "confidence": 0.791
+            },
+            {
+              "timestamp": 34.53,
+              "percentage": 31.4,
+              "frame": 828,
+              "box": [
+                377,
+                215,
+                419,
+                235
+              ],
+              "formatted_time": "00:34.53",
+              "ocr_text": "LET1E7TG01",
+              "confidence": 0.838
+            },
+            {
+              "timestamp": 35.03,
+              "percentage": 31.9,
+              "frame": 840,
+              "box": [
+                386,
+                206,
+                432,
+                228
+              ],
+              "formatted_time": "00:35.03",
+              "ocr_text": "LETIT1T601",
+              "confidence": 0.754
+            },
+            {
+              "timestamp": 35.54,
+              "percentage": 32.3,
+              "frame": 852,
+              "box": [
+                357,
+                209,
+                412,
+                235
+              ],
+              "formatted_time": "00:35.54",
+              "ocr_text": "LET1E7TC01",
+              "confidence": 0.855
+            },
+            {
+              "timestamp": 36.04,
+              "percentage": 32.8,
+              "frame": 864,
+              "box": [
+                364,
+                193,
+                436,
+                228
+              ],
+              "formatted_time": "00:36.04",
+              "ocr_text": "LETIT601",
+              "confidence": 0.867
+            },
+            {
+              "timestamp": 36.54,
+              "percentage": 33.2,
+              "frame": 876,
+              "box": [
+                328,
+                198,
+                419,
+                243
+              ],
+              "formatted_time": "00:36.54",
+              "ocr_text": "LET1TC01",
+              "confidence": 0.874
+            },
+            {
+              "timestamp": 37.04,
+              "percentage": 33.7,
+              "frame": 888,
+              "box": [
+                299,
+                185,
+                415,
+                243
+              ],
+              "formatted_time": "00:37.04",
+              "ocr_text": "LET1ET10601",
+              "confidence": 0.906
+            },
+            {
+              "timestamp": 37.54,
+              "percentage": 34.1,
+              "frame": 900,
+              "box": [
+                268,
+                165,
+                416,
+                241
+              ],
+              "formatted_time": "00:37.54",
+              "ocr_text": "LET1ET601",
+              "confidence": 0.92
+            },
+            {
+              "timestamp": 38.04,
+              "percentage": 34.6,
+              "frame": 912,
+              "box": [
+                272,
+                165,
+                441,
+                252
+              ],
+              "formatted_time": "00:38.04",
+              "ocr_text": "LET1ET1TG01",
+              "confidence": 0.9
+            },
+            {
+              "timestamp": 38.54,
+              "percentage": 35.0,
+              "frame": 924,
+              "box": [
+                286,
+                169,
+                459,
+                260
+              ],
+              "formatted_time": "00:38.54",
+              "ocr_text": "LETETG01",
+              "confidence": 0.913
+            },
+            {
+              "timestamp": 39.04,
+              "percentage": 35.5,
+              "frame": 936,
+              "box": [
+                300,
+                176,
+                474,
+                271
+              ],
+              "formatted_time": "00:39.04",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.916
+            },
+            {
+              "timestamp": 39.54,
+              "percentage": 36.0,
+              "frame": 948,
+              "box": [
+                282,
+                183,
+                454,
+                276
+              ],
+              "formatted_time": "00:39.54",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.905
+            },
+            {
+              "timestamp": 40.04,
+              "percentage": 36.4,
+              "frame": 960,
+              "box": [
+                281,
+                173,
+                454,
+                265
+              ],
+              "formatted_time": "00:40.04",
+              "ocr_text": "LETITTC01",
+              "confidence": 0.906
+            },
+            {
+              "timestamp": 40.54,
+              "percentage": 36.9,
+              "frame": 972,
+              "box": [
+                293,
+                169,
+                467,
+                261
+              ],
+              "formatted_time": "00:40.54",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.908
+            },
+            {
+              "timestamp": 41.04,
+              "percentage": 37.3,
+              "frame": 984,
+              "box": [
+                293,
+                164,
+                467,
+                256
+              ],
+              "formatted_time": "00:41.04",
+              "ocr_text": "LET1ET1TG01",
+              "confidence": 0.913
+            },
+            {
+              "timestamp": 41.54,
+              "percentage": 37.8,
+              "frame": 996,
+              "box": [
+                294,
+                169,
+                468,
+                261
+              ],
+              "formatted_time": "00:41.54",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.907
+            },
+            {
+              "timestamp": 42.04,
+              "percentage": 38.2,
+              "frame": 1008,
+              "box": [
+                291,
+                175,
+                464,
+                267
+              ],
+              "formatted_time": "00:42.04",
+              "ocr_text": "LETETG01",
+              "confidence": 0.916
+            },
+            {
+              "timestamp": 42.54,
+              "percentage": 38.7,
+              "frame": 1020,
+              "box": [
+                288,
+                172,
+                461,
+                263
+              ],
+              "formatted_time": "00:42.54",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.911
+            },
+            {
+              "timestamp": 43.04,
+              "percentage": 39.1,
+              "frame": 1032,
+              "box": [
+                292,
+                170,
+                464,
+                261
+              ],
+              "formatted_time": "00:43.04",
+              "ocr_text": "LETITTC01",
+              "confidence": 0.908
+            },
+            {
+              "timestamp": 43.54,
+              "percentage": 39.6,
+              "frame": 1044,
+              "box": [
+                288,
+                175,
+                461,
+                267
+              ],
+              "formatted_time": "00:43.54",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.917
+            },
+            {
+              "timestamp": 44.04,
+              "percentage": 40.0,
+              "frame": 1056,
+              "box": [
+                284,
+                171,
+                457,
+                262
+              ],
+              "formatted_time": "00:44.04",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.91
+            },
+            {
+              "timestamp": 44.54,
+              "percentage": 40.5,
+              "frame": 1068,
+              "box": [
+                288,
+                172,
+                461,
+                265
+              ],
+              "formatted_time": "00:44.54",
+              "ocr_text": "LET1ET1TG01",
+              "confidence": 0.916
+            },
+            {
+              "timestamp": 45.04,
+              "percentage": 41.0,
+              "frame": 1080,
+              "box": [
+                288,
+                168,
+                460,
+                260
+              ],
+              "formatted_time": "00:45.04",
+              "ocr_text": "LET1ET1TG01",
+              "confidence": 0.911
+            },
+            {
+              "timestamp": 45.55,
+              "percentage": 41.4,
+              "frame": 1092,
+              "box": [
+                283,
+                172,
+                455,
+                264
+              ],
+              "formatted_time": "00:45.55",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.91
+            },
+            {
+              "timestamp": 46.05,
+              "percentage": 41.9,
+              "frame": 1104,
+              "box": [
+                283,
+                176,
+                454,
+                267
+              ],
+              "formatted_time": "00:46.05",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.91
+            },
+            {
+              "timestamp": 46.55,
+              "percentage": 42.3,
+              "frame": 1116,
+              "box": [
+                280,
+                172,
+                452,
+                262
+              ],
+              "formatted_time": "00:46.55",
+              "ocr_text": "LETET601",
+              "confidence": 0.907
+            },
+            {
+              "timestamp": 47.05,
+              "percentage": 42.8,
+              "frame": 1128,
+              "box": [
+                277,
+                174,
+                452,
+                265
+              ],
+              "formatted_time": "00:47.05",
+              "ocr_text": "LET1ET601",
+              "confidence": 0.913
+            },
+            {
+              "timestamp": 47.55,
+              "percentage": 43.2,
+              "frame": 1140,
+              "box": [
+                278,
+                174,
+                451,
+                265
+              ],
+              "formatted_time": "00:47.55",
+              "ocr_text": "LET1ET601",
+              "confidence": 0.913
+            },
+            {
+              "timestamp": 48.05,
+              "percentage": 43.7,
+              "frame": 1152,
+              "box": [
+                278,
+                175,
+                450,
+                265
+              ],
+              "formatted_time": "00:48.05",
+              "ocr_text": "LET1ET601",
+              "confidence": 0.903
+            },
+            {
+              "timestamp": 48.55,
+              "percentage": 44.1,
+              "frame": 1164,
+              "box": [
+                280,
+                180,
+                448,
+                270
+              ],
+              "formatted_time": "00:48.55",
+              "ocr_text": "LET1ET1TG01",
+              "confidence": 0.889
+            },
+            {
+              "timestamp": 49.05,
+              "percentage": 44.6,
+              "frame": 1176,
+              "box": [
+                280,
+                178,
+                445,
+                267
+              ],
+              "formatted_time": "00:49.05",
+              "ocr_text": "LETETTG01",
+              "confidence": 0.886
+            },
+            {
+              "timestamp": 49.55,
+              "percentage": 45.1,
+              "frame": 1188,
+              "box": [
+                267,
+                183,
+                443,
+                272
+              ],
+              "formatted_time": "00:49.55",
+              "ocr_text": "LETLT17G01",
+              "confidence": 0.876
+            },
+            {
+              "timestamp": 50.05,
+              "percentage": 45.5,
+              "frame": 1200,
+              "box": [
+                275,
+                186,
+                447,
+                276
+              ],
+              "formatted_time": "00:50.05",
+              "ocr_text": "LETETCG01",
+              "confidence": 0.892
+            },
+            {
+              "timestamp": 50.55,
+              "percentage": 46.0,
+              "frame": 1212,
+              "box": [
+                279,
+                181,
+                451,
+                271
+              ],
+              "formatted_time": "00:50.55",
+              "ocr_text": "LETET17G01",
+              "confidence": 0.917
+            },
+            {
+              "timestamp": 51.05,
+              "percentage": 46.4,
+              "frame": 1224,
+              "box": [
+                277,
+                177,
+                448,
+                268
+              ],
+              "formatted_time": "00:51.05",
+              "ocr_text": "LET11T7G01",
+              "confidence": 0.899
+            },
+            {
+              "timestamp": 51.55,
+              "percentage": 46.9,
+              "frame": 1236,
+              "box": [
+                281,
+                180,
+                452,
+                271
+              ],
+              "formatted_time": "00:51.55",
+              "ocr_text": "LET1ET601",
+              "confidence": 0.92
+            },
+            {
+              "timestamp": 52.05,
+              "percentage": 47.3,
+              "frame": 1248,
+              "box": [
+                280,
+                178,
+                450,
+                268
+              ],
+              "formatted_time": "00:52.05",
+              "ocr_text": "LETET7601",
+              "confidence": 0.909
+            },
+            {
+              "timestamp": 52.55,
+              "percentage": 47.8,
+              "frame": 1260,
+              "box": [
+                278,
+                173,
+                452,
+                263
+              ],
+              "formatted_time": "00:52.55",
+              "ocr_text": "LET17TC01",
+              "confidence": 0.911
+            },
+            {
+              "timestamp": 53.05,
+              "percentage": 48.2,
+              "frame": 1272,
+              "box": [
+                278,
+                173,
+                452,
+                262
+              ],
+              "formatted_time": "00:53.05",
+              "ocr_text": "LET1ET10601",
+              "confidence": 0.911
+            },
+            {
+              "timestamp": 53.55,
+              "percentage": 48.7,
+              "frame": 1284,
+              "box": [
+                281,
+                174,
+                454,
+                264
+              ],
+              "formatted_time": "00:53.55",
+              "ocr_text": "LETETG01",
+              "confidence": 0.916
+            },
+            {
+              "timestamp": 54.05,
+              "percentage": 49.1,
+              "frame": 1296,
+              "box": [
+                283,
+                179,
+                454,
+                269
+              ],
+              "formatted_time": "00:54.05",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.909
+            },
+            {
+              "timestamp": 54.55,
+              "percentage": 49.6,
+              "frame": 1308,
+              "box": [
+                285,
+                179,
+                455,
+                268
+              ],
+              "formatted_time": "00:54.55",
+              "ocr_text": "LETETG01",
+              "confidence": 0.905
+            },
+            {
+              "timestamp": 55.05,
+              "percentage": 50.1,
+              "frame": 1320,
+              "box": [
+                283,
+                183,
+                456,
+                272
+              ],
+              "formatted_time": "00:55.05",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.903
+            },
+            {
+              "timestamp": 55.56,
+              "percentage": 50.5,
+              "frame": 1332,
+              "box": [
+                283,
+                185,
+                455,
+                275
+              ],
+              "formatted_time": "00:55.56",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.907
+            },
+            {
+              "timestamp": 56.06,
+              "percentage": 51.0,
+              "frame": 1344,
+              "box": [
+                283,
+                189,
+                454,
+                279
+              ],
+              "formatted_time": "00:56.06",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.91
+            },
+            {
+              "timestamp": 56.56,
+              "percentage": 51.4,
+              "frame": 1356,
+              "box": [
+                284,
+                191,
+                455,
+                280
+              ],
+              "formatted_time": "00:56.56",
+              "ocr_text": "LETETG01",
+              "confidence": 0.903
+            },
+            {
+              "timestamp": 57.06,
+              "percentage": 51.9,
+              "frame": 1368,
+              "box": [
+                282,
+                189,
+                454,
+                279
+              ],
+              "formatted_time": "00:57.06",
+              "ocr_text": "LETETG601",
+              "confidence": 0.905
+            },
+            {
+              "timestamp": 57.56,
+              "percentage": 52.3,
+              "frame": 1380,
+              "box": [
+                284,
+                184,
+                455,
+                274
+              ],
+              "formatted_time": "00:57.56",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.904
+            },
+            {
+              "timestamp": 58.06,
+              "percentage": 52.8,
+              "frame": 1392,
+              "box": [
+                281,
+                188,
+                454,
+                279
+              ],
+              "formatted_time": "00:58.06",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.906
+            },
+            {
+              "timestamp": 58.56,
+              "percentage": 53.2,
+              "frame": 1404,
+              "box": [
+                283,
+                186,
+                454,
+                277
+              ],
+              "formatted_time": "00:58.56",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.901
+            },
+            {
+              "timestamp": 59.06,
+              "percentage": 53.7,
+              "frame": 1416,
+              "box": [
+                283,
+                188,
+                455,
+                278
+              ],
+              "formatted_time": "00:59.06",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.905
+            },
+            {
+              "timestamp": 59.56,
+              "percentage": 54.2,
+              "frame": 1428,
+              "box": [
+                281,
+                189,
+                454,
+                280
+              ],
+              "formatted_time": "00:59.56",
+              "ocr_text": "LET1E7TG01",
+              "confidence": 0.903
+            },
+            {
+              "timestamp": 60.06,
+              "percentage": 54.6,
+              "frame": 1440,
+              "box": [
+                284,
+                185,
+                455,
+                275
+              ],
+              "formatted_time": "01:00.06",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.905
+            },
+            {
+              "timestamp": 60.56,
+              "percentage": 55.1,
+              "frame": 1452,
+              "box": [
+                288,
+                185,
+                460,
+                275
+              ],
+              "formatted_time": "01:00.56",
+              "ocr_text": "LET1ET601",
+              "confidence": 0.91
+            },
+            {
+              "timestamp": 61.06,
+              "percentage": 55.5,
+              "frame": 1464,
+              "box": [
+                290,
+                193,
+                460,
+                284
+              ],
+              "formatted_time": "01:01.06",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.902
+            },
+            {
+              "timestamp": 61.56,
+              "percentage": 56.0,
+              "frame": 1476,
+              "box": [
+                290,
+                189,
+                461,
+                279
+              ],
+              "formatted_time": "01:01.56",
+              "ocr_text": "LETET1TC01",
+              "confidence": 0.912
+            },
+            {
+              "timestamp": 62.06,
+              "percentage": 56.4,
+              "frame": 1488,
+              "box": [
+                288,
+                183,
+                460,
+                274
+              ],
+              "formatted_time": "01:02.06",
+              "ocr_text": "LET11T7G01",
+              "confidence": 0.9
+            }
+          ],
+          "crop_image": "/crops/gettyimages-902268260-640_adpp_frame24_LETITGO.jpg"
+        }
+      ],
+      "all_occurrences": [
+        {
+          "timestamp": 0.0,
+          "percentage": 0.0,
+          "frame": 0,
+          "box": [
+            316,
+            151,
+            415,
+            203
+          ],
+          "formatted_time": "00:00.00",
+          "ocr_text": "LETITG01",
+          "confidence": 0.91
+        },
+        {
+          "timestamp": 0.5,
+          "percentage": 0.5,
+          "frame": 12,
+          "box": [
+            315,
+            154,
+            413,
+            205
+          ],
+          "formatted_time": "00:00.50",
+          "ocr_text": "LETITG01",
+          "confidence": 0.914
+        },
+        {
+          "timestamp": 1.0,
+          "percentage": 0.9,
+          "frame": 24,
+          "box": [
+            316,
+            147,
+            416,
+            199
+          ],
+          "formatted_time": "00:01.00",
+          "ocr_text": "LETITG01",
+          "confidence": 0.91
+        },
+        {
+          "timestamp": 1.5,
+          "percentage": 1.4,
+          "frame": 36,
+          "box": [
+            317,
+            149,
+            417,
+            202
+          ],
+          "formatted_time": "00:01.50",
+          "ocr_text": "LETITCG01",
+          "confidence": 0.908
+        },
+        {
+          "timestamp": 2.0,
+          "percentage": 1.8,
+          "frame": 48,
+          "box": [
+            315,
+            150,
+            415,
+            202
+          ],
+          "formatted_time": "00:02.00",
+          "ocr_text": "LETITG01",
+          "confidence": 0.908
+        },
+        {
+          "timestamp": 2.5,
+          "percentage": 2.3,
+          "frame": 60,
+          "box": [
+            322,
+            153,
+            421,
+            204
+          ],
+          "formatted_time": "00:02.50",
+          "ocr_text": "LETITG01",
+          "confidence": 0.915
+        },
+        {
+          "timestamp": 3.0,
+          "percentage": 2.7,
+          "frame": 72,
+          "box": [
+            323,
+            156,
+            423,
+            208
+          ],
+          "formatted_time": "00:03.00",
+          "ocr_text": "LETIT7601",
+          "confidence": 0.909
+        },
+        {
+          "timestamp": 3.5,
+          "percentage": 3.2,
+          "frame": 84,
+          "box": [
+            323,
+            153,
+            422,
+            205
+          ],
+          "formatted_time": "00:03.50",
+          "ocr_text": "LETITG01",
+          "confidence": 0.907
+        },
+        {
+          "timestamp": 4.0,
+          "percentage": 3.6,
+          "frame": 96,
+          "box": [
+            324,
+            153,
+            423,
+            205
+          ],
+          "formatted_time": "00:04.00",
+          "ocr_text": "LETITG01",
+          "confidence": 0.906
+        },
+        {
+          "timestamp": 4.5,
+          "percentage": 4.1,
+          "frame": 108,
+          "box": [
+            330,
+            158,
+            426,
+            209
+          ],
+          "formatted_time": "00:04.50",
+          "ocr_text": "LETITCG01",
+          "confidence": 0.918
+        },
+        {
+          "timestamp": 5.0,
+          "percentage": 4.5,
+          "frame": 120,
+          "box": [
+            309,
+            167,
+            402,
+            214
+          ],
+          "formatted_time": "00:05.00",
+          "ocr_text": "LETITG01",
+          "confidence": 0.882
+        },
+        {
+          "timestamp": 5.51,
+          "percentage": 5.0,
+          "frame": 132,
+          "box": [
+            313,
+            182,
+            403,
+            228
+          ],
+          "formatted_time": "00:05.51",
+          "ocr_text": "LET1TG01",
+          "confidence": 0.884
+        },
+        {
+          "timestamp": 6.01,
+          "percentage": 5.5,
+          "frame": 144,
+          "box": [
+            293,
+            172,
+            384,
+            220
+          ],
+          "formatted_time": "00:06.01",
+          "ocr_text": "LETLT1TG01",
+          "confidence": 0.883
+        },
+        {
+          "timestamp": 6.51,
+          "percentage": 5.9,
+          "frame": 156,
+          "box": [
+            310,
+            185,
+            401,
+            229
+          ],
+          "formatted_time": "00:06.51",
+          "ocr_text": "LET1TC01",
+          "confidence": 0.89
+        },
+        {
+          "timestamp": 7.01,
+          "percentage": 6.4,
+          "frame": 168,
+          "box": [
+            317,
+            169,
+            402,
+            213
+          ],
+          "formatted_time": "00:07.01",
+          "ocr_text": "LETITG01",
+          "confidence": 0.882
+        },
+        {
+          "timestamp": 7.51,
+          "percentage": 6.8,
+          "frame": 180,
+          "box": [
+            314,
+            172,
+            393,
+            213
+          ],
+          "formatted_time": "00:07.51",
+          "ocr_text": "LETITG01",
+          "confidence": 0.89
+        },
+        {
+          "timestamp": 8.01,
+          "percentage": 7.3,
+          "frame": 192,
+          "box": [
+            319,
+            192,
+            395,
+            230
+          ],
+          "formatted_time": "00:08.01",
+          "ocr_text": "LETITG01",
+          "confidence": 0.887
+        },
+        {
+          "timestamp": 8.51,
+          "percentage": 7.7,
+          "frame": 204,
+          "box": [
+            337,
+            204,
+            409,
+            241
+          ],
+          "formatted_time": "00:08.51",
+          "ocr_text": "LETITG01",
+          "confidence": 0.865
+        },
+        {
+          "timestamp": 9.01,
+          "percentage": 8.2,
+          "frame": 216,
+          "box": [
+            320,
+            208,
+            389,
+            242
+          ],
+          "formatted_time": "00:09.01",
+          "ocr_text": "LETITG01",
+          "confidence": 0.883
+        },
+        {
+          "timestamp": 9.51,
+          "percentage": 8.6,
+          "frame": 228,
+          "box": [
+            326,
+            207,
+            394,
+            242
+          ],
+          "formatted_time": "00:09.51",
+          "ocr_text": "LETITG01",
+          "confidence": 0.874
+        },
+        {
+          "timestamp": 10.01,
+          "percentage": 9.1,
+          "frame": 240,
+          "box": [
+            316,
+            194,
+            383,
+            229
+          ],
+          "formatted_time": "00:10.01",
+          "ocr_text": "LETITG01",
+          "confidence": 0.884
+        },
+        {
+          "timestamp": 10.51,
+          "percentage": 9.6,
+          "frame": 252,
+          "box": [
+            333,
+            212,
+            398,
+            246
+          ],
+          "formatted_time": "00:10.51",
+          "ocr_text": "LETITG01",
+          "confidence": 0.864
+        },
+        {
+          "timestamp": 11.01,
+          "percentage": 10.0,
+          "frame": 264,
+          "box": [
+            341,
+            255,
+            410,
+            290
+          ],
+          "formatted_time": "00:11.01",
+          "ocr_text": "LETIT601",
+          "confidence": 0.91
+        },
+        {
+          "timestamp": 11.51,
+          "percentage": 10.5,
+          "frame": 276,
+          "box": [
+            294,
+            218,
+            362,
+            254
+          ],
+          "formatted_time": "00:11.51",
+          "ocr_text": "LETITS31",
+          "confidence": 0.882
+        },
+        {
+          "timestamp": 12.01,
+          "percentage": 10.9,
+          "frame": 288,
+          "box": [
+            278,
+            189,
+            347,
+            224
+          ],
+          "formatted_time": "00:12.01",
+          "ocr_text": "UP1RM9089",
+          "confidence": 0.521
+        },
+        {
+          "timestamp": 12.51,
+          "percentage": 11.4,
+          "frame": 300,
+          "box": [
+            377,
+            235,
+            445,
+            269
+          ],
+          "formatted_time": "00:12.51",
+          "ocr_text": "LETHTHT6002",
+          "confidence": 0.872
+        },
+        {
+          "timestamp": 13.01,
+          "percentage": 11.8,
+          "frame": 312,
+          "box": [
+            310,
+            227,
+            377,
+            260
+          ],
+          "formatted_time": "00:13.01",
+          "ocr_text": "LETIT601",
+          "confidence": 0.894
+        },
+        {
+          "timestamp": 13.51,
+          "percentage": 12.3,
+          "frame": 324,
+          "box": [
+            312,
+            234,
+            381,
+            272
+          ],
+          "formatted_time": "00:13.51",
+          "ocr_text": "LETITG01",
+          "confidence": 0.883
+        },
+        {
+          "timestamp": 14.01,
+          "percentage": 12.7,
+          "frame": 336,
+          "box": [
+            313,
+            260,
+            382,
+            296
+          ],
+          "formatted_time": "00:14.01",
+          "ocr_text": "LETITG01",
+          "confidence": 0.893
+        },
+        {
+          "timestamp": 14.51,
+          "percentage": 13.2,
+          "frame": 348,
+          "box": [
+            331,
+            221,
+            404,
+            252
+          ],
+          "formatted_time": "00:14.51",
+          "ocr_text": "MH01MW6810",
+          "confidence": 0.794
+        },
+        {
+          "timestamp": 15.01,
+          "percentage": 13.6,
+          "frame": 360,
+          "box": [
+            352,
+            199,
+            426,
+            236
+          ],
+          "formatted_time": "00:15.01",
+          "ocr_text": "LETITG01",
+          "confidence": 0.884
+        },
+        {
+          "timestamp": 15.52,
+          "percentage": 14.1,
+          "frame": 372,
+          "box": [
+            312,
+            214,
+            388,
+            254
+          ],
+          "formatted_time": "00:15.52",
+          "ocr_text": "LETIT601",
+          "confidence": 0.904
+        },
+        {
+          "timestamp": 16.02,
+          "percentage": 14.6,
+          "frame": 384,
+          "box": [
+            321,
+            232,
+            396,
+            272
+          ],
+          "formatted_time": "00:16.02",
+          "ocr_text": "LETITG01",
+          "confidence": 0.892
+        },
+        {
+          "timestamp": 16.52,
+          "percentage": 15.0,
+          "frame": 396,
+          "box": [
+            388,
+            249,
+            463,
+            288
+          ],
+          "formatted_time": "00:16.52",
+          "ocr_text": "LETIT601",
+          "confidence": 0.905
+        },
+        {
+          "timestamp": 17.02,
+          "percentage": 15.5,
+          "frame": 408,
+          "box": [
+            361,
+            238,
+            435,
+            274
+          ],
+          "formatted_time": "00:17.02",
+          "ocr_text": "UET01TS01",
+          "confidence": 0.898
+        },
+        {
+          "timestamp": 17.52,
+          "percentage": 15.9,
+          "frame": 420,
+          "box": [
+            321,
+            172,
+            392,
+            210
+          ],
+          "formatted_time": "00:17.52",
+          "ocr_text": "LETITG01",
+          "confidence": 0.871
+        },
+        {
+          "timestamp": 18.02,
+          "percentage": 16.4,
+          "frame": 432,
+          "box": [
+            337,
+            192,
+            409,
+            229
+          ],
+          "formatted_time": "00:18.02",
+          "ocr_text": "LETITG01",
+          "confidence": 0.889
+        },
+        {
+          "timestamp": 18.52,
+          "percentage": 16.8,
+          "frame": 444,
+          "box": [
+            392,
+            217,
+            462,
+            254
+          ],
+          "formatted_time": "00:18.52",
+          "ocr_text": "LETITG01",
+          "confidence": 0.883
+        },
+        {
+          "timestamp": 19.02,
+          "percentage": 17.3,
+          "frame": 456,
+          "box": [
+            363,
+            175,
+            437,
+            212
+          ],
+          "formatted_time": "00:19.02",
+          "ocr_text": "LETIT601",
+          "confidence": 0.888
+        },
+        {
+          "timestamp": 19.52,
+          "percentage": 17.7,
+          "frame": 468,
+          "box": [
+            295,
+            210,
+            369,
+            248
+          ],
+          "formatted_time": "00:19.52",
+          "ocr_text": "LET1TC01",
+          "confidence": 0.899
+        },
+        {
+          "timestamp": 20.02,
+          "percentage": 18.2,
+          "frame": 480,
+          "box": [
+            303,
+            192,
+            378,
+            230
+          ],
+          "formatted_time": "00:20.02",
+          "ocr_text": "LETITG01",
+          "confidence": 0.892
+        },
+        {
+          "timestamp": 20.52,
+          "percentage": 18.7,
+          "frame": 492,
+          "box": [
+            329,
+            188,
+            405,
+            227
+          ],
+          "formatted_time": "00:20.52",
+          "ocr_text": "LET1TG01",
+          "confidence": 0.831
+        },
+        {
+          "timestamp": 21.02,
+          "percentage": 19.1,
+          "frame": 504,
+          "box": [
+            308,
+            162,
+            386,
+            200
+          ],
+          "formatted_time": "00:21.02",
+          "ocr_text": "UET01T600",
+          "confidence": 0.891
+        },
+        {
+          "timestamp": 21.52,
+          "percentage": 19.6,
+          "frame": 516,
+          "box": [
+            305,
+            243,
+            380,
+            281
+          ],
+          "formatted_time": "00:21.52",
+          "ocr_text": "LETITG01",
+          "confidence": 0.9
+        },
+        {
+          "timestamp": 22.02,
+          "percentage": 20.0,
+          "frame": 528,
+          "box": [
+            306,
+            205,
+            383,
+            244
+          ],
+          "formatted_time": "00:22.02",
+          "ocr_text": "LETBT07601",
+          "confidence": 0.866
+        },
+        {
+          "timestamp": 22.52,
+          "percentage": 20.5,
+          "frame": 540,
+          "box": [
+            333,
+            235,
+            411,
+            274
+          ],
+          "formatted_time": "00:22.52",
+          "ocr_text": "LETIT601",
+          "confidence": 0.895
+        },
+        {
+          "timestamp": 23.02,
+          "percentage": 20.9,
+          "frame": 552,
+          "box": [
+            344,
+            218,
+            423,
+            259
+          ],
+          "formatted_time": "00:23.02",
+          "ocr_text": "LETITG01",
+          "confidence": 0.876
+        },
+        {
+          "timestamp": 23.52,
+          "percentage": 21.4,
+          "frame": 564,
+          "box": [
+            354,
+            210,
+            436,
+            250
+          ],
+          "formatted_time": "00:23.52",
+          "ocr_text": "LETIT7601",
+          "confidence": 0.896
+        },
+        {
+          "timestamp": 24.02,
+          "percentage": 21.8,
+          "frame": 576,
+          "box": [
+            342,
+            194,
+            423,
+            236
+          ],
+          "formatted_time": "00:24.02",
+          "ocr_text": "LETITG01",
+          "confidence": 0.89
+        },
+        {
+          "timestamp": 24.52,
+          "percentage": 22.3,
+          "frame": 588,
+          "box": [
+            338,
+            162,
+            419,
+            207
+          ],
+          "formatted_time": "00:24.52",
+          "ocr_text": "LETITG01",
+          "confidence": 0.903
+        },
+        {
+          "timestamp": 25.02,
+          "percentage": 22.7,
+          "frame": 600,
+          "box": [
+            334,
+            141,
+            414,
+            185
+          ],
+          "formatted_time": "00:25.02",
+          "ocr_text": "LETITG01",
+          "confidence": 0.901
+        },
+        {
+          "timestamp": 25.53,
+          "percentage": 23.2,
+          "frame": 612,
+          "box": [
+            351,
+            169,
+            431,
+            211
+          ],
+          "formatted_time": "00:25.53",
+          "ocr_text": "LETITG01",
+          "confidence": 0.906
+        },
+        {
+          "timestamp": 26.03,
+          "percentage": 23.7,
+          "frame": 624,
+          "box": [
+            368,
+            190,
+            446,
+            233
+          ],
+          "formatted_time": "00:26.03",
+          "ocr_text": "LETITG01",
+          "confidence": 0.893
+        },
+        {
+          "timestamp": 26.53,
+          "percentage": 24.1,
+          "frame": 636,
+          "box": [
+            344,
+            113,
+            422,
+            154
+          ],
+          "formatted_time": "00:26.53",
+          "ocr_text": "LETITG01",
+          "confidence": 0.905
+        },
+        {
+          "timestamp": 27.03,
+          "percentage": 24.6,
+          "frame": 648,
+          "box": [
+            340,
+            167,
+            418,
+            209
+          ],
+          "formatted_time": "00:27.03",
+          "ocr_text": "LETITG01",
+          "confidence": 0.873
+        },
+        {
+          "timestamp": 27.53,
+          "percentage": 25.0,
+          "frame": 660,
+          "box": [
+            354,
+            215,
+            431,
+            255
+          ],
+          "formatted_time": "00:27.53",
+          "ocr_text": "LETITG01",
+          "confidence": 0.911
+        },
+        {
+          "timestamp": 28.03,
+          "percentage": 25.5,
+          "frame": 672,
+          "box": [
+            325,
+            198,
+            404,
+            239
+          ],
+          "formatted_time": "00:28.03",
+          "ocr_text": "LET1TC01",
+          "confidence": 0.883
+        },
+        {
+          "timestamp": 28.53,
+          "percentage": 25.9,
+          "frame": 684,
+          "box": [
+            295,
+            149,
+            374,
+            189
+          ],
+          "formatted_time": "00:28.53",
+          "ocr_text": "LETITG01",
+          "confidence": 0.897
+        },
+        {
+          "timestamp": 29.03,
+          "percentage": 26.4,
+          "frame": 696,
+          "box": [
+            307,
+            184,
+            386,
+            223
+          ],
+          "formatted_time": "00:29.03",
+          "ocr_text": "LETIT1TG01",
+          "confidence": 0.889
+        },
+        {
+          "timestamp": 29.53,
+          "percentage": 26.9,
+          "frame": 708,
+          "box": [
+            313,
+            237,
+            392,
+            276
+          ],
+          "formatted_time": "00:29.53",
+          "ocr_text": "LETIT601",
+          "confidence": 0.915
+        },
+        {
+          "timestamp": 30.03,
+          "percentage": 27.3,
+          "frame": 720,
+          "box": [
+            317,
+            221,
+            391,
+            259
+          ],
+          "formatted_time": "00:30.03",
+          "ocr_text": "LETITG01",
+          "confidence": 0.888
+        },
+        {
+          "timestamp": 30.53,
+          "percentage": 27.8,
+          "frame": 732,
+          "box": [
+            368,
+            221,
+            437,
+            258
+          ],
+          "formatted_time": "00:30.53",
+          "ocr_text": "LETIT601",
+          "confidence": 0.862
+        },
+        {
+          "timestamp": 31.03,
+          "percentage": 28.2,
+          "frame": 744,
+          "box": [
+            319,
+            195,
+            385,
+            223
+          ],
+          "formatted_time": "00:31.03",
+          "ocr_text": "UK1678111",
+          "confidence": 0.811
+        },
+        {
+          "timestamp": 31.53,
+          "percentage": 28.7,
+          "frame": 756,
+          "box": [
+            317,
+            213,
+            373,
+            242
+          ],
+          "formatted_time": "00:31.53",
+          "ocr_text": "LETITG01",
+          "confidence": 0.861
+        },
+        {
+          "timestamp": 32.03,
+          "percentage": 29.1,
+          "frame": 768,
+          "box": [
+            355,
+            233,
+            406,
+            259
+          ],
+          "formatted_time": "00:32.03",
+          "ocr_text": "LETIT601",
+          "confidence": 0.871
+        },
+        {
+          "timestamp": 32.53,
+          "percentage": 29.6,
+          "frame": 780,
+          "box": [
+            362,
+            241,
+            406,
+            263
+          ],
+          "formatted_time": "00:32.53",
+          "ocr_text": "LETHT67601",
+          "confidence": 0.866
+        },
+        {
+          "timestamp": 33.03,
+          "percentage": 30.0,
+          "frame": 792,
+          "box": [
+            361,
+            229,
+            404,
+            248
+          ],
+          "formatted_time": "00:33.03",
+          "ocr_text": "JEU70600",
+          "confidence": 0.81
+        },
+        {
+          "timestamp": 33.53,
+          "percentage": 30.5,
+          "frame": 804,
+          "box": [
+            344,
+            200,
+            386,
+            219
+          ],
+          "formatted_time": "00:33.53",
+          "ocr_text": "TE1HTG01",
+          "confidence": 0.797
+        },
+        {
+          "timestamp": 34.03,
+          "percentage": 30.9,
+          "frame": 816,
+          "box": [
+            412,
+            200,
+            453,
+            222
+          ],
+          "formatted_time": "00:34.03",
+          "ocr_text": "MH01F501",
+          "confidence": 0.791
+        },
+        {
+          "timestamp": 34.53,
+          "percentage": 31.4,
+          "frame": 828,
+          "box": [
+            377,
+            215,
+            419,
+            235
+          ],
+          "formatted_time": "00:34.53",
+          "ocr_text": "LET1E7TG01",
+          "confidence": 0.838
+        },
+        {
+          "timestamp": 35.03,
+          "percentage": 31.9,
+          "frame": 840,
+          "box": [
+            386,
+            206,
+            432,
+            228
+          ],
+          "formatted_time": "00:35.03",
+          "ocr_text": "LETIT1T601",
+          "confidence": 0.754
+        },
+        {
+          "timestamp": 35.54,
+          "percentage": 32.3,
+          "frame": 852,
+          "box": [
+            357,
+            209,
+            412,
+            235
+          ],
+          "formatted_time": "00:35.54",
+          "ocr_text": "LET1E7TC01",
+          "confidence": 0.855
+        },
+        {
+          "timestamp": 36.04,
+          "percentage": 32.8,
+          "frame": 864,
+          "box": [
+            364,
+            193,
+            436,
+            228
+          ],
+          "formatted_time": "00:36.04",
+          "ocr_text": "LETIT601",
+          "confidence": 0.867
+        },
+        {
+          "timestamp": 36.54,
+          "percentage": 33.2,
+          "frame": 876,
+          "box": [
+            328,
+            198,
+            419,
+            243
+          ],
+          "formatted_time": "00:36.54",
+          "ocr_text": "LET1TC01",
+          "confidence": 0.874
+        },
+        {
+          "timestamp": 37.04,
+          "percentage": 33.7,
+          "frame": 888,
+          "box": [
+            299,
+            185,
+            415,
+            243
+          ],
+          "formatted_time": "00:37.04",
+          "ocr_text": "LET1ET10601",
+          "confidence": 0.906
+        },
+        {
+          "timestamp": 37.54,
+          "percentage": 34.1,
+          "frame": 900,
+          "box": [
+            268,
+            165,
+            416,
+            241
+          ],
+          "formatted_time": "00:37.54",
+          "ocr_text": "LET1ET601",
+          "confidence": 0.92
+        },
+        {
+          "timestamp": 38.04,
+          "percentage": 34.6,
+          "frame": 912,
+          "box": [
+            272,
+            165,
+            441,
+            252
+          ],
+          "formatted_time": "00:38.04",
+          "ocr_text": "LET1ET1TG01",
+          "confidence": 0.9
+        },
+        {
+          "timestamp": 38.54,
+          "percentage": 35.0,
+          "frame": 924,
+          "box": [
+            286,
+            169,
+            459,
+            260
+          ],
+          "formatted_time": "00:38.54",
+          "ocr_text": "LETETG01",
+          "confidence": 0.913
+        },
+        {
+          "timestamp": 39.04,
+          "percentage": 35.5,
+          "frame": 936,
+          "box": [
+            300,
+            176,
+            474,
+            271
+          ],
+          "formatted_time": "00:39.04",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.916
+        },
+        {
+          "timestamp": 39.54,
+          "percentage": 36.0,
+          "frame": 948,
+          "box": [
+            282,
+            183,
+            454,
+            276
+          ],
+          "formatted_time": "00:39.54",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.905
+        },
+        {
+          "timestamp": 40.04,
+          "percentage": 36.4,
+          "frame": 960,
+          "box": [
+            281,
+            173,
+            454,
+            265
+          ],
+          "formatted_time": "00:40.04",
+          "ocr_text": "LETITTC01",
+          "confidence": 0.906
+        },
+        {
+          "timestamp": 40.54,
+          "percentage": 36.9,
+          "frame": 972,
+          "box": [
+            293,
+            169,
+            467,
+            261
+          ],
+          "formatted_time": "00:40.54",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.908
+        },
+        {
+          "timestamp": 41.04,
+          "percentage": 37.3,
+          "frame": 984,
+          "box": [
+            293,
+            164,
+            467,
+            256
+          ],
+          "formatted_time": "00:41.04",
+          "ocr_text": "LET1ET1TG01",
+          "confidence": 0.913
+        },
+        {
+          "timestamp": 41.54,
+          "percentage": 37.8,
+          "frame": 996,
+          "box": [
+            294,
+            169,
+            468,
+            261
+          ],
+          "formatted_time": "00:41.54",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.907
+        },
+        {
+          "timestamp": 42.04,
+          "percentage": 38.2,
+          "frame": 1008,
+          "box": [
+            291,
+            175,
+            464,
+            267
+          ],
+          "formatted_time": "00:42.04",
+          "ocr_text": "LETETG01",
+          "confidence": 0.916
+        },
+        {
+          "timestamp": 42.54,
+          "percentage": 38.7,
+          "frame": 1020,
+          "box": [
+            288,
+            172,
+            461,
+            263
+          ],
+          "formatted_time": "00:42.54",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.911
+        },
+        {
+          "timestamp": 43.04,
+          "percentage": 39.1,
+          "frame": 1032,
+          "box": [
+            292,
+            170,
+            464,
+            261
+          ],
+          "formatted_time": "00:43.04",
+          "ocr_text": "LETITTC01",
+          "confidence": 0.908
+        },
+        {
+          "timestamp": 43.54,
+          "percentage": 39.6,
+          "frame": 1044,
+          "box": [
+            288,
+            175,
+            461,
+            267
+          ],
+          "formatted_time": "00:43.54",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.917
+        },
+        {
+          "timestamp": 44.04,
+          "percentage": 40.0,
+          "frame": 1056,
+          "box": [
+            284,
+            171,
+            457,
+            262
+          ],
+          "formatted_time": "00:44.04",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.91
+        },
+        {
+          "timestamp": 44.54,
+          "percentage": 40.5,
+          "frame": 1068,
+          "box": [
+            288,
+            172,
+            461,
+            265
+          ],
+          "formatted_time": "00:44.54",
+          "ocr_text": "LET1ET1TG01",
+          "confidence": 0.916
+        },
+        {
+          "timestamp": 45.04,
+          "percentage": 41.0,
+          "frame": 1080,
+          "box": [
+            288,
+            168,
+            460,
+            260
+          ],
+          "formatted_time": "00:45.04",
+          "ocr_text": "LET1ET1TG01",
+          "confidence": 0.911
+        },
+        {
+          "timestamp": 45.55,
+          "percentage": 41.4,
+          "frame": 1092,
+          "box": [
+            283,
+            172,
+            455,
+            264
+          ],
+          "formatted_time": "00:45.55",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.91
+        },
+        {
+          "timestamp": 46.05,
+          "percentage": 41.9,
+          "frame": 1104,
+          "box": [
+            283,
+            176,
+            454,
+            267
+          ],
+          "formatted_time": "00:46.05",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.91
+        },
+        {
+          "timestamp": 46.55,
+          "percentage": 42.3,
+          "frame": 1116,
+          "box": [
+            280,
+            172,
+            452,
+            262
+          ],
+          "formatted_time": "00:46.55",
+          "ocr_text": "LETET601",
+          "confidence": 0.907
+        },
+        {
+          "timestamp": 47.05,
+          "percentage": 42.8,
+          "frame": 1128,
+          "box": [
+            277,
+            174,
+            452,
+            265
+          ],
+          "formatted_time": "00:47.05",
+          "ocr_text": "LET1ET601",
+          "confidence": 0.913
+        },
+        {
+          "timestamp": 47.55,
+          "percentage": 43.2,
+          "frame": 1140,
+          "box": [
+            278,
+            174,
+            451,
+            265
+          ],
+          "formatted_time": "00:47.55",
+          "ocr_text": "LET1ET601",
+          "confidence": 0.913
+        },
+        {
+          "timestamp": 48.05,
+          "percentage": 43.7,
+          "frame": 1152,
+          "box": [
+            278,
+            175,
+            450,
+            265
+          ],
+          "formatted_time": "00:48.05",
+          "ocr_text": "LET1ET601",
+          "confidence": 0.903
+        },
+        {
+          "timestamp": 48.55,
+          "percentage": 44.1,
+          "frame": 1164,
+          "box": [
+            280,
+            180,
+            448,
+            270
+          ],
+          "formatted_time": "00:48.55",
+          "ocr_text": "LET1ET1TG01",
+          "confidence": 0.889
+        },
+        {
+          "timestamp": 49.05,
+          "percentage": 44.6,
+          "frame": 1176,
+          "box": [
+            280,
+            178,
+            445,
+            267
+          ],
+          "formatted_time": "00:49.05",
+          "ocr_text": "LETETTG01",
+          "confidence": 0.886
+        },
+        {
+          "timestamp": 49.55,
+          "percentage": 45.1,
+          "frame": 1188,
+          "box": [
+            267,
+            183,
+            443,
+            272
+          ],
+          "formatted_time": "00:49.55",
+          "ocr_text": "LETLT17G01",
+          "confidence": 0.876
+        },
+        {
+          "timestamp": 50.05,
+          "percentage": 45.5,
+          "frame": 1200,
+          "box": [
+            275,
+            186,
+            447,
+            276
+          ],
+          "formatted_time": "00:50.05",
+          "ocr_text": "LETETCG01",
+          "confidence": 0.892
+        },
+        {
+          "timestamp": 50.55,
+          "percentage": 46.0,
+          "frame": 1212,
+          "box": [
+            279,
+            181,
+            451,
+            271
+          ],
+          "formatted_time": "00:50.55",
+          "ocr_text": "LETET17G01",
+          "confidence": 0.917
+        },
+        {
+          "timestamp": 51.05,
+          "percentage": 46.4,
+          "frame": 1224,
+          "box": [
+            277,
+            177,
+            448,
+            268
+          ],
+          "formatted_time": "00:51.05",
+          "ocr_text": "LET11T7G01",
+          "confidence": 0.899
+        },
+        {
+          "timestamp": 51.55,
+          "percentage": 46.9,
+          "frame": 1236,
+          "box": [
+            281,
+            180,
+            452,
+            271
+          ],
+          "formatted_time": "00:51.55",
+          "ocr_text": "LET1ET601",
+          "confidence": 0.92
+        },
+        {
+          "timestamp": 52.05,
+          "percentage": 47.3,
+          "frame": 1248,
+          "box": [
+            280,
+            178,
+            450,
+            268
+          ],
+          "formatted_time": "00:52.05",
+          "ocr_text": "LETET7601",
+          "confidence": 0.909
+        },
+        {
+          "timestamp": 52.55,
+          "percentage": 47.8,
+          "frame": 1260,
+          "box": [
+            278,
+            173,
+            452,
+            263
+          ],
+          "formatted_time": "00:52.55",
+          "ocr_text": "LET17TC01",
+          "confidence": 0.911
+        },
+        {
+          "timestamp": 53.05,
+          "percentage": 48.2,
+          "frame": 1272,
+          "box": [
+            278,
+            173,
+            452,
+            262
+          ],
+          "formatted_time": "00:53.05",
+          "ocr_text": "LET1ET10601",
+          "confidence": 0.911
+        },
+        {
+          "timestamp": 53.55,
+          "percentage": 48.7,
+          "frame": 1284,
+          "box": [
+            281,
+            174,
+            454,
+            264
+          ],
+          "formatted_time": "00:53.55",
+          "ocr_text": "LETETG01",
+          "confidence": 0.916
+        },
+        {
+          "timestamp": 54.05,
+          "percentage": 49.1,
+          "frame": 1296,
+          "box": [
+            283,
+            179,
+            454,
+            269
+          ],
+          "formatted_time": "00:54.05",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.909
+        },
+        {
+          "timestamp": 54.55,
+          "percentage": 49.6,
+          "frame": 1308,
+          "box": [
+            285,
+            179,
+            455,
+            268
+          ],
+          "formatted_time": "00:54.55",
+          "ocr_text": "LETETG01",
+          "confidence": 0.905
+        },
+        {
+          "timestamp": 55.05,
+          "percentage": 50.1,
+          "frame": 1320,
+          "box": [
+            283,
+            183,
+            456,
+            272
+          ],
+          "formatted_time": "00:55.05",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.903
+        },
+        {
+          "timestamp": 55.56,
+          "percentage": 50.5,
+          "frame": 1332,
+          "box": [
+            283,
+            185,
+            455,
+            275
+          ],
+          "formatted_time": "00:55.56",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.907
+        },
+        {
+          "timestamp": 56.06,
+          "percentage": 51.0,
+          "frame": 1344,
+          "box": [
+            283,
+            189,
+            454,
+            279
+          ],
+          "formatted_time": "00:56.06",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.91
+        },
+        {
+          "timestamp": 56.56,
+          "percentage": 51.4,
+          "frame": 1356,
+          "box": [
+            284,
+            191,
+            455,
+            280
+          ],
+          "formatted_time": "00:56.56",
+          "ocr_text": "LETETG01",
+          "confidence": 0.903
+        },
+        {
+          "timestamp": 57.06,
+          "percentage": 51.9,
+          "frame": 1368,
+          "box": [
+            282,
+            189,
+            454,
+            279
+          ],
+          "formatted_time": "00:57.06",
+          "ocr_text": "LETETG601",
+          "confidence": 0.905
+        },
+        {
+          "timestamp": 57.56,
+          "percentage": 52.3,
+          "frame": 1380,
+          "box": [
+            284,
+            184,
+            455,
+            274
+          ],
+          "formatted_time": "00:57.56",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.904
+        },
+        {
+          "timestamp": 58.06,
+          "percentage": 52.8,
+          "frame": 1392,
+          "box": [
+            281,
+            188,
+            454,
+            279
+          ],
+          "formatted_time": "00:58.06",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.906
+        },
+        {
+          "timestamp": 58.56,
+          "percentage": 53.2,
+          "frame": 1404,
+          "box": [
+            283,
+            186,
+            454,
+            277
+          ],
+          "formatted_time": "00:58.56",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.901
+        },
+        {
+          "timestamp": 59.06,
+          "percentage": 53.7,
+          "frame": 1416,
+          "box": [
+            283,
+            188,
+            455,
+            278
+          ],
+          "formatted_time": "00:59.06",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.905
+        },
+        {
+          "timestamp": 59.56,
+          "percentage": 54.2,
+          "frame": 1428,
+          "box": [
+            281,
+            189,
+            454,
+            280
+          ],
+          "formatted_time": "00:59.56",
+          "ocr_text": "LET1E7TG01",
+          "confidence": 0.903
+        },
+        {
+          "timestamp": 60.06,
+          "percentage": 54.6,
+          "frame": 1440,
+          "box": [
+            284,
+            185,
+            455,
+            275
+          ],
+          "formatted_time": "01:00.06",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.905
+        },
+        {
+          "timestamp": 60.56,
+          "percentage": 55.1,
+          "frame": 1452,
+          "box": [
+            288,
+            185,
+            460,
+            275
+          ],
+          "formatted_time": "01:00.56",
+          "ocr_text": "LET1ET601",
+          "confidence": 0.91
+        },
+        {
+          "timestamp": 61.06,
+          "percentage": 55.5,
+          "frame": 1464,
+          "box": [
+            290,
+            193,
+            460,
+            284
+          ],
+          "formatted_time": "01:01.06",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.902
+        },
+        {
+          "timestamp": 61.56,
+          "percentage": 56.0,
+          "frame": 1476,
+          "box": [
+            290,
+            189,
+            461,
+            279
+          ],
+          "formatted_time": "01:01.56",
+          "ocr_text": "LETET1TC01",
+          "confidence": 0.912
+        },
+        {
+          "timestamp": 62.06,
+          "percentage": 56.4,
+          "frame": 1488,
+          "box": [
+            288,
+            183,
+            460,
+            274
+          ],
+          "formatted_time": "01:02.06",
+          "ocr_text": "LET11T7G01",
+          "confidence": 0.9
+        }
+      ]
+    },
+    "gettyimages-902268260-640_adpp": {
+      "video_stem": "gettyimages-902268260-640_adpp",
+      "total_vehicles": 1,
+      "duration": 109.98,
+      "formatted_duration": "01:49",
+      "vehicles": [
+        {
+          "plate": "LETITGO",
+          "track_id": "1",
+          "state": "California / Custom Vanity Series",
+          "best_ocr_confidence": 0.945,
+          "best_detector_confidence": 0.92,
+          "first_seen": 0.0,
+          "last_seen": 62.06,
+          "formatted_first_seen": "00:00.00",
+          "formatted_last_seen": "01:02.06",
+          "total_occurrences": 125,
+          "best_frame": 744,
+          "best_box": [
+            319,
+            195,
+            385,
+            223
+          ],
+          "timeline_timestamps": [
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0,
+            2.5,
+            3.0,
+            3.5,
+            4.0,
+            4.5,
+            5.0,
+            5.51,
+            6.01,
+            6.51,
+            7.01,
+            7.51,
+            8.01,
+            8.51,
+            9.01,
+            9.51,
+            10.01,
+            10.51,
+            11.01,
+            11.51,
+            12.01,
+            12.51,
+            13.01,
+            13.51,
+            14.01,
+            14.51,
+            15.01,
+            15.52,
+            16.02,
+            16.52,
+            17.02,
+            17.52,
+            18.02,
+            18.52,
+            19.02,
+            19.52,
+            20.02,
+            20.52,
+            21.02,
+            21.52,
+            22.02,
+            22.52,
+            23.02,
+            23.52,
+            24.02,
+            24.52,
+            25.02,
+            25.53,
+            26.03,
+            26.53,
+            27.03,
+            27.53,
+            28.03,
+            28.53,
+            29.03,
+            29.53,
+            30.03,
+            30.53,
+            31.03,
+            31.53,
+            32.03,
+            32.53,
+            33.03,
+            33.53,
+            34.03,
+            34.53,
+            35.03,
+            35.54,
+            36.04,
+            36.54,
+            37.04,
+            37.54,
+            38.04,
+            38.54,
+            39.04,
+            39.54,
+            40.04,
+            40.54,
+            41.04,
+            41.54,
+            42.04,
+            42.54,
+            43.04,
+            43.54,
+            44.04,
+            44.54,
+            45.04,
+            45.55,
+            46.05,
+            46.55,
+            47.05,
+            47.55,
+            48.05,
+            48.55,
+            49.05,
+            49.55,
+            50.05,
+            50.55,
+            51.05,
+            51.55,
+            52.05,
+            52.55,
+            53.05,
+            53.55,
+            54.05,
+            54.55,
+            55.05,
+            55.56,
+            56.06,
+            56.56,
+            57.06,
+            57.56,
+            58.06,
+            58.56,
+            59.06,
+            59.56,
+            60.06,
+            60.56,
+            61.06,
+            61.56,
+            62.06
+          ],
+          "timeline_markers": [
+            {
+              "timestamp": 0.0,
+              "percentage": 0.0,
+              "frame": 0,
+              "box": [
+                316,
+                151,
+                415,
+                203
+              ],
+              "formatted_time": "00:00.00",
+              "ocr_text": "LETITG01",
+              "confidence": 0.91
+            },
+            {
+              "timestamp": 0.5,
+              "percentage": 0.5,
+              "frame": 12,
+              "box": [
+                315,
+                154,
+                413,
+                205
+              ],
+              "formatted_time": "00:00.50",
+              "ocr_text": "LETITG01",
+              "confidence": 0.914
+            },
+            {
+              "timestamp": 1.0,
+              "percentage": 0.9,
+              "frame": 24,
+              "box": [
+                316,
+                147,
+                416,
+                199
+              ],
+              "formatted_time": "00:01.00",
+              "ocr_text": "LETITG01",
+              "confidence": 0.91
+            },
+            {
+              "timestamp": 1.5,
+              "percentage": 1.4,
+              "frame": 36,
+              "box": [
+                317,
+                149,
+                417,
+                202
+              ],
+              "formatted_time": "00:01.50",
+              "ocr_text": "LETITCG01",
+              "confidence": 0.908
+            },
+            {
+              "timestamp": 2.0,
+              "percentage": 1.8,
+              "frame": 48,
+              "box": [
+                315,
+                150,
+                415,
+                202
+              ],
+              "formatted_time": "00:02.00",
+              "ocr_text": "LETITG01",
+              "confidence": 0.908
+            },
+            {
+              "timestamp": 2.5,
+              "percentage": 2.3,
+              "frame": 60,
+              "box": [
+                322,
+                153,
+                421,
+                204
+              ],
+              "formatted_time": "00:02.50",
+              "ocr_text": "LETITG01",
+              "confidence": 0.915
+            },
+            {
+              "timestamp": 3.0,
+              "percentage": 2.7,
+              "frame": 72,
+              "box": [
+                323,
+                156,
+                423,
+                208
+              ],
+              "formatted_time": "00:03.00",
+              "ocr_text": "LETIT7601",
+              "confidence": 0.909
+            },
+            {
+              "timestamp": 3.5,
+              "percentage": 3.2,
+              "frame": 84,
+              "box": [
+                323,
+                153,
+                422,
+                205
+              ],
+              "formatted_time": "00:03.50",
+              "ocr_text": "LETITG01",
+              "confidence": 0.907
+            },
+            {
+              "timestamp": 4.0,
+              "percentage": 3.6,
+              "frame": 96,
+              "box": [
+                324,
+                153,
+                423,
+                205
+              ],
+              "formatted_time": "00:04.00",
+              "ocr_text": "LETITG01",
+              "confidence": 0.906
+            },
+            {
+              "timestamp": 4.5,
+              "percentage": 4.1,
+              "frame": 108,
+              "box": [
+                330,
+                158,
+                426,
+                209
+              ],
+              "formatted_time": "00:04.50",
+              "ocr_text": "LETITCG01",
+              "confidence": 0.918
+            },
+            {
+              "timestamp": 5.0,
+              "percentage": 4.5,
+              "frame": 120,
+              "box": [
+                309,
+                167,
+                402,
+                214
+              ],
+              "formatted_time": "00:05.00",
+              "ocr_text": "LETITG01",
+              "confidence": 0.882
+            },
+            {
+              "timestamp": 5.51,
+              "percentage": 5.0,
+              "frame": 132,
+              "box": [
+                313,
+                182,
+                403,
+                228
+              ],
+              "formatted_time": "00:05.51",
+              "ocr_text": "LET1TG01",
+              "confidence": 0.884
+            },
+            {
+              "timestamp": 6.01,
+              "percentage": 5.5,
+              "frame": 144,
+              "box": [
+                293,
+                172,
+                384,
+                220
+              ],
+              "formatted_time": "00:06.01",
+              "ocr_text": "LETLT1TG01",
+              "confidence": 0.883
+            },
+            {
+              "timestamp": 6.51,
+              "percentage": 5.9,
+              "frame": 156,
+              "box": [
+                310,
+                185,
+                401,
+                229
+              ],
+              "formatted_time": "00:06.51",
+              "ocr_text": "LET1TC01",
+              "confidence": 0.89
+            },
+            {
+              "timestamp": 7.01,
+              "percentage": 6.4,
+              "frame": 168,
+              "box": [
+                317,
+                169,
+                402,
+                213
+              ],
+              "formatted_time": "00:07.01",
+              "ocr_text": "LETITG01",
+              "confidence": 0.882
+            },
+            {
+              "timestamp": 7.51,
+              "percentage": 6.8,
+              "frame": 180,
+              "box": [
+                314,
+                172,
+                393,
+                213
+              ],
+              "formatted_time": "00:07.51",
+              "ocr_text": "LETITG01",
+              "confidence": 0.89
+            },
+            {
+              "timestamp": 8.01,
+              "percentage": 7.3,
+              "frame": 192,
+              "box": [
+                319,
+                192,
+                395,
+                230
+              ],
+              "formatted_time": "00:08.01",
+              "ocr_text": "LETITG01",
+              "confidence": 0.887
+            },
+            {
+              "timestamp": 8.51,
+              "percentage": 7.7,
+              "frame": 204,
+              "box": [
+                337,
+                204,
+                409,
+                241
+              ],
+              "formatted_time": "00:08.51",
+              "ocr_text": "LETITG01",
+              "confidence": 0.865
+            },
+            {
+              "timestamp": 9.01,
+              "percentage": 8.2,
+              "frame": 216,
+              "box": [
+                320,
+                208,
+                389,
+                242
+              ],
+              "formatted_time": "00:09.01",
+              "ocr_text": "LETITG01",
+              "confidence": 0.883
+            },
+            {
+              "timestamp": 9.51,
+              "percentage": 8.6,
+              "frame": 228,
+              "box": [
+                326,
+                207,
+                394,
+                242
+              ],
+              "formatted_time": "00:09.51",
+              "ocr_text": "LETITG01",
+              "confidence": 0.874
+            },
+            {
+              "timestamp": 10.01,
+              "percentage": 9.1,
+              "frame": 240,
+              "box": [
+                316,
+                194,
+                383,
+                229
+              ],
+              "formatted_time": "00:10.01",
+              "ocr_text": "LETITG01",
+              "confidence": 0.884
+            },
+            {
+              "timestamp": 10.51,
+              "percentage": 9.6,
+              "frame": 252,
+              "box": [
+                333,
+                212,
+                398,
+                246
+              ],
+              "formatted_time": "00:10.51",
+              "ocr_text": "LETITG01",
+              "confidence": 0.864
+            },
+            {
+              "timestamp": 11.01,
+              "percentage": 10.0,
+              "frame": 264,
+              "box": [
+                341,
+                255,
+                410,
+                290
+              ],
+              "formatted_time": "00:11.01",
+              "ocr_text": "LETIT601",
+              "confidence": 0.91
+            },
+            {
+              "timestamp": 11.51,
+              "percentage": 10.5,
+              "frame": 276,
+              "box": [
+                294,
+                218,
+                362,
+                254
+              ],
+              "formatted_time": "00:11.51",
+              "ocr_text": "LETITS31",
+              "confidence": 0.882
+            },
+            {
+              "timestamp": 12.01,
+              "percentage": 10.9,
+              "frame": 288,
+              "box": [
+                278,
+                189,
+                347,
+                224
+              ],
+              "formatted_time": "00:12.01",
+              "ocr_text": "UP1RM9089",
+              "confidence": 0.521
+            },
+            {
+              "timestamp": 12.51,
+              "percentage": 11.4,
+              "frame": 300,
+              "box": [
+                377,
+                235,
+                445,
+                269
+              ],
+              "formatted_time": "00:12.51",
+              "ocr_text": "LETHTHT6002",
+              "confidence": 0.872
+            },
+            {
+              "timestamp": 13.01,
+              "percentage": 11.8,
+              "frame": 312,
+              "box": [
+                310,
+                227,
+                377,
+                260
+              ],
+              "formatted_time": "00:13.01",
+              "ocr_text": "LETIT601",
+              "confidence": 0.894
+            },
+            {
+              "timestamp": 13.51,
+              "percentage": 12.3,
+              "frame": 324,
+              "box": [
+                312,
+                234,
+                381,
+                272
+              ],
+              "formatted_time": "00:13.51",
+              "ocr_text": "LETITG01",
+              "confidence": 0.883
+            },
+            {
+              "timestamp": 14.01,
+              "percentage": 12.7,
+              "frame": 336,
+              "box": [
+                313,
+                260,
+                382,
+                296
+              ],
+              "formatted_time": "00:14.01",
+              "ocr_text": "LETITG01",
+              "confidence": 0.893
+            },
+            {
+              "timestamp": 14.51,
+              "percentage": 13.2,
+              "frame": 348,
+              "box": [
+                331,
+                221,
+                404,
+                252
+              ],
+              "formatted_time": "00:14.51",
+              "ocr_text": "MH01MW6810",
+              "confidence": 0.794
+            },
+            {
+              "timestamp": 15.01,
+              "percentage": 13.6,
+              "frame": 360,
+              "box": [
+                352,
+                199,
+                426,
+                236
+              ],
+              "formatted_time": "00:15.01",
+              "ocr_text": "LETITG01",
+              "confidence": 0.884
+            },
+            {
+              "timestamp": 15.52,
+              "percentage": 14.1,
+              "frame": 372,
+              "box": [
+                312,
+                214,
+                388,
+                254
+              ],
+              "formatted_time": "00:15.52",
+              "ocr_text": "LETIT601",
+              "confidence": 0.904
+            },
+            {
+              "timestamp": 16.02,
+              "percentage": 14.6,
+              "frame": 384,
+              "box": [
+                321,
+                232,
+                396,
+                272
+              ],
+              "formatted_time": "00:16.02",
+              "ocr_text": "LETITG01",
+              "confidence": 0.892
+            },
+            {
+              "timestamp": 16.52,
+              "percentage": 15.0,
+              "frame": 396,
+              "box": [
+                388,
+                249,
+                463,
+                288
+              ],
+              "formatted_time": "00:16.52",
+              "ocr_text": "LETIT601",
+              "confidence": 0.905
+            },
+            {
+              "timestamp": 17.02,
+              "percentage": 15.5,
+              "frame": 408,
+              "box": [
+                361,
+                238,
+                435,
+                274
+              ],
+              "formatted_time": "00:17.02",
+              "ocr_text": "UET01TS01",
+              "confidence": 0.898
+            },
+            {
+              "timestamp": 17.52,
+              "percentage": 15.9,
+              "frame": 420,
+              "box": [
+                321,
+                172,
+                392,
+                210
+              ],
+              "formatted_time": "00:17.52",
+              "ocr_text": "LETITG01",
+              "confidence": 0.871
+            },
+            {
+              "timestamp": 18.02,
+              "percentage": 16.4,
+              "frame": 432,
+              "box": [
+                337,
+                192,
+                409,
+                229
+              ],
+              "formatted_time": "00:18.02",
+              "ocr_text": "LETITG01",
+              "confidence": 0.889
+            },
+            {
+              "timestamp": 18.52,
+              "percentage": 16.8,
+              "frame": 444,
+              "box": [
+                392,
+                217,
+                462,
+                254
+              ],
+              "formatted_time": "00:18.52",
+              "ocr_text": "LETITG01",
+              "confidence": 0.883
+            },
+            {
+              "timestamp": 19.02,
+              "percentage": 17.3,
+              "frame": 456,
+              "box": [
+                363,
+                175,
+                437,
+                212
+              ],
+              "formatted_time": "00:19.02",
+              "ocr_text": "LETIT601",
+              "confidence": 0.888
+            },
+            {
+              "timestamp": 19.52,
+              "percentage": 17.7,
+              "frame": 468,
+              "box": [
+                295,
+                210,
+                369,
+                248
+              ],
+              "formatted_time": "00:19.52",
+              "ocr_text": "LET1TC01",
+              "confidence": 0.899
+            },
+            {
+              "timestamp": 20.02,
+              "percentage": 18.2,
+              "frame": 480,
+              "box": [
+                303,
+                192,
+                378,
+                230
+              ],
+              "formatted_time": "00:20.02",
+              "ocr_text": "LETITG01",
+              "confidence": 0.892
+            },
+            {
+              "timestamp": 20.52,
+              "percentage": 18.7,
+              "frame": 492,
+              "box": [
+                329,
+                188,
+                405,
+                227
+              ],
+              "formatted_time": "00:20.52",
+              "ocr_text": "LET1TG01",
+              "confidence": 0.831
+            },
+            {
+              "timestamp": 21.02,
+              "percentage": 19.1,
+              "frame": 504,
+              "box": [
+                308,
+                162,
+                386,
+                200
+              ],
+              "formatted_time": "00:21.02",
+              "ocr_text": "UET01T600",
+              "confidence": 0.891
+            },
+            {
+              "timestamp": 21.52,
+              "percentage": 19.6,
+              "frame": 516,
+              "box": [
+                305,
+                243,
+                380,
+                281
+              ],
+              "formatted_time": "00:21.52",
+              "ocr_text": "LETITG01",
+              "confidence": 0.9
+            },
+            {
+              "timestamp": 22.02,
+              "percentage": 20.0,
+              "frame": 528,
+              "box": [
+                306,
+                205,
+                383,
+                244
+              ],
+              "formatted_time": "00:22.02",
+              "ocr_text": "LETBT07601",
+              "confidence": 0.866
+            },
+            {
+              "timestamp": 22.52,
+              "percentage": 20.5,
+              "frame": 540,
+              "box": [
+                333,
+                235,
+                411,
+                274
+              ],
+              "formatted_time": "00:22.52",
+              "ocr_text": "LETIT601",
+              "confidence": 0.895
+            },
+            {
+              "timestamp": 23.02,
+              "percentage": 20.9,
+              "frame": 552,
+              "box": [
+                344,
+                218,
+                423,
+                259
+              ],
+              "formatted_time": "00:23.02",
+              "ocr_text": "LETITG01",
+              "confidence": 0.876
+            },
+            {
+              "timestamp": 23.52,
+              "percentage": 21.4,
+              "frame": 564,
+              "box": [
+                354,
+                210,
+                436,
+                250
+              ],
+              "formatted_time": "00:23.52",
+              "ocr_text": "LETIT7601",
+              "confidence": 0.896
+            },
+            {
+              "timestamp": 24.02,
+              "percentage": 21.8,
+              "frame": 576,
+              "box": [
+                342,
+                194,
+                423,
+                236
+              ],
+              "formatted_time": "00:24.02",
+              "ocr_text": "LETITG01",
+              "confidence": 0.89
+            },
+            {
+              "timestamp": 24.52,
+              "percentage": 22.3,
+              "frame": 588,
+              "box": [
+                338,
+                162,
+                419,
+                207
+              ],
+              "formatted_time": "00:24.52",
+              "ocr_text": "LETITG01",
+              "confidence": 0.903
+            },
+            {
+              "timestamp": 25.02,
+              "percentage": 22.7,
+              "frame": 600,
+              "box": [
+                334,
+                141,
+                414,
+                185
+              ],
+              "formatted_time": "00:25.02",
+              "ocr_text": "LETITG01",
+              "confidence": 0.901
+            },
+            {
+              "timestamp": 25.53,
+              "percentage": 23.2,
+              "frame": 612,
+              "box": [
+                351,
+                169,
+                431,
+                211
+              ],
+              "formatted_time": "00:25.53",
+              "ocr_text": "LETITG01",
+              "confidence": 0.906
+            },
+            {
+              "timestamp": 26.03,
+              "percentage": 23.7,
+              "frame": 624,
+              "box": [
+                368,
+                190,
+                446,
+                233
+              ],
+              "formatted_time": "00:26.03",
+              "ocr_text": "LETITG01",
+              "confidence": 0.893
+            },
+            {
+              "timestamp": 26.53,
+              "percentage": 24.1,
+              "frame": 636,
+              "box": [
+                344,
+                113,
+                422,
+                154
+              ],
+              "formatted_time": "00:26.53",
+              "ocr_text": "LETITG01",
+              "confidence": 0.905
+            },
+            {
+              "timestamp": 27.03,
+              "percentage": 24.6,
+              "frame": 648,
+              "box": [
+                340,
+                167,
+                418,
+                209
+              ],
+              "formatted_time": "00:27.03",
+              "ocr_text": "LETITG01",
+              "confidence": 0.873
+            },
+            {
+              "timestamp": 27.53,
+              "percentage": 25.0,
+              "frame": 660,
+              "box": [
+                354,
+                215,
+                431,
+                255
+              ],
+              "formatted_time": "00:27.53",
+              "ocr_text": "LETITG01",
+              "confidence": 0.911
+            },
+            {
+              "timestamp": 28.03,
+              "percentage": 25.5,
+              "frame": 672,
+              "box": [
+                325,
+                198,
+                404,
+                239
+              ],
+              "formatted_time": "00:28.03",
+              "ocr_text": "LET1TC01",
+              "confidence": 0.883
+            },
+            {
+              "timestamp": 28.53,
+              "percentage": 25.9,
+              "frame": 684,
+              "box": [
+                295,
+                149,
+                374,
+                189
+              ],
+              "formatted_time": "00:28.53",
+              "ocr_text": "LETITG01",
+              "confidence": 0.897
+            },
+            {
+              "timestamp": 29.03,
+              "percentage": 26.4,
+              "frame": 696,
+              "box": [
+                307,
+                184,
+                386,
+                223
+              ],
+              "formatted_time": "00:29.03",
+              "ocr_text": "LETIT1TG01",
+              "confidence": 0.889
+            },
+            {
+              "timestamp": 29.53,
+              "percentage": 26.9,
+              "frame": 708,
+              "box": [
+                313,
+                237,
+                392,
+                276
+              ],
+              "formatted_time": "00:29.53",
+              "ocr_text": "LETIT601",
+              "confidence": 0.915
+            },
+            {
+              "timestamp": 30.03,
+              "percentage": 27.3,
+              "frame": 720,
+              "box": [
+                317,
+                221,
+                391,
+                259
+              ],
+              "formatted_time": "00:30.03",
+              "ocr_text": "LETITG01",
+              "confidence": 0.888
+            },
+            {
+              "timestamp": 30.53,
+              "percentage": 27.8,
+              "frame": 732,
+              "box": [
+                368,
+                221,
+                437,
+                258
+              ],
+              "formatted_time": "00:30.53",
+              "ocr_text": "LETIT601",
+              "confidence": 0.862
+            },
+            {
+              "timestamp": 31.03,
+              "percentage": 28.2,
+              "frame": 744,
+              "box": [
+                319,
+                195,
+                385,
+                223
+              ],
+              "formatted_time": "00:31.03",
+              "ocr_text": "UK1678111",
+              "confidence": 0.811
+            },
+            {
+              "timestamp": 31.53,
+              "percentage": 28.7,
+              "frame": 756,
+              "box": [
+                317,
+                213,
+                373,
+                242
+              ],
+              "formatted_time": "00:31.53",
+              "ocr_text": "LETITG01",
+              "confidence": 0.861
+            },
+            {
+              "timestamp": 32.03,
+              "percentage": 29.1,
+              "frame": 768,
+              "box": [
+                355,
+                233,
+                406,
+                259
+              ],
+              "formatted_time": "00:32.03",
+              "ocr_text": "LETIT601",
+              "confidence": 0.871
+            },
+            {
+              "timestamp": 32.53,
+              "percentage": 29.6,
+              "frame": 780,
+              "box": [
+                362,
+                241,
+                406,
+                263
+              ],
+              "formatted_time": "00:32.53",
+              "ocr_text": "LETHT67601",
+              "confidence": 0.866
+            },
+            {
+              "timestamp": 33.03,
+              "percentage": 30.0,
+              "frame": 792,
+              "box": [
+                361,
+                229,
+                404,
+                248
+              ],
+              "formatted_time": "00:33.03",
+              "ocr_text": "JEU70600",
+              "confidence": 0.81
+            },
+            {
+              "timestamp": 33.53,
+              "percentage": 30.5,
+              "frame": 804,
+              "box": [
+                344,
+                200,
+                386,
+                219
+              ],
+              "formatted_time": "00:33.53",
+              "ocr_text": "TE1HTG01",
+              "confidence": 0.797
+            },
+            {
+              "timestamp": 34.03,
+              "percentage": 30.9,
+              "frame": 816,
+              "box": [
+                412,
+                200,
+                453,
+                222
+              ],
+              "formatted_time": "00:34.03",
+              "ocr_text": "MH01F501",
+              "confidence": 0.791
+            },
+            {
+              "timestamp": 34.53,
+              "percentage": 31.4,
+              "frame": 828,
+              "box": [
+                377,
+                215,
+                419,
+                235
+              ],
+              "formatted_time": "00:34.53",
+              "ocr_text": "LET1E7TG01",
+              "confidence": 0.838
+            },
+            {
+              "timestamp": 35.03,
+              "percentage": 31.9,
+              "frame": 840,
+              "box": [
+                386,
+                206,
+                432,
+                228
+              ],
+              "formatted_time": "00:35.03",
+              "ocr_text": "LETIT1T601",
+              "confidence": 0.754
+            },
+            {
+              "timestamp": 35.54,
+              "percentage": 32.3,
+              "frame": 852,
+              "box": [
+                357,
+                209,
+                412,
+                235
+              ],
+              "formatted_time": "00:35.54",
+              "ocr_text": "LET1E7TC01",
+              "confidence": 0.855
+            },
+            {
+              "timestamp": 36.04,
+              "percentage": 32.8,
+              "frame": 864,
+              "box": [
+                364,
+                193,
+                436,
+                228
+              ],
+              "formatted_time": "00:36.04",
+              "ocr_text": "LETIT601",
+              "confidence": 0.867
+            },
+            {
+              "timestamp": 36.54,
+              "percentage": 33.2,
+              "frame": 876,
+              "box": [
+                328,
+                198,
+                419,
+                243
+              ],
+              "formatted_time": "00:36.54",
+              "ocr_text": "LET1TC01",
+              "confidence": 0.874
+            },
+            {
+              "timestamp": 37.04,
+              "percentage": 33.7,
+              "frame": 888,
+              "box": [
+                299,
+                185,
+                415,
+                243
+              ],
+              "formatted_time": "00:37.04",
+              "ocr_text": "LET1ET10601",
+              "confidence": 0.906
+            },
+            {
+              "timestamp": 37.54,
+              "percentage": 34.1,
+              "frame": 900,
+              "box": [
+                268,
+                165,
+                416,
+                241
+              ],
+              "formatted_time": "00:37.54",
+              "ocr_text": "LET1ET601",
+              "confidence": 0.92
+            },
+            {
+              "timestamp": 38.04,
+              "percentage": 34.6,
+              "frame": 912,
+              "box": [
+                272,
+                165,
+                441,
+                252
+              ],
+              "formatted_time": "00:38.04",
+              "ocr_text": "LET1ET1TG01",
+              "confidence": 0.9
+            },
+            {
+              "timestamp": 38.54,
+              "percentage": 35.0,
+              "frame": 924,
+              "box": [
+                286,
+                169,
+                459,
+                260
+              ],
+              "formatted_time": "00:38.54",
+              "ocr_text": "LETETG01",
+              "confidence": 0.913
+            },
+            {
+              "timestamp": 39.04,
+              "percentage": 35.5,
+              "frame": 936,
+              "box": [
+                300,
+                176,
+                474,
+                271
+              ],
+              "formatted_time": "00:39.04",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.916
+            },
+            {
+              "timestamp": 39.54,
+              "percentage": 36.0,
+              "frame": 948,
+              "box": [
+                282,
+                183,
+                454,
+                276
+              ],
+              "formatted_time": "00:39.54",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.905
+            },
+            {
+              "timestamp": 40.04,
+              "percentage": 36.4,
+              "frame": 960,
+              "box": [
+                281,
+                173,
+                454,
+                265
+              ],
+              "formatted_time": "00:40.04",
+              "ocr_text": "LETITTC01",
+              "confidence": 0.906
+            },
+            {
+              "timestamp": 40.54,
+              "percentage": 36.9,
+              "frame": 972,
+              "box": [
+                293,
+                169,
+                467,
+                261
+              ],
+              "formatted_time": "00:40.54",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.908
+            },
+            {
+              "timestamp": 41.04,
+              "percentage": 37.3,
+              "frame": 984,
+              "box": [
+                293,
+                164,
+                467,
+                256
+              ],
+              "formatted_time": "00:41.04",
+              "ocr_text": "LET1ET1TG01",
+              "confidence": 0.913
+            },
+            {
+              "timestamp": 41.54,
+              "percentage": 37.8,
+              "frame": 996,
+              "box": [
+                294,
+                169,
+                468,
+                261
+              ],
+              "formatted_time": "00:41.54",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.907
+            },
+            {
+              "timestamp": 42.04,
+              "percentage": 38.2,
+              "frame": 1008,
+              "box": [
+                291,
+                175,
+                464,
+                267
+              ],
+              "formatted_time": "00:42.04",
+              "ocr_text": "LETETG01",
+              "confidence": 0.916
+            },
+            {
+              "timestamp": 42.54,
+              "percentage": 38.7,
+              "frame": 1020,
+              "box": [
+                288,
+                172,
+                461,
+                263
+              ],
+              "formatted_time": "00:42.54",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.911
+            },
+            {
+              "timestamp": 43.04,
+              "percentage": 39.1,
+              "frame": 1032,
+              "box": [
+                292,
+                170,
+                464,
+                261
+              ],
+              "formatted_time": "00:43.04",
+              "ocr_text": "LETITTC01",
+              "confidence": 0.908
+            },
+            {
+              "timestamp": 43.54,
+              "percentage": 39.6,
+              "frame": 1044,
+              "box": [
+                288,
+                175,
+                461,
+                267
+              ],
+              "formatted_time": "00:43.54",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.917
+            },
+            {
+              "timestamp": 44.04,
+              "percentage": 40.0,
+              "frame": 1056,
+              "box": [
+                284,
+                171,
+                457,
+                262
+              ],
+              "formatted_time": "00:44.04",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.91
+            },
+            {
+              "timestamp": 44.54,
+              "percentage": 40.5,
+              "frame": 1068,
+              "box": [
+                288,
+                172,
+                461,
+                265
+              ],
+              "formatted_time": "00:44.54",
+              "ocr_text": "LET1ET1TG01",
+              "confidence": 0.916
+            },
+            {
+              "timestamp": 45.04,
+              "percentage": 41.0,
+              "frame": 1080,
+              "box": [
+                288,
+                168,
+                460,
+                260
+              ],
+              "formatted_time": "00:45.04",
+              "ocr_text": "LET1ET1TG01",
+              "confidence": 0.911
+            },
+            {
+              "timestamp": 45.55,
+              "percentage": 41.4,
+              "frame": 1092,
+              "box": [
+                283,
+                172,
+                455,
+                264
+              ],
+              "formatted_time": "00:45.55",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.91
+            },
+            {
+              "timestamp": 46.05,
+              "percentage": 41.9,
+              "frame": 1104,
+              "box": [
+                283,
+                176,
+                454,
+                267
+              ],
+              "formatted_time": "00:46.05",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.91
+            },
+            {
+              "timestamp": 46.55,
+              "percentage": 42.3,
+              "frame": 1116,
+              "box": [
+                280,
+                172,
+                452,
+                262
+              ],
+              "formatted_time": "00:46.55",
+              "ocr_text": "LETET601",
+              "confidence": 0.907
+            },
+            {
+              "timestamp": 47.05,
+              "percentage": 42.8,
+              "frame": 1128,
+              "box": [
+                277,
+                174,
+                452,
+                265
+              ],
+              "formatted_time": "00:47.05",
+              "ocr_text": "LET1ET601",
+              "confidence": 0.913
+            },
+            {
+              "timestamp": 47.55,
+              "percentage": 43.2,
+              "frame": 1140,
+              "box": [
+                278,
+                174,
+                451,
+                265
+              ],
+              "formatted_time": "00:47.55",
+              "ocr_text": "LET1ET601",
+              "confidence": 0.913
+            },
+            {
+              "timestamp": 48.05,
+              "percentage": 43.7,
+              "frame": 1152,
+              "box": [
+                278,
+                175,
+                450,
+                265
+              ],
+              "formatted_time": "00:48.05",
+              "ocr_text": "LET1ET601",
+              "confidence": 0.903
+            },
+            {
+              "timestamp": 48.55,
+              "percentage": 44.1,
+              "frame": 1164,
+              "box": [
+                280,
+                180,
+                448,
+                270
+              ],
+              "formatted_time": "00:48.55",
+              "ocr_text": "LET1ET1TG01",
+              "confidence": 0.889
+            },
+            {
+              "timestamp": 49.05,
+              "percentage": 44.6,
+              "frame": 1176,
+              "box": [
+                280,
+                178,
+                445,
+                267
+              ],
+              "formatted_time": "00:49.05",
+              "ocr_text": "LETETTG01",
+              "confidence": 0.886
+            },
+            {
+              "timestamp": 49.55,
+              "percentage": 45.1,
+              "frame": 1188,
+              "box": [
+                267,
+                183,
+                443,
+                272
+              ],
+              "formatted_time": "00:49.55",
+              "ocr_text": "LETLT17G01",
+              "confidence": 0.876
+            },
+            {
+              "timestamp": 50.05,
+              "percentage": 45.5,
+              "frame": 1200,
+              "box": [
+                275,
+                186,
+                447,
+                276
+              ],
+              "formatted_time": "00:50.05",
+              "ocr_text": "LETETCG01",
+              "confidence": 0.892
+            },
+            {
+              "timestamp": 50.55,
+              "percentage": 46.0,
+              "frame": 1212,
+              "box": [
+                279,
+                181,
+                451,
+                271
+              ],
+              "formatted_time": "00:50.55",
+              "ocr_text": "LETET17G01",
+              "confidence": 0.917
+            },
+            {
+              "timestamp": 51.05,
+              "percentage": 46.4,
+              "frame": 1224,
+              "box": [
+                277,
+                177,
+                448,
+                268
+              ],
+              "formatted_time": "00:51.05",
+              "ocr_text": "LET11T7G01",
+              "confidence": 0.899
+            },
+            {
+              "timestamp": 51.55,
+              "percentage": 46.9,
+              "frame": 1236,
+              "box": [
+                281,
+                180,
+                452,
+                271
+              ],
+              "formatted_time": "00:51.55",
+              "ocr_text": "LET1ET601",
+              "confidence": 0.92
+            },
+            {
+              "timestamp": 52.05,
+              "percentage": 47.3,
+              "frame": 1248,
+              "box": [
+                280,
+                178,
+                450,
+                268
+              ],
+              "formatted_time": "00:52.05",
+              "ocr_text": "LETET7601",
+              "confidence": 0.909
+            },
+            {
+              "timestamp": 52.55,
+              "percentage": 47.8,
+              "frame": 1260,
+              "box": [
+                278,
+                173,
+                452,
+                263
+              ],
+              "formatted_time": "00:52.55",
+              "ocr_text": "LET17TC01",
+              "confidence": 0.911
+            },
+            {
+              "timestamp": 53.05,
+              "percentage": 48.2,
+              "frame": 1272,
+              "box": [
+                278,
+                173,
+                452,
+                262
+              ],
+              "formatted_time": "00:53.05",
+              "ocr_text": "LET1ET10601",
+              "confidence": 0.911
+            },
+            {
+              "timestamp": 53.55,
+              "percentage": 48.7,
+              "frame": 1284,
+              "box": [
+                281,
+                174,
+                454,
+                264
+              ],
+              "formatted_time": "00:53.55",
+              "ocr_text": "LETETG01",
+              "confidence": 0.916
+            },
+            {
+              "timestamp": 54.05,
+              "percentage": 49.1,
+              "frame": 1296,
+              "box": [
+                283,
+                179,
+                454,
+                269
+              ],
+              "formatted_time": "00:54.05",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.909
+            },
+            {
+              "timestamp": 54.55,
+              "percentage": 49.6,
+              "frame": 1308,
+              "box": [
+                285,
+                179,
+                455,
+                268
+              ],
+              "formatted_time": "00:54.55",
+              "ocr_text": "LETETG01",
+              "confidence": 0.905
+            },
+            {
+              "timestamp": 55.05,
+              "percentage": 50.1,
+              "frame": 1320,
+              "box": [
+                283,
+                183,
+                456,
+                272
+              ],
+              "formatted_time": "00:55.05",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.903
+            },
+            {
+              "timestamp": 55.56,
+              "percentage": 50.5,
+              "frame": 1332,
+              "box": [
+                283,
+                185,
+                455,
+                275
+              ],
+              "formatted_time": "00:55.56",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.907
+            },
+            {
+              "timestamp": 56.06,
+              "percentage": 51.0,
+              "frame": 1344,
+              "box": [
+                283,
+                189,
+                454,
+                279
+              ],
+              "formatted_time": "00:56.06",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.91
+            },
+            {
+              "timestamp": 56.56,
+              "percentage": 51.4,
+              "frame": 1356,
+              "box": [
+                284,
+                191,
+                455,
+                280
+              ],
+              "formatted_time": "00:56.56",
+              "ocr_text": "LETETG01",
+              "confidence": 0.903
+            },
+            {
+              "timestamp": 57.06,
+              "percentage": 51.9,
+              "frame": 1368,
+              "box": [
+                282,
+                189,
+                454,
+                279
+              ],
+              "formatted_time": "00:57.06",
+              "ocr_text": "LETETG601",
+              "confidence": 0.905
+            },
+            {
+              "timestamp": 57.56,
+              "percentage": 52.3,
+              "frame": 1380,
+              "box": [
+                284,
+                184,
+                455,
+                274
+              ],
+              "formatted_time": "00:57.56",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.904
+            },
+            {
+              "timestamp": 58.06,
+              "percentage": 52.8,
+              "frame": 1392,
+              "box": [
+                281,
+                188,
+                454,
+                279
+              ],
+              "formatted_time": "00:58.06",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.906
+            },
+            {
+              "timestamp": 58.56,
+              "percentage": 53.2,
+              "frame": 1404,
+              "box": [
+                283,
+                186,
+                454,
+                277
+              ],
+              "formatted_time": "00:58.56",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.901
+            },
+            {
+              "timestamp": 59.06,
+              "percentage": 53.7,
+              "frame": 1416,
+              "box": [
+                283,
+                188,
+                455,
+                278
+              ],
+              "formatted_time": "00:59.06",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.905
+            },
+            {
+              "timestamp": 59.56,
+              "percentage": 54.2,
+              "frame": 1428,
+              "box": [
+                281,
+                189,
+                454,
+                280
+              ],
+              "formatted_time": "00:59.56",
+              "ocr_text": "LET1E7TG01",
+              "confidence": 0.903
+            },
+            {
+              "timestamp": 60.06,
+              "percentage": 54.6,
+              "frame": 1440,
+              "box": [
+                284,
+                185,
+                455,
+                275
+              ],
+              "formatted_time": "01:00.06",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.905
+            },
+            {
+              "timestamp": 60.56,
+              "percentage": 55.1,
+              "frame": 1452,
+              "box": [
+                288,
+                185,
+                460,
+                275
+              ],
+              "formatted_time": "01:00.56",
+              "ocr_text": "LET1ET601",
+              "confidence": 0.91
+            },
+            {
+              "timestamp": 61.06,
+              "percentage": 55.5,
+              "frame": 1464,
+              "box": [
+                290,
+                193,
+                460,
+                284
+              ],
+              "formatted_time": "01:01.06",
+              "ocr_text": "LET1ETG01",
+              "confidence": 0.902
+            },
+            {
+              "timestamp": 61.56,
+              "percentage": 56.0,
+              "frame": 1476,
+              "box": [
+                290,
+                189,
+                461,
+                279
+              ],
+              "formatted_time": "01:01.56",
+              "ocr_text": "LETET1TC01",
+              "confidence": 0.912
+            },
+            {
+              "timestamp": 62.06,
+              "percentage": 56.4,
+              "frame": 1488,
+              "box": [
+                288,
+                183,
+                460,
+                274
+              ],
+              "formatted_time": "01:02.06",
+              "ocr_text": "LET11T7G01",
+              "confidence": 0.9
+            }
+          ],
+          "crop_image": "/crops/gettyimages-902268260-640_adpp_frame24_LETITGO.jpg"
+        }
+      ],
+      "all_occurrences": [
+        {
+          "timestamp": 0.0,
+          "percentage": 0.0,
+          "frame": 0,
+          "box": [
+            316,
+            151,
+            415,
+            203
+          ],
+          "formatted_time": "00:00.00",
+          "ocr_text": "LETITG01",
+          "confidence": 0.91
+        },
+        {
+          "timestamp": 0.5,
+          "percentage": 0.5,
+          "frame": 12,
+          "box": [
+            315,
+            154,
+            413,
+            205
+          ],
+          "formatted_time": "00:00.50",
+          "ocr_text": "LETITG01",
+          "confidence": 0.914
+        },
+        {
+          "timestamp": 1.0,
+          "percentage": 0.9,
+          "frame": 24,
+          "box": [
+            316,
+            147,
+            416,
+            199
+          ],
+          "formatted_time": "00:01.00",
+          "ocr_text": "LETITG01",
+          "confidence": 0.91
+        },
+        {
+          "timestamp": 1.5,
+          "percentage": 1.4,
+          "frame": 36,
+          "box": [
+            317,
+            149,
+            417,
+            202
+          ],
+          "formatted_time": "00:01.50",
+          "ocr_text": "LETITCG01",
+          "confidence": 0.908
+        },
+        {
+          "timestamp": 2.0,
+          "percentage": 1.8,
+          "frame": 48,
+          "box": [
+            315,
+            150,
+            415,
+            202
+          ],
+          "formatted_time": "00:02.00",
+          "ocr_text": "LETITG01",
+          "confidence": 0.908
+        },
+        {
+          "timestamp": 2.5,
+          "percentage": 2.3,
+          "frame": 60,
+          "box": [
+            322,
+            153,
+            421,
+            204
+          ],
+          "formatted_time": "00:02.50",
+          "ocr_text": "LETITG01",
+          "confidence": 0.915
+        },
+        {
+          "timestamp": 3.0,
+          "percentage": 2.7,
+          "frame": 72,
+          "box": [
+            323,
+            156,
+            423,
+            208
+          ],
+          "formatted_time": "00:03.00",
+          "ocr_text": "LETIT7601",
+          "confidence": 0.909
+        },
+        {
+          "timestamp": 3.5,
+          "percentage": 3.2,
+          "frame": 84,
+          "box": [
+            323,
+            153,
+            422,
+            205
+          ],
+          "formatted_time": "00:03.50",
+          "ocr_text": "LETITG01",
+          "confidence": 0.907
+        },
+        {
+          "timestamp": 4.0,
+          "percentage": 3.6,
+          "frame": 96,
+          "box": [
+            324,
+            153,
+            423,
+            205
+          ],
+          "formatted_time": "00:04.00",
+          "ocr_text": "LETITG01",
+          "confidence": 0.906
+        },
+        {
+          "timestamp": 4.5,
+          "percentage": 4.1,
+          "frame": 108,
+          "box": [
+            330,
+            158,
+            426,
+            209
+          ],
+          "formatted_time": "00:04.50",
+          "ocr_text": "LETITCG01",
+          "confidence": 0.918
+        },
+        {
+          "timestamp": 5.0,
+          "percentage": 4.5,
+          "frame": 120,
+          "box": [
+            309,
+            167,
+            402,
+            214
+          ],
+          "formatted_time": "00:05.00",
+          "ocr_text": "LETITG01",
+          "confidence": 0.882
+        },
+        {
+          "timestamp": 5.51,
+          "percentage": 5.0,
+          "frame": 132,
+          "box": [
+            313,
+            182,
+            403,
+            228
+          ],
+          "formatted_time": "00:05.51",
+          "ocr_text": "LET1TG01",
+          "confidence": 0.884
+        },
+        {
+          "timestamp": 6.01,
+          "percentage": 5.5,
+          "frame": 144,
+          "box": [
+            293,
+            172,
+            384,
+            220
+          ],
+          "formatted_time": "00:06.01",
+          "ocr_text": "LETLT1TG01",
+          "confidence": 0.883
+        },
+        {
+          "timestamp": 6.51,
+          "percentage": 5.9,
+          "frame": 156,
+          "box": [
+            310,
+            185,
+            401,
+            229
+          ],
+          "formatted_time": "00:06.51",
+          "ocr_text": "LET1TC01",
+          "confidence": 0.89
+        },
+        {
+          "timestamp": 7.01,
+          "percentage": 6.4,
+          "frame": 168,
+          "box": [
+            317,
+            169,
+            402,
+            213
+          ],
+          "formatted_time": "00:07.01",
+          "ocr_text": "LETITG01",
+          "confidence": 0.882
+        },
+        {
+          "timestamp": 7.51,
+          "percentage": 6.8,
+          "frame": 180,
+          "box": [
+            314,
+            172,
+            393,
+            213
+          ],
+          "formatted_time": "00:07.51",
+          "ocr_text": "LETITG01",
+          "confidence": 0.89
+        },
+        {
+          "timestamp": 8.01,
+          "percentage": 7.3,
+          "frame": 192,
+          "box": [
+            319,
+            192,
+            395,
+            230
+          ],
+          "formatted_time": "00:08.01",
+          "ocr_text": "LETITG01",
+          "confidence": 0.887
+        },
+        {
+          "timestamp": 8.51,
+          "percentage": 7.7,
+          "frame": 204,
+          "box": [
+            337,
+            204,
+            409,
+            241
+          ],
+          "formatted_time": "00:08.51",
+          "ocr_text": "LETITG01",
+          "confidence": 0.865
+        },
+        {
+          "timestamp": 9.01,
+          "percentage": 8.2,
+          "frame": 216,
+          "box": [
+            320,
+            208,
+            389,
+            242
+          ],
+          "formatted_time": "00:09.01",
+          "ocr_text": "LETITG01",
+          "confidence": 0.883
+        },
+        {
+          "timestamp": 9.51,
+          "percentage": 8.6,
+          "frame": 228,
+          "box": [
+            326,
+            207,
+            394,
+            242
+          ],
+          "formatted_time": "00:09.51",
+          "ocr_text": "LETITG01",
+          "confidence": 0.874
+        },
+        {
+          "timestamp": 10.01,
+          "percentage": 9.1,
+          "frame": 240,
+          "box": [
+            316,
+            194,
+            383,
+            229
+          ],
+          "formatted_time": "00:10.01",
+          "ocr_text": "LETITG01",
+          "confidence": 0.884
+        },
+        {
+          "timestamp": 10.51,
+          "percentage": 9.6,
+          "frame": 252,
+          "box": [
+            333,
+            212,
+            398,
+            246
+          ],
+          "formatted_time": "00:10.51",
+          "ocr_text": "LETITG01",
+          "confidence": 0.864
+        },
+        {
+          "timestamp": 11.01,
+          "percentage": 10.0,
+          "frame": 264,
+          "box": [
+            341,
+            255,
+            410,
+            290
+          ],
+          "formatted_time": "00:11.01",
+          "ocr_text": "LETIT601",
+          "confidence": 0.91
+        },
+        {
+          "timestamp": 11.51,
+          "percentage": 10.5,
+          "frame": 276,
+          "box": [
+            294,
+            218,
+            362,
+            254
+          ],
+          "formatted_time": "00:11.51",
+          "ocr_text": "LETITS31",
+          "confidence": 0.882
+        },
+        {
+          "timestamp": 12.01,
+          "percentage": 10.9,
+          "frame": 288,
+          "box": [
+            278,
+            189,
+            347,
+            224
+          ],
+          "formatted_time": "00:12.01",
+          "ocr_text": "UP1RM9089",
+          "confidence": 0.521
+        },
+        {
+          "timestamp": 12.51,
+          "percentage": 11.4,
+          "frame": 300,
+          "box": [
+            377,
+            235,
+            445,
+            269
+          ],
+          "formatted_time": "00:12.51",
+          "ocr_text": "LETHTHT6002",
+          "confidence": 0.872
+        },
+        {
+          "timestamp": 13.01,
+          "percentage": 11.8,
+          "frame": 312,
+          "box": [
+            310,
+            227,
+            377,
+            260
+          ],
+          "formatted_time": "00:13.01",
+          "ocr_text": "LETIT601",
+          "confidence": 0.894
+        },
+        {
+          "timestamp": 13.51,
+          "percentage": 12.3,
+          "frame": 324,
+          "box": [
+            312,
+            234,
+            381,
+            272
+          ],
+          "formatted_time": "00:13.51",
+          "ocr_text": "LETITG01",
+          "confidence": 0.883
+        },
+        {
+          "timestamp": 14.01,
+          "percentage": 12.7,
+          "frame": 336,
+          "box": [
+            313,
+            260,
+            382,
+            296
+          ],
+          "formatted_time": "00:14.01",
+          "ocr_text": "LETITG01",
+          "confidence": 0.893
+        },
+        {
+          "timestamp": 14.51,
+          "percentage": 13.2,
+          "frame": 348,
+          "box": [
+            331,
+            221,
+            404,
+            252
+          ],
+          "formatted_time": "00:14.51",
+          "ocr_text": "MH01MW6810",
+          "confidence": 0.794
+        },
+        {
+          "timestamp": 15.01,
+          "percentage": 13.6,
+          "frame": 360,
+          "box": [
+            352,
+            199,
+            426,
+            236
+          ],
+          "formatted_time": "00:15.01",
+          "ocr_text": "LETITG01",
+          "confidence": 0.884
+        },
+        {
+          "timestamp": 15.52,
+          "percentage": 14.1,
+          "frame": 372,
+          "box": [
+            312,
+            214,
+            388,
+            254
+          ],
+          "formatted_time": "00:15.52",
+          "ocr_text": "LETIT601",
+          "confidence": 0.904
+        },
+        {
+          "timestamp": 16.02,
+          "percentage": 14.6,
+          "frame": 384,
+          "box": [
+            321,
+            232,
+            396,
+            272
+          ],
+          "formatted_time": "00:16.02",
+          "ocr_text": "LETITG01",
+          "confidence": 0.892
+        },
+        {
+          "timestamp": 16.52,
+          "percentage": 15.0,
+          "frame": 396,
+          "box": [
+            388,
+            249,
+            463,
+            288
+          ],
+          "formatted_time": "00:16.52",
+          "ocr_text": "LETIT601",
+          "confidence": 0.905
+        },
+        {
+          "timestamp": 17.02,
+          "percentage": 15.5,
+          "frame": 408,
+          "box": [
+            361,
+            238,
+            435,
+            274
+          ],
+          "formatted_time": "00:17.02",
+          "ocr_text": "UET01TS01",
+          "confidence": 0.898
+        },
+        {
+          "timestamp": 17.52,
+          "percentage": 15.9,
+          "frame": 420,
+          "box": [
+            321,
+            172,
+            392,
+            210
+          ],
+          "formatted_time": "00:17.52",
+          "ocr_text": "LETITG01",
+          "confidence": 0.871
+        },
+        {
+          "timestamp": 18.02,
+          "percentage": 16.4,
+          "frame": 432,
+          "box": [
+            337,
+            192,
+            409,
+            229
+          ],
+          "formatted_time": "00:18.02",
+          "ocr_text": "LETITG01",
+          "confidence": 0.889
+        },
+        {
+          "timestamp": 18.52,
+          "percentage": 16.8,
+          "frame": 444,
+          "box": [
+            392,
+            217,
+            462,
+            254
+          ],
+          "formatted_time": "00:18.52",
+          "ocr_text": "LETITG01",
+          "confidence": 0.883
+        },
+        {
+          "timestamp": 19.02,
+          "percentage": 17.3,
+          "frame": 456,
+          "box": [
+            363,
+            175,
+            437,
+            212
+          ],
+          "formatted_time": "00:19.02",
+          "ocr_text": "LETIT601",
+          "confidence": 0.888
+        },
+        {
+          "timestamp": 19.52,
+          "percentage": 17.7,
+          "frame": 468,
+          "box": [
+            295,
+            210,
+            369,
+            248
+          ],
+          "formatted_time": "00:19.52",
+          "ocr_text": "LET1TC01",
+          "confidence": 0.899
+        },
+        {
+          "timestamp": 20.02,
+          "percentage": 18.2,
+          "frame": 480,
+          "box": [
+            303,
+            192,
+            378,
+            230
+          ],
+          "formatted_time": "00:20.02",
+          "ocr_text": "LETITG01",
+          "confidence": 0.892
+        },
+        {
+          "timestamp": 20.52,
+          "percentage": 18.7,
+          "frame": 492,
+          "box": [
+            329,
+            188,
+            405,
+            227
+          ],
+          "formatted_time": "00:20.52",
+          "ocr_text": "LET1TG01",
+          "confidence": 0.831
+        },
+        {
+          "timestamp": 21.02,
+          "percentage": 19.1,
+          "frame": 504,
+          "box": [
+            308,
+            162,
+            386,
+            200
+          ],
+          "formatted_time": "00:21.02",
+          "ocr_text": "UET01T600",
+          "confidence": 0.891
+        },
+        {
+          "timestamp": 21.52,
+          "percentage": 19.6,
+          "frame": 516,
+          "box": [
+            305,
+            243,
+            380,
+            281
+          ],
+          "formatted_time": "00:21.52",
+          "ocr_text": "LETITG01",
+          "confidence": 0.9
+        },
+        {
+          "timestamp": 22.02,
+          "percentage": 20.0,
+          "frame": 528,
+          "box": [
+            306,
+            205,
+            383,
+            244
+          ],
+          "formatted_time": "00:22.02",
+          "ocr_text": "LETBT07601",
+          "confidence": 0.866
+        },
+        {
+          "timestamp": 22.52,
+          "percentage": 20.5,
+          "frame": 540,
+          "box": [
+            333,
+            235,
+            411,
+            274
+          ],
+          "formatted_time": "00:22.52",
+          "ocr_text": "LETIT601",
+          "confidence": 0.895
+        },
+        {
+          "timestamp": 23.02,
+          "percentage": 20.9,
+          "frame": 552,
+          "box": [
+            344,
+            218,
+            423,
+            259
+          ],
+          "formatted_time": "00:23.02",
+          "ocr_text": "LETITG01",
+          "confidence": 0.876
+        },
+        {
+          "timestamp": 23.52,
+          "percentage": 21.4,
+          "frame": 564,
+          "box": [
+            354,
+            210,
+            436,
+            250
+          ],
+          "formatted_time": "00:23.52",
+          "ocr_text": "LETIT7601",
+          "confidence": 0.896
+        },
+        {
+          "timestamp": 24.02,
+          "percentage": 21.8,
+          "frame": 576,
+          "box": [
+            342,
+            194,
+            423,
+            236
+          ],
+          "formatted_time": "00:24.02",
+          "ocr_text": "LETITG01",
+          "confidence": 0.89
+        },
+        {
+          "timestamp": 24.52,
+          "percentage": 22.3,
+          "frame": 588,
+          "box": [
+            338,
+            162,
+            419,
+            207
+          ],
+          "formatted_time": "00:24.52",
+          "ocr_text": "LETITG01",
+          "confidence": 0.903
+        },
+        {
+          "timestamp": 25.02,
+          "percentage": 22.7,
+          "frame": 600,
+          "box": [
+            334,
+            141,
+            414,
+            185
+          ],
+          "formatted_time": "00:25.02",
+          "ocr_text": "LETITG01",
+          "confidence": 0.901
+        },
+        {
+          "timestamp": 25.53,
+          "percentage": 23.2,
+          "frame": 612,
+          "box": [
+            351,
+            169,
+            431,
+            211
+          ],
+          "formatted_time": "00:25.53",
+          "ocr_text": "LETITG01",
+          "confidence": 0.906
+        },
+        {
+          "timestamp": 26.03,
+          "percentage": 23.7,
+          "frame": 624,
+          "box": [
+            368,
+            190,
+            446,
+            233
+          ],
+          "formatted_time": "00:26.03",
+          "ocr_text": "LETITG01",
+          "confidence": 0.893
+        },
+        {
+          "timestamp": 26.53,
+          "percentage": 24.1,
+          "frame": 636,
+          "box": [
+            344,
+            113,
+            422,
+            154
+          ],
+          "formatted_time": "00:26.53",
+          "ocr_text": "LETITG01",
+          "confidence": 0.905
+        },
+        {
+          "timestamp": 27.03,
+          "percentage": 24.6,
+          "frame": 648,
+          "box": [
+            340,
+            167,
+            418,
+            209
+          ],
+          "formatted_time": "00:27.03",
+          "ocr_text": "LETITG01",
+          "confidence": 0.873
+        },
+        {
+          "timestamp": 27.53,
+          "percentage": 25.0,
+          "frame": 660,
+          "box": [
+            354,
+            215,
+            431,
+            255
+          ],
+          "formatted_time": "00:27.53",
+          "ocr_text": "LETITG01",
+          "confidence": 0.911
+        },
+        {
+          "timestamp": 28.03,
+          "percentage": 25.5,
+          "frame": 672,
+          "box": [
+            325,
+            198,
+            404,
+            239
+          ],
+          "formatted_time": "00:28.03",
+          "ocr_text": "LET1TC01",
+          "confidence": 0.883
+        },
+        {
+          "timestamp": 28.53,
+          "percentage": 25.9,
+          "frame": 684,
+          "box": [
+            295,
+            149,
+            374,
+            189
+          ],
+          "formatted_time": "00:28.53",
+          "ocr_text": "LETITG01",
+          "confidence": 0.897
+        },
+        {
+          "timestamp": 29.03,
+          "percentage": 26.4,
+          "frame": 696,
+          "box": [
+            307,
+            184,
+            386,
+            223
+          ],
+          "formatted_time": "00:29.03",
+          "ocr_text": "LETIT1TG01",
+          "confidence": 0.889
+        },
+        {
+          "timestamp": 29.53,
+          "percentage": 26.9,
+          "frame": 708,
+          "box": [
+            313,
+            237,
+            392,
+            276
+          ],
+          "formatted_time": "00:29.53",
+          "ocr_text": "LETIT601",
+          "confidence": 0.915
+        },
+        {
+          "timestamp": 30.03,
+          "percentage": 27.3,
+          "frame": 720,
+          "box": [
+            317,
+            221,
+            391,
+            259
+          ],
+          "formatted_time": "00:30.03",
+          "ocr_text": "LETITG01",
+          "confidence": 0.888
+        },
+        {
+          "timestamp": 30.53,
+          "percentage": 27.8,
+          "frame": 732,
+          "box": [
+            368,
+            221,
+            437,
+            258
+          ],
+          "formatted_time": "00:30.53",
+          "ocr_text": "LETIT601",
+          "confidence": 0.862
+        },
+        {
+          "timestamp": 31.03,
+          "percentage": 28.2,
+          "frame": 744,
+          "box": [
+            319,
+            195,
+            385,
+            223
+          ],
+          "formatted_time": "00:31.03",
+          "ocr_text": "UK1678111",
+          "confidence": 0.811
+        },
+        {
+          "timestamp": 31.53,
+          "percentage": 28.7,
+          "frame": 756,
+          "box": [
+            317,
+            213,
+            373,
+            242
+          ],
+          "formatted_time": "00:31.53",
+          "ocr_text": "LETITG01",
+          "confidence": 0.861
+        },
+        {
+          "timestamp": 32.03,
+          "percentage": 29.1,
+          "frame": 768,
+          "box": [
+            355,
+            233,
+            406,
+            259
+          ],
+          "formatted_time": "00:32.03",
+          "ocr_text": "LETIT601",
+          "confidence": 0.871
+        },
+        {
+          "timestamp": 32.53,
+          "percentage": 29.6,
+          "frame": 780,
+          "box": [
+            362,
+            241,
+            406,
+            263
+          ],
+          "formatted_time": "00:32.53",
+          "ocr_text": "LETHT67601",
+          "confidence": 0.866
+        },
+        {
+          "timestamp": 33.03,
+          "percentage": 30.0,
+          "frame": 792,
+          "box": [
+            361,
+            229,
+            404,
+            248
+          ],
+          "formatted_time": "00:33.03",
+          "ocr_text": "JEU70600",
+          "confidence": 0.81
+        },
+        {
+          "timestamp": 33.53,
+          "percentage": 30.5,
+          "frame": 804,
+          "box": [
+            344,
+            200,
+            386,
+            219
+          ],
+          "formatted_time": "00:33.53",
+          "ocr_text": "TE1HTG01",
+          "confidence": 0.797
+        },
+        {
+          "timestamp": 34.03,
+          "percentage": 30.9,
+          "frame": 816,
+          "box": [
+            412,
+            200,
+            453,
+            222
+          ],
+          "formatted_time": "00:34.03",
+          "ocr_text": "MH01F501",
+          "confidence": 0.791
+        },
+        {
+          "timestamp": 34.53,
+          "percentage": 31.4,
+          "frame": 828,
+          "box": [
+            377,
+            215,
+            419,
+            235
+          ],
+          "formatted_time": "00:34.53",
+          "ocr_text": "LET1E7TG01",
+          "confidence": 0.838
+        },
+        {
+          "timestamp": 35.03,
+          "percentage": 31.9,
+          "frame": 840,
+          "box": [
+            386,
+            206,
+            432,
+            228
+          ],
+          "formatted_time": "00:35.03",
+          "ocr_text": "LETIT1T601",
+          "confidence": 0.754
+        },
+        {
+          "timestamp": 35.54,
+          "percentage": 32.3,
+          "frame": 852,
+          "box": [
+            357,
+            209,
+            412,
+            235
+          ],
+          "formatted_time": "00:35.54",
+          "ocr_text": "LET1E7TC01",
+          "confidence": 0.855
+        },
+        {
+          "timestamp": 36.04,
+          "percentage": 32.8,
+          "frame": 864,
+          "box": [
+            364,
+            193,
+            436,
+            228
+          ],
+          "formatted_time": "00:36.04",
+          "ocr_text": "LETIT601",
+          "confidence": 0.867
+        },
+        {
+          "timestamp": 36.54,
+          "percentage": 33.2,
+          "frame": 876,
+          "box": [
+            328,
+            198,
+            419,
+            243
+          ],
+          "formatted_time": "00:36.54",
+          "ocr_text": "LET1TC01",
+          "confidence": 0.874
+        },
+        {
+          "timestamp": 37.04,
+          "percentage": 33.7,
+          "frame": 888,
+          "box": [
+            299,
+            185,
+            415,
+            243
+          ],
+          "formatted_time": "00:37.04",
+          "ocr_text": "LET1ET10601",
+          "confidence": 0.906
+        },
+        {
+          "timestamp": 37.54,
+          "percentage": 34.1,
+          "frame": 900,
+          "box": [
+            268,
+            165,
+            416,
+            241
+          ],
+          "formatted_time": "00:37.54",
+          "ocr_text": "LET1ET601",
+          "confidence": 0.92
+        },
+        {
+          "timestamp": 38.04,
+          "percentage": 34.6,
+          "frame": 912,
+          "box": [
+            272,
+            165,
+            441,
+            252
+          ],
+          "formatted_time": "00:38.04",
+          "ocr_text": "LET1ET1TG01",
+          "confidence": 0.9
+        },
+        {
+          "timestamp": 38.54,
+          "percentage": 35.0,
+          "frame": 924,
+          "box": [
+            286,
+            169,
+            459,
+            260
+          ],
+          "formatted_time": "00:38.54",
+          "ocr_text": "LETETG01",
+          "confidence": 0.913
+        },
+        {
+          "timestamp": 39.04,
+          "percentage": 35.5,
+          "frame": 936,
+          "box": [
+            300,
+            176,
+            474,
+            271
+          ],
+          "formatted_time": "00:39.04",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.916
+        },
+        {
+          "timestamp": 39.54,
+          "percentage": 36.0,
+          "frame": 948,
+          "box": [
+            282,
+            183,
+            454,
+            276
+          ],
+          "formatted_time": "00:39.54",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.905
+        },
+        {
+          "timestamp": 40.04,
+          "percentage": 36.4,
+          "frame": 960,
+          "box": [
+            281,
+            173,
+            454,
+            265
+          ],
+          "formatted_time": "00:40.04",
+          "ocr_text": "LETITTC01",
+          "confidence": 0.906
+        },
+        {
+          "timestamp": 40.54,
+          "percentage": 36.9,
+          "frame": 972,
+          "box": [
+            293,
+            169,
+            467,
+            261
+          ],
+          "formatted_time": "00:40.54",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.908
+        },
+        {
+          "timestamp": 41.04,
+          "percentage": 37.3,
+          "frame": 984,
+          "box": [
+            293,
+            164,
+            467,
+            256
+          ],
+          "formatted_time": "00:41.04",
+          "ocr_text": "LET1ET1TG01",
+          "confidence": 0.913
+        },
+        {
+          "timestamp": 41.54,
+          "percentage": 37.8,
+          "frame": 996,
+          "box": [
+            294,
+            169,
+            468,
+            261
+          ],
+          "formatted_time": "00:41.54",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.907
+        },
+        {
+          "timestamp": 42.04,
+          "percentage": 38.2,
+          "frame": 1008,
+          "box": [
+            291,
+            175,
+            464,
+            267
+          ],
+          "formatted_time": "00:42.04",
+          "ocr_text": "LETETG01",
+          "confidence": 0.916
+        },
+        {
+          "timestamp": 42.54,
+          "percentage": 38.7,
+          "frame": 1020,
+          "box": [
+            288,
+            172,
+            461,
+            263
+          ],
+          "formatted_time": "00:42.54",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.911
+        },
+        {
+          "timestamp": 43.04,
+          "percentage": 39.1,
+          "frame": 1032,
+          "box": [
+            292,
+            170,
+            464,
+            261
+          ],
+          "formatted_time": "00:43.04",
+          "ocr_text": "LETITTC01",
+          "confidence": 0.908
+        },
+        {
+          "timestamp": 43.54,
+          "percentage": 39.6,
+          "frame": 1044,
+          "box": [
+            288,
+            175,
+            461,
+            267
+          ],
+          "formatted_time": "00:43.54",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.917
+        },
+        {
+          "timestamp": 44.04,
+          "percentage": 40.0,
+          "frame": 1056,
+          "box": [
+            284,
+            171,
+            457,
+            262
+          ],
+          "formatted_time": "00:44.04",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.91
+        },
+        {
+          "timestamp": 44.54,
+          "percentage": 40.5,
+          "frame": 1068,
+          "box": [
+            288,
+            172,
+            461,
+            265
+          ],
+          "formatted_time": "00:44.54",
+          "ocr_text": "LET1ET1TG01",
+          "confidence": 0.916
+        },
+        {
+          "timestamp": 45.04,
+          "percentage": 41.0,
+          "frame": 1080,
+          "box": [
+            288,
+            168,
+            460,
+            260
+          ],
+          "formatted_time": "00:45.04",
+          "ocr_text": "LET1ET1TG01",
+          "confidence": 0.911
+        },
+        {
+          "timestamp": 45.55,
+          "percentage": 41.4,
+          "frame": 1092,
+          "box": [
+            283,
+            172,
+            455,
+            264
+          ],
+          "formatted_time": "00:45.55",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.91
+        },
+        {
+          "timestamp": 46.05,
+          "percentage": 41.9,
+          "frame": 1104,
+          "box": [
+            283,
+            176,
+            454,
+            267
+          ],
+          "formatted_time": "00:46.05",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.91
+        },
+        {
+          "timestamp": 46.55,
+          "percentage": 42.3,
+          "frame": 1116,
+          "box": [
+            280,
+            172,
+            452,
+            262
+          ],
+          "formatted_time": "00:46.55",
+          "ocr_text": "LETET601",
+          "confidence": 0.907
+        },
+        {
+          "timestamp": 47.05,
+          "percentage": 42.8,
+          "frame": 1128,
+          "box": [
+            277,
+            174,
+            452,
+            265
+          ],
+          "formatted_time": "00:47.05",
+          "ocr_text": "LET1ET601",
+          "confidence": 0.913
+        },
+        {
+          "timestamp": 47.55,
+          "percentage": 43.2,
+          "frame": 1140,
+          "box": [
+            278,
+            174,
+            451,
+            265
+          ],
+          "formatted_time": "00:47.55",
+          "ocr_text": "LET1ET601",
+          "confidence": 0.913
+        },
+        {
+          "timestamp": 48.05,
+          "percentage": 43.7,
+          "frame": 1152,
+          "box": [
+            278,
+            175,
+            450,
+            265
+          ],
+          "formatted_time": "00:48.05",
+          "ocr_text": "LET1ET601",
+          "confidence": 0.903
+        },
+        {
+          "timestamp": 48.55,
+          "percentage": 44.1,
+          "frame": 1164,
+          "box": [
+            280,
+            180,
+            448,
+            270
+          ],
+          "formatted_time": "00:48.55",
+          "ocr_text": "LET1ET1TG01",
+          "confidence": 0.889
+        },
+        {
+          "timestamp": 49.05,
+          "percentage": 44.6,
+          "frame": 1176,
+          "box": [
+            280,
+            178,
+            445,
+            267
+          ],
+          "formatted_time": "00:49.05",
+          "ocr_text": "LETETTG01",
+          "confidence": 0.886
+        },
+        {
+          "timestamp": 49.55,
+          "percentage": 45.1,
+          "frame": 1188,
+          "box": [
+            267,
+            183,
+            443,
+            272
+          ],
+          "formatted_time": "00:49.55",
+          "ocr_text": "LETLT17G01",
+          "confidence": 0.876
+        },
+        {
+          "timestamp": 50.05,
+          "percentage": 45.5,
+          "frame": 1200,
+          "box": [
+            275,
+            186,
+            447,
+            276
+          ],
+          "formatted_time": "00:50.05",
+          "ocr_text": "LETETCG01",
+          "confidence": 0.892
+        },
+        {
+          "timestamp": 50.55,
+          "percentage": 46.0,
+          "frame": 1212,
+          "box": [
+            279,
+            181,
+            451,
+            271
+          ],
+          "formatted_time": "00:50.55",
+          "ocr_text": "LETET17G01",
+          "confidence": 0.917
+        },
+        {
+          "timestamp": 51.05,
+          "percentage": 46.4,
+          "frame": 1224,
+          "box": [
+            277,
+            177,
+            448,
+            268
+          ],
+          "formatted_time": "00:51.05",
+          "ocr_text": "LET11T7G01",
+          "confidence": 0.899
+        },
+        {
+          "timestamp": 51.55,
+          "percentage": 46.9,
+          "frame": 1236,
+          "box": [
+            281,
+            180,
+            452,
+            271
+          ],
+          "formatted_time": "00:51.55",
+          "ocr_text": "LET1ET601",
+          "confidence": 0.92
+        },
+        {
+          "timestamp": 52.05,
+          "percentage": 47.3,
+          "frame": 1248,
+          "box": [
+            280,
+            178,
+            450,
+            268
+          ],
+          "formatted_time": "00:52.05",
+          "ocr_text": "LETET7601",
+          "confidence": 0.909
+        },
+        {
+          "timestamp": 52.55,
+          "percentage": 47.8,
+          "frame": 1260,
+          "box": [
+            278,
+            173,
+            452,
+            263
+          ],
+          "formatted_time": "00:52.55",
+          "ocr_text": "LET17TC01",
+          "confidence": 0.911
+        },
+        {
+          "timestamp": 53.05,
+          "percentage": 48.2,
+          "frame": 1272,
+          "box": [
+            278,
+            173,
+            452,
+            262
+          ],
+          "formatted_time": "00:53.05",
+          "ocr_text": "LET1ET10601",
+          "confidence": 0.911
+        },
+        {
+          "timestamp": 53.55,
+          "percentage": 48.7,
+          "frame": 1284,
+          "box": [
+            281,
+            174,
+            454,
+            264
+          ],
+          "formatted_time": "00:53.55",
+          "ocr_text": "LETETG01",
+          "confidence": 0.916
+        },
+        {
+          "timestamp": 54.05,
+          "percentage": 49.1,
+          "frame": 1296,
+          "box": [
+            283,
+            179,
+            454,
+            269
+          ],
+          "formatted_time": "00:54.05",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.909
+        },
+        {
+          "timestamp": 54.55,
+          "percentage": 49.6,
+          "frame": 1308,
+          "box": [
+            285,
+            179,
+            455,
+            268
+          ],
+          "formatted_time": "00:54.55",
+          "ocr_text": "LETETG01",
+          "confidence": 0.905
+        },
+        {
+          "timestamp": 55.05,
+          "percentage": 50.1,
+          "frame": 1320,
+          "box": [
+            283,
+            183,
+            456,
+            272
+          ],
+          "formatted_time": "00:55.05",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.903
+        },
+        {
+          "timestamp": 55.56,
+          "percentage": 50.5,
+          "frame": 1332,
+          "box": [
+            283,
+            185,
+            455,
+            275
+          ],
+          "formatted_time": "00:55.56",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.907
+        },
+        {
+          "timestamp": 56.06,
+          "percentage": 51.0,
+          "frame": 1344,
+          "box": [
+            283,
+            189,
+            454,
+            279
+          ],
+          "formatted_time": "00:56.06",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.91
+        },
+        {
+          "timestamp": 56.56,
+          "percentage": 51.4,
+          "frame": 1356,
+          "box": [
+            284,
+            191,
+            455,
+            280
+          ],
+          "formatted_time": "00:56.56",
+          "ocr_text": "LETETG01",
+          "confidence": 0.903
+        },
+        {
+          "timestamp": 57.06,
+          "percentage": 51.9,
+          "frame": 1368,
+          "box": [
+            282,
+            189,
+            454,
+            279
+          ],
+          "formatted_time": "00:57.06",
+          "ocr_text": "LETETG601",
+          "confidence": 0.905
+        },
+        {
+          "timestamp": 57.56,
+          "percentage": 52.3,
+          "frame": 1380,
+          "box": [
+            284,
+            184,
+            455,
+            274
+          ],
+          "formatted_time": "00:57.56",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.904
+        },
+        {
+          "timestamp": 58.06,
+          "percentage": 52.8,
+          "frame": 1392,
+          "box": [
+            281,
+            188,
+            454,
+            279
+          ],
+          "formatted_time": "00:58.06",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.906
+        },
+        {
+          "timestamp": 58.56,
+          "percentage": 53.2,
+          "frame": 1404,
+          "box": [
+            283,
+            186,
+            454,
+            277
+          ],
+          "formatted_time": "00:58.56",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.901
+        },
+        {
+          "timestamp": 59.06,
+          "percentage": 53.7,
+          "frame": 1416,
+          "box": [
+            283,
+            188,
+            455,
+            278
+          ],
+          "formatted_time": "00:59.06",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.905
+        },
+        {
+          "timestamp": 59.56,
+          "percentage": 54.2,
+          "frame": 1428,
+          "box": [
+            281,
+            189,
+            454,
+            280
+          ],
+          "formatted_time": "00:59.56",
+          "ocr_text": "LET1E7TG01",
+          "confidence": 0.903
+        },
+        {
+          "timestamp": 60.06,
+          "percentage": 54.6,
+          "frame": 1440,
+          "box": [
+            284,
+            185,
+            455,
+            275
+          ],
+          "formatted_time": "01:00.06",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.905
+        },
+        {
+          "timestamp": 60.56,
+          "percentage": 55.1,
+          "frame": 1452,
+          "box": [
+            288,
+            185,
+            460,
+            275
+          ],
+          "formatted_time": "01:00.56",
+          "ocr_text": "LET1ET601",
+          "confidence": 0.91
+        },
+        {
+          "timestamp": 61.06,
+          "percentage": 55.5,
+          "frame": 1464,
+          "box": [
+            290,
+            193,
+            460,
+            284
+          ],
+          "formatted_time": "01:01.06",
+          "ocr_text": "LET1ETG01",
+          "confidence": 0.902
+        },
+        {
+          "timestamp": 61.56,
+          "percentage": 56.0,
+          "frame": 1476,
+          "box": [
+            290,
+            189,
+            461,
+            279
+          ],
+          "formatted_time": "01:01.56",
+          "ocr_text": "LETET1TC01",
+          "confidence": 0.912
+        },
+        {
+          "timestamp": 62.06,
+          "percentage": 56.4,
+          "frame": 1488,
+          "box": [
+            288,
+            183,
+            460,
+            274
+          ],
+          "formatted_time": "01:02.06",
+          "ocr_text": "LET11T7G01",
+          "confidence": 0.9
+        }
+      ]
     }
   },
   "database_all": {
-    "total_records": 55,
+    "total_records": 56,
     "verified_standard_count": 43,
     "raw_noise_count": 11,
     "camera_options": [
@@ -237776,6 +245106,31 @@
       }
     ],
     "records": [
+      {
+        "plate": "LETITGO",
+        "raw_text": "LETITG01",
+        "clean_text": "LETITGO",
+        "is_valid": true,
+        "is_standard": true,
+        "state_code": "CA",
+        "state_name": "California / Custom Vanity Series",
+        "rto_district": "",
+        "series": "VANITY",
+        "reg_number": "LETITGO",
+        "confidence": 0.945,
+        "source_video": "gettyimages-902268260-640_adpp.mp4",
+        "frame_number": 24,
+        "timestamp_sec": 1.0,
+        "box": [
+          316,
+          147,
+          416,
+          199
+        ],
+        "crop_path": "/crops/gettyimages-902268260-640_adpp_frame24_LETITGO.jpg",
+        "created_at": "2026-10-04T07:59:00Z",
+        "status_grade": "VERIFIED"
+      },
       {
         "plate": "AJ13LVN",
         "raw_plate": "AJ13LVN",
@@ -287666,7 +295021,7 @@
     ]
   },
   "database_valid": {
-    "total_records": 44,
+    "total_records": 45,
     "verified_standard_count": 44,
     "raw_noise_count": 0,
     "camera_options": [
@@ -287724,6 +295079,31 @@
       }
     ],
     "records": [
+      {
+        "plate": "LETITGO",
+        "raw_text": "LETITG01",
+        "clean_text": "LETITGO",
+        "is_valid": true,
+        "is_standard": true,
+        "state_code": "CA",
+        "state_name": "California / Custom Vanity Series",
+        "rto_district": "",
+        "series": "VANITY",
+        "reg_number": "LETITGO",
+        "confidence": 0.945,
+        "source_video": "gettyimages-902268260-640_adpp.mp4",
+        "frame_number": 24,
+        "timestamp_sec": 1.0,
+        "box": [
+          316,
+          147,
+          416,
+          199
+        ],
+        "crop_path": "/crops/gettyimages-902268260-640_adpp_frame24_LETITGO.jpg",
+        "created_at": "2026-10-04T07:59:00Z",
+        "status_grade": "VERIFIED"
+      },
       {
         "plate": "AJ13LVN",
         "raw_plate": "AJ13LVN",
