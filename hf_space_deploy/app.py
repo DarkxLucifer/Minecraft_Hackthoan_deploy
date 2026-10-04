@@ -201,33 +201,62 @@ def run_anpr_inference(img_bgr: np.ndarray):
     if vehicles:
         for v in vehicles:
             vx1, vy1, vx2, vy2 = v["box"]
-            pad_x = int((vx2 - vx1) * 0.10)
-            pad_y = int((vy2 - vy1) * 0.10)
+            vw, vh = vx2 - vx1, vy2 - vy1
+            pad_x = int(vw * 0.10)
+            pad_y = int(vh * 0.10)
             x1_p, y1_p = max(0, vx1 - pad_x), max(0, vy1 - pad_y)
             x2_p, y2_p = min(orig_w, vx2 + pad_x), min(orig_h, vy2 + pad_y)
             car_crop = img_bgr[y1_p:y2_p, x1_p:x2_p]
             if car_crop.size == 0:
                 continue
 
-            p_res = plate_detector.predict(car_crop, conf=0.06, imgsz=640, verbose=False)[0]
+            cw, ch = car_crop.shape[1], car_crop.shape[0]
+            p_res = plate_detector.predict(car_crop, conf=0.15, imgsz=640, verbose=False)[0]
+            valid_candidates = []
             if p_res.boxes is not None:
                 for pb in p_res.boxes:
                     px1, py1, px2, py2 = map(int, pb.xyxy[0])
                     pconf = float(pb.conf[0])
+                    pw, ph = px2 - px1, py2 - py1
+                    if pw < 18 or ph < 8:
+                        continue
+                    ar = pw / max(1, ph)
+                    if ar < 1.3 or ar > 6.5:
+                        continue
+                    # Reject roof/windshield reflections: plate must be in bottom 78% of car
+                    rel_y = (py1 + py2) / (2.0 * ch)
+                    if rel_y < 0.22 and py1 <= 5:
+                        continue
                     gx1, gy1 = x1_p + px1, y1_p + py1
                     gx2, gy2 = x1_p + px2, y1_p + py2
-                    plate_crops.append(([gx1, gy1, gx2, gy2], pconf, car_crop[py1:py2, px1:px2]))
+                    valid_candidates.append(([gx1, gy1, gx2, gy2], pconf, car_crop[py1:py2, px1:px2]))
+
+            # Keep best candidate for this vehicle
+            if valid_candidates:
+                valid_candidates.sort(key=lambda c: c[1], reverse=True)
+                plate_crops.append(valid_candidates[0])
 
     # Fallback: scan whole image if no plates were detected inside vehicles
     if not plate_crops:
-        p_res = plate_detector.predict(img_bgr, conf=0.06, imgsz=960, verbose=False)[0]
+        p_res = plate_detector.predict(img_bgr, conf=0.18, imgsz=960, verbose=False)[0]
         if p_res.boxes is not None:
+            valid_fallback = []
             for pb in p_res.boxes:
                 gx1, gy1, gx2, gy2 = map(int, pb.xyxy[0])
                 pconf = float(pb.conf[0])
+                pw, ph = gx2 - gx1, gy2 - gy1
+                if pw < 20 or ph < 8:
+                    continue
+                ar = pw / max(1, ph)
+                if ar < 1.4 or ar > 6.5:
+                    continue
+                if pw > orig_w * 0.45 or ph > orig_h * 0.30:
+                    continue
                 crop = img_bgr[max(0, gy1):min(orig_h, gy2), max(0, gx1):min(orig_w, gx2)]
                 if crop.size > 0:
-                    plate_crops.append(([gx1, gy1, gx2, gy2], pconf, crop))
+                    valid_fallback.append(([gx1, gy1, gx2, gy2], pconf, crop))
+            valid_fallback.sort(key=lambda c: c[1], reverse=True)
+            plate_crops.extend(valid_fallback[:2])
 
     # 3. Read plate crops with TrOCR
     for (gx1, gy1, gx2, gy2), pconf, crop in plate_crops:
@@ -263,9 +292,11 @@ def run_anpr_inference(img_bgr: np.ndarray):
         plate_text = positional_correct(raw_text)
 
         plates.append({
-            "box": [gx1, gy1, gx2, gy2],
-            "confidence": round(pconf, 3),
+            "plate": plate_text,
             "plate_text": plate_text,
+            "text": plate_text,
+            "confidence": round(pconf, 3),
+            "box": [gx1, gy1, gx2, gy2],
             "raw_ocr": raw_text,
         })
 
@@ -307,9 +338,12 @@ async def detect_anpr(file: UploadFile = File(...)):
     b64_img = base64.b64encode(buffer).decode("utf-8")
 
     return {
+        "success": True,
         "status": "success",
         "vehicle_count": len(vehicles),
+        "vehicles_count": len(vehicles),
         "plate_count": len(plates),
+        "plates_count": len(plates),
         "vehicles": vehicles,
         "plates": plates,
         "annotated_image": f"data:image/jpeg;base64,{b64_img}",

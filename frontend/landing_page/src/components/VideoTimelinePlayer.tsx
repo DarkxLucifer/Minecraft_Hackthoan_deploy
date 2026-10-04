@@ -140,7 +140,10 @@ export const VideoTimelinePlayer: React.FC<VideoTimelinePlayerProps> = ({
       const firstSeen = veh.first_seen ?? (vehMarkers[0]?.timestamp ?? 0);
       const lastSeen = veh.last_seen ?? (vehMarkers[vehMarkers.length - 1]?.timestamp ?? 10);
 
-      if (vehMarkers.length > 0) {
+      // Strict presence window: vehicle must be present on camera within [firstSeen - 0.15, lastSeen + 0.15]
+      const isWithinPresence = time >= (firstSeen - 0.15) && time <= (lastSeen + 0.15);
+
+      if (vehMarkers.length > 0 && isWithinPresence) {
         // Find closest markers and interpolate if between them
         let closest = vehMarkers[0];
         let minDiff = Math.abs(vehMarkers[0].timestamp - time);
@@ -165,14 +168,11 @@ export const VideoTimelinePlayer: React.FC<VideoTimelinePlayerProps> = ({
           }
         }
 
-        // Visible if time is within [firstSeen - 0.4, lastSeen + 0.4] OR closest marker is within 1.0s
-        const isVisible = (time >= firstSeen - 0.4 && time <= lastSeen + 0.4) || minDiff <= 1.0;
-
-        if (isVisible) {
-          if (beforeMarker && afterMarker && beforeMarker !== afterMarker && beforeMarker.box && afterMarker.box) {
-            // Smooth linear interpolation between detections
-            const tSpan = afterMarker.timestamp - beforeMarker.timestamp;
-            const factor = tSpan > 0 ? Math.max(0, Math.min(1, (time - beforeMarker.timestamp) / tSpan)) : 0;
+        if (beforeMarker && afterMarker && beforeMarker !== afterMarker && beforeMarker.box && afterMarker.box) {
+          const tSpan = afterMarker.timestamp - beforeMarker.timestamp;
+          // Only interpolate if consecutive markers are reasonably close (<= 0.8s), preventing erratic drift
+          if (tSpan > 0 && tSpan <= 0.8) {
+            const factor = Math.max(0, Math.min(1, (time - beforeMarker.timestamp) / tSpan));
             const b1 = beforeMarker.box;
             const b2 = afterMarker.box;
             activeBox = [
@@ -181,15 +181,14 @@ export const VideoTimelinePlayer: React.FC<VideoTimelinePlayerProps> = ({
               b1[2] + (b2[2] - b1[2]) * factor,
               b1[3] + (b2[3] - b1[3]) * factor,
             ];
-          } else if (closest && closest.box) {
+          } else if (minDiff <= 0.35 && closest?.box) {
             activeBox = closest.box;
           }
+        } else if (minDiff <= 0.35 && closest?.box) {
+          activeBox = closest.box;
         }
-      } else if (veh.best_box) {
-        // Fallback to recorded best_box when within duration
-        if (time >= firstSeen - 0.5 && time <= lastSeen + 0.5) {
-          activeBox = veh.best_box;
-        }
+      } else if (veh.best_box && isWithinPresence && vehMarkers.length === 0) {
+        activeBox = veh.best_box;
       }
 
       if (!activeBox) continue;

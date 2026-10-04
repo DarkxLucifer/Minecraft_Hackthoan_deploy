@@ -303,18 +303,30 @@ class TwoStageANPR:
                 if car_crop.size == 0:
                     continue
 
+                cw, ch = car_crop.shape[1], car_crop.shape[0]
                 p_res = self.plate_model.predict(
                     car_crop,
-                    conf=p_conf,
+                    conf=max(0.12, p_conf),
                     imgsz=640,
                     device=self.device,
                     verbose=False
                 )[0]
 
+                valid_candidates = []
                 if p_res.boxes is not None and len(p_res.boxes) > 0:
                     for pb in p_res.boxes:
                         px1, py1, px2, py2 = map(int, pb.xyxy[0])
                         pconf = float(pb.conf[0])
+                        pw, ph = px2 - px1, py2 - py1
+                        if pw < 18 or ph < 8:
+                            continue
+                        ar = pw / max(1, ph)
+                        if ar < 1.3 or ar > 6.5:
+                            continue
+                        # Reject roof/windshield reflections: plate must be in lower part of vehicle
+                        rel_y = (py1 + py2) / (2.0 * ch)
+                        if rel_y < 0.22 and py1 <= 5:
+                            continue
 
                         gx1 = x1_p + px1
                         gy1 = y1_p + py1
@@ -322,47 +334,68 @@ class TwoStageANPR:
                         gy2 = y1_p + py2
 
                         plate_crop = car_crop[py1:py2, px1:px2]
+                        valid_candidates.append(([gx1, gy1, gx2, gy2], pconf, plate_crop))
 
-                        # Step 3: Run TrOCR on plate crop
-                        plate_text = ""
-                        if do_ocr and self.ocr_reader:
-                            plate_text = self.ocr_reader.read(plate_crop)
+                # Keep best candidate for this vehicle
+                if valid_candidates:
+                    valid_candidates.sort(key=lambda c: c[1], reverse=True)
+                    ([gx1, gy1, gx2, gy2], pconf, plate_crop) = valid_candidates[0]
 
-                        plates.append({
-                            "vehicle_idx": v_idx,
-                            "vehicle_label": vlabel,
-                            "box": [gx1, gy1, gx2, gy2],
-                            "conf": pconf,
-                            "text": plate_text,
-                            "crop": plate_crop
-                        })
+                    # Step 3: Run TrOCR on plate crop
+                    plate_text = ""
+                    if do_ocr and self.ocr_reader:
+                        plate_text = self.ocr_reader.read(plate_crop)
 
-                        # Draw plate box (Vibrant Green)
-                        cv2.rectangle(annotated, (gx1, gy1), (gx2, gy2), (0, 255, 64), 3)
+                    plates.append({
+                        "vehicle_idx": v_idx,
+                        "vehicle_label": vlabel,
+                        "box": [gx1, gy1, gx2, gy2],
+                        "conf": pconf,
+                        "text": plate_text,
+                        "plate": plate_text,
+                        "plate_text": plate_text,
+                        "crop": plate_crop
+                    })
 
-                        # Render text badge
-                        p_tag = f"[{plate_text}] {pconf:.0%}" if plate_text else f"Plate {pconf:.1%}"
-                        (lw, lh), _ = cv2.getTextSize(p_tag, cv2.FONT_HERSHEY_SIMPLEX, 0.65, 2)
-                        badge_y = max(0, gy1 - lh - 8)
-                        cv2.rectangle(annotated, (gx1, badge_y), (gx1 + lw + 8, gy1), (0, 255, 64), -1)
-                        cv2.putText(annotated, p_tag, (gx1 + 4, gy1 - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (0, 0, 0), 2)
+                    # Draw plate box (Vibrant Green)
+                    cv2.rectangle(annotated, (gx1, gy1), (gx2, gy2), (0, 255, 64), 3)
+
+                    # Render text badge
+                    p_tag = f"[{plate_text}] {pconf:.0%}" if plate_text else f"Plate {pconf:.1%}"
+                    (lw, lh), _ = cv2.getTextSize(p_tag, cv2.FONT_HERSHEY_SIMPLEX, 0.65, 2)
+                    badge_y = max(0, gy1 - lh - 8)
+                    cv2.rectangle(annotated, (gx1, badge_y), (gx1 + lw + 8, gy1), (0, 255, 64), -1)
+                    cv2.putText(annotated, p_tag, (gx1 + 4, gy1 - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (0, 0, 0), 2)
+
         # Fallback direct detection across full frame if vehicle crops yielded no plates
         if len(plates) == 0:
             p_res = self.plate_model.predict(
                 frame,
-                conf=0.06,
+                conf=0.18,
                 imgsz=imgsz,
                 device=self.device,
                 verbose=False
             )[0]
             if p_res.boxes is not None and len(p_res.boxes) > 0:
+                valid_fallback = []
                 for pb in p_res.boxes:
                     gx1, gy1, gx2, gy2 = map(int, pb.xyxy[0])
                     pconf = float(pb.conf[0])
                     gx1, gy1 = max(0, gx1), max(0, gy1)
                     gx2, gy2 = min(orig_w, gx2), min(orig_h, gy2)
+                    pw, ph = gx2 - gx1, gy2 - gy1
+                    if pw < 20 or ph < 8:
+                        continue
+                    ar = pw / max(1, ph)
+                    if ar < 1.4 or ar > 6.5:
+                        continue
+                    if pw > orig_w * 0.45 or ph > orig_h * 0.30:
+                        continue
                     plate_crop = frame[gy1:gy2, gx1:gx2]
+                    valid_fallback.append(([gx1, gy1, gx2, gy2], pconf, plate_crop))
 
+                valid_fallback.sort(key=lambda c: c[1], reverse=True)
+                for ([gx1, gy1, gx2, gy2], pconf, plate_crop) in valid_fallback[:2]:
                     plate_text = ""
                     if do_ocr and self.ocr_reader:
                         plate_text = self.ocr_reader.read(plate_crop)
@@ -373,6 +406,8 @@ class TwoStageANPR:
                         "box": [gx1, gy1, gx2, gy2],
                         "conf": pconf,
                         "text": plate_text,
+                        "plate": plate_text,
+                        "plate_text": plate_text,
                         "crop": plate_crop
                     })
 

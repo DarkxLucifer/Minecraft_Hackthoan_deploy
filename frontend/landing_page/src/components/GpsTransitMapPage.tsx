@@ -21,7 +21,11 @@ const RealLeafletDistrictMap = dynamic(
 );
 
 import { BACKEND_URL } from '@/lib/config';
-const resolvePhotoUrl = (url?: string) => url ? url.replace('http://127.0.0.1:8000', BACKEND_URL) : '';
+const resolvePhotoUrl = (url?: string) => {
+  if (!url) return '';
+  const filename = url.split('/').pop();
+  return `/crops/${filename}`;
+};
 
 interface GpsTransitMapPageProps {
   onBackToDashboard: () => void;

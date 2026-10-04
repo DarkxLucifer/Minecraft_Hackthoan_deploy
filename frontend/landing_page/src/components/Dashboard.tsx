@@ -126,16 +126,21 @@ export default function Dashboard() {
       if (res.ok) {
         const data: VideoAnalysis = await res.json();
         if (data && data.vehicles) {
-          setAllVehicles(data.vehicles);
+          // Sort vehicles by appearance time so the first car entering the frame is targeted
+          const sortedVehicles = [...data.vehicles].sort((a, b) => {
+            const aFirst = a.first_seen ?? a.timeline_markers?.[0]?.timestamp ?? 0;
+            const bFirst = b.first_seen ?? b.timeline_markers?.[0]?.timestamp ?? 0;
+            return aFirst - bFirst;
+          });
+          setAllVehicles(sortedVehicles);
           setVideoDuration(data.duration || 10);
 
-          if (data.vehicles.length > 0) {
-            const top = data.vehicles[0];
+          if (sortedVehicles.length > 0) {
+            const top = sortedVehicles[0];
             setSearchQuery(top.plate);
             setMatchedVehicle(top);
-            if (top.timeline_markers?.length > 0) {
-              setSelectedTimestamp(top.timeline_markers[0].timestamp);
-            }
+            const initTime = top.timeline_markers?.[0]?.timestamp ?? top.first_seen ?? 0;
+            setSelectedTimestamp(initTime);
           } else {
             setMatchedVehicle(null);
           }

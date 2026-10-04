@@ -571,8 +571,11 @@ async def detect_anpr(
     # Format plate outputs for JSON serialization
     serialized_plates = []
     for p in results.get("plates", []):
+        plate_str = p.get("text", "") or p.get("plate", "") or p.get("plate_text", "")
         serialized_plates.append({
-            "text": p.get("text", ""),
+            "plate": plate_str,
+            "plate_text": plate_str,
+            "text": plate_str,
             "confidence": round(float(p.get("conf", 0.0)), 4),
             "box": p.get("box", []),
             "vehicle_index": p.get("vehicle_idx", -1),
@@ -580,11 +583,16 @@ async def detect_anpr(
 
     return {
         "success": True,
+        "status": "success",
         "filename": file.filename,
         "vehicles": results.get("vehicles", []),
         "plates": serialized_plates,
         "total_vehicles": len(results.get("vehicles", [])),
         "total_plates": len(serialized_plates),
+        "vehicles_count": len(results.get("vehicles", [])),
+        "plates_count": len(serialized_plates),
+        "vehicle_count": len(results.get("vehicles", [])),
+        "plate_count": len(serialized_plates),
         "annotated_image": b64_image,
     }
 
