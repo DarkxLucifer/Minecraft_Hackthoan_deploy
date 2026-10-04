@@ -115,8 +115,23 @@ export const PlateSearchSection: React.FC<PlateSearchSectionProps> = ({
     }
   };
 
+  const [isDeleteMode, setIsDeleteMode] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+
+  // Private toggle: Listen for Ctrl + Shift + D (or Alt + D)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const isCtrlShiftD = (e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'D' || e.key === 'd');
+      const isAltD = e.altKey && (e.key === 'D' || e.key === 'd');
+      if (isCtrlShiftD || isAltD) {
+        e.preventDefault();
+        setIsDeleteMode((prev) => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   const handleDeleteSelectedVideo = async () => {
     if (!selectedVideo) return;
@@ -337,6 +352,12 @@ export const PlateSearchSection: React.FC<PlateSearchSectionProps> = ({
                 <Film className="w-3.5 h-3.5 text-black" />
                 Source Video ({videos.length} Available)
               </span>
+              {isDeleteMode && (
+                <span className="text-[10px] font-mono text-red-600 bg-red-50 border border-red-200 px-2 py-0.5 rounded-full flex items-center gap-1 animate-in fade-in">
+                  <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+                  Private Delete Active (Ctrl+Shift+D to hide)
+                </span>
+              )}
             </label>
             <div className="flex items-center gap-2">
               <div className="relative flex-1">
@@ -361,18 +382,20 @@ export const PlateSearchSection: React.FC<PlateSearchSectionProps> = ({
                 </div>
               </div>
 
-              {/* Always-visible Delete Button for the Selected Video */}
-              <button
-                type="button"
-                onClick={() => setShowDeleteConfirm(true)}
-                disabled={isDeleting || !selectedVideo || videos.length <= 1}
-                title={`Delete selected video: ${selectedVideo}`}
-                className="p-4 rounded-2xl bg-rose-50 hover:bg-rose-100 active:scale-[0.96] text-rose-600 border border-rose-200 shadow-xs transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed shrink-0 flex items-center justify-center gap-1.5"
-                aria-label="Delete selected video"
-              >
-                <Trash2 className="w-5 h-5 text-rose-600" />
-                <span className="hidden sm:inline text-xs font-semibold">Delete</span>
-              </button>
+              {/* Private Delete Button - Visible ONLY on Ctrl + Shift + D */}
+              {isDeleteMode && (
+                <button
+                  type="button"
+                  onClick={() => setShowDeleteConfirm(true)}
+                  disabled={isDeleting || !selectedVideo || videos.length <= 1}
+                  title={`Delete selected video: ${selectedVideo}`}
+                  className="p-4 rounded-2xl bg-rose-50 hover:bg-rose-100 active:scale-[0.96] text-rose-600 border border-rose-200 shadow-xs transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed shrink-0 flex items-center justify-center gap-1.5 animate-in fade-in"
+                  aria-label="Delete selected video"
+                >
+                  <Trash2 className="w-5 h-5 text-rose-600" />
+                  <span className="hidden sm:inline text-xs font-semibold">Delete</span>
+                </button>
+              )}
             </div>
           </div>
 
