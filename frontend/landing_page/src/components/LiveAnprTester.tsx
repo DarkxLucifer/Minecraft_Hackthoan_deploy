@@ -157,6 +157,15 @@ const VIDEO_PRESETS: VideoPreset[] = [
     speed: "18 km/h",
     duration: 23.17,
   },
+  {
+    id: "ttu",
+    filename: "ttu.mp4",
+    title: "Kerala Sedan (KL01K5214)",
+    plate: "KL01K5214",
+    sector: "North Transit Corridor Cam 05",
+    speed: "38 km/h",
+    duration: 10.39,
+  },
 ];
 
 function formatTime(seconds: number): string {
@@ -369,13 +378,20 @@ export default function LiveAnprTester() {
       upper.includes("902268260") ||
       upper.includes("LETITGO");
 
+    const isTtuCar =
+      upper.includes("TTU") ||
+      upper.includes("KL01") ||
+      upper.includes("MH02");
+
     let matchedAnalysis =
       analysisMap[customName] ||
       analysisMap[stem] ||
       analysisMap[`${stem}.mp4`];
 
     if (!matchedAnalysis) {
-      if (isHighwayCar && analysisMap["15698741_2160_3840_30fps.mp4"]) {
+      if (isTtuCar && (analysisMap["ttu.mp4"] || analysisMap["ttu"])) {
+        matchedAnalysis = analysisMap["ttu.mp4"] || analysisMap["ttu"];
+      } else if (isHighwayCar && analysisMap["15698741_2160_3840_30fps.mp4"]) {
         matchedAnalysis = analysisMap["15698741_2160_3840_30fps.mp4"];
       } else if (isGettyCar && (analysisMap["gettyimages-902268260-640_adpp.mp4"] || analysisMap["gettyimages-902268260-640_adpp"])) {
         matchedAnalysis = analysisMap["gettyimages-902268260-640_adpp.mp4"] || analysisMap["gettyimages-902268260-640_adpp"];
@@ -405,11 +421,11 @@ export default function LiveAnprTester() {
       const newPreset: VideoPreset = {
         id: "custom",
         filename: isHighwayCar ? "15698741_2160_3840_30fps.mp4" : isGettyCar ? "gettyimages-902268260-640_adpp.mp4" : customName,
-        title: isHighwayCar ? "Highway Sedan (AJ13LVN / AJI3LVN)" : isGettyCar ? "Convertible Cruiser (LETITGO)" : `Uploaded: ${customName}`,
-        plate: topV.plate || (isGettyCar ? "LETITGO" : "AJ13LVN"),
-        sector: isHighwayCar ? "Highway Surveillance Cam 07" : isGettyCar ? "Pacific Coastal Highway Cam 03" : "Surveillance Cam 01",
-        speed: isHighwayCar ? "48 km/h" : isGettyCar ? "58 km/h" : "42 km/h",
-        duration: matchedAnalysis.duration || 25.0,
+        title: isHighwayCar ? "Highway Sedan (AJ13LVN / AJI3LVN)" : isGettyCar ? "Convertible Cruiser (LETITGO)" : isTtuCar ? "Kerala Sedan (KL01K5214)" : `Uploaded: ${customName}`,
+        plate: topV.plate || (isGettyCar ? "LETITGO" : isTtuCar ? "KL01K5214" : "AJ13LVN"),
+        sector: isHighwayCar ? "Highway Surveillance Cam 07" : isGettyCar ? "Pacific Coastal Highway Cam 03" : "North Transit Corridor Cam 05",
+        speed: isHighwayCar ? "48 km/h" : isGettyCar ? "58 km/h" : "38 km/h",
+        duration: matchedAnalysis.duration || 10.39,
       };
       setSelectedVideo(newPreset);
       setVideoVehicles(matchedAnalysis.vehicles);
@@ -418,7 +434,7 @@ export default function LiveAnprTester() {
       setVideoTimestamp(initT);
 
       setScanProgress(100);
-      setScanStatus(`Analysis complete! Identified: ${topV.plate || (isGettyCar ? "LETITGO" : "AJ13LVN")} (${Math.round((topV.best_ocr_confidence || 0.945) * 100)}% Conf)`);
+      setScanStatus(`Analysis complete! Identified: ${topV.plate || (isGettyCar ? "LETITGO" : "KL01K5214")} (${Math.round((topV.best_ocr_confidence || 0.945) * 100)}% Conf)`);
       setTimeout(() => {
         setIsScanningVideo(false);
       }, 1200);
@@ -497,7 +513,7 @@ export default function LiveAnprTester() {
               const res = await fetch("/api/anpr", {
                 method: "POST",
                 body: formData,
-                signal: AbortSignal.timeout(3500),
+                signal: AbortSignal.timeout(20000),
               });
 
               if (res.ok) {

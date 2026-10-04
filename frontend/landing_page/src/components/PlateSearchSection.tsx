@@ -15,6 +15,7 @@ interface PlateSearchSectionProps {
   suggestedPlates: string[];
   onAnalysisRefreshed?: () => void;
   onDeleteVideo?: (videoName: string) => void;
+  onCustomVideoUploaded?: (file: File, objectUrl: string) => void;
 }
 
 export const PlateSearchSection: React.FC<PlateSearchSectionProps> = ({
@@ -28,6 +29,7 @@ export const PlateSearchSection: React.FC<PlateSearchSectionProps> = ({
   suggestedPlates,
   onAnalysisRefreshed,
   onDeleteVideo,
+  onCustomVideoUploaded,
 }) => {
   const [isProcessingGpu, setIsProcessingGpu] = useState(false);
   const [gpuJob, setGpuJob] = useState<GpuJobProgress | null>(null);
@@ -75,6 +77,10 @@ export const PlateSearchSection: React.FC<PlateSearchSectionProps> = ({
 
     setIsUploading(true);
     const fileName = file.name;
+    const objectUrl = URL.createObjectURL(file);
+    if (onCustomVideoUploaded) {
+      onCustomVideoUploaded(file, objectUrl);
+    }
     const isLarge = file.size > 4 * 1024 * 1024; // > 4MB exceeds Vercel 4.5MB serverless body limit
 
     try {

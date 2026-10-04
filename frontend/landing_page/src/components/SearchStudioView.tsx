@@ -13,6 +13,7 @@ import { BACKEND_URL } from "@/lib/config";
 export const SearchStudioView: React.FC = () => {
   const [videos, setVideos] = useState<VideoItem[]>([]);
   const [selectedVideo, setSelectedVideo] = useState<string>("1.mp4");
+  const [customVideoUrl, setCustomVideoUrl] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>("KA05MR9633");
   const [isSearching, setIsSearching] = useState<boolean>(false);
   const [matchedVehicle, setMatchedVehicle] = useState<Vehicle | null>(null);
@@ -27,43 +28,57 @@ export const SearchStudioView: React.FC = () => {
       deletedList = stored ? JSON.parse(stored) : [];
     } catch {}
 
-    fetch(`${BACKEND_URL}/api/videos`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.videos && data.videos.length > 0) {
-          const filtered = data.videos.filter((v: any) => !deletedList.includes(v.filename));
-          setVideos(filtered);
-          if (!selectedVideo || deletedList.includes(selectedVideo)) {
-            if (filtered.length > 0) {
-              setSelectedVideo(filtered[0].filename);
-            }
+    const onData = (data: any) => {
+      if (data.videos && data.videos.length > 0) {
+        const filtered = data.videos.filter((v: any) => !deletedList.includes(v.filename));
+        setVideos(filtered);
+        if (!selectedVideo || deletedList.includes(selectedVideo)) {
+          if (filtered.length > 0) {
+            setSelectedVideo(filtered[0].filename);
           }
         }
-      })
-      .catch((err) => console.error("Error fetching videos:", err));
+      }
+    };
+
+    fetch("/api/videos")
+      .then((res) => (res.ok ? res.json() : Promise.reject()))
+      .then(onData)
+      .catch(() => {
+        fetch(`${BACKEND_URL}/api/videos`)
+          .then((res) => res.json())
+          .then(onData)
+          .catch((err) => console.error("Error fetching videos:", err));
+      });
   };
 
   const fetchAnalysis = (vidName: string) => {
-    fetch(`${BACKEND_URL}/api/analysis/${vidName}`)
-      .then((res) => res.json())
-      .then((data: VideoAnalysis) => {
-        if (data && data.vehicles) {
-          setAllVehicles(data.vehicles);
-          setVideoDuration(data.duration || 10);
+    const onAnalysisData = (data: VideoAnalysis) => {
+      if (data && data.vehicles) {
+        setAllVehicles(data.vehicles);
+        setVideoDuration(data.duration || 10);
 
-          if (data.vehicles.length > 0) {
-            const top = data.vehicles[0];
-            setSearchQuery(top.plate);
-            setMatchedVehicle(top);
-            if (top.timeline_markers && top.timeline_markers.length > 0) {
-              setSelectedTimestamp(top.timeline_markers[0].timestamp);
-            }
-          } else {
-            setMatchedVehicle(null);
+        if (data.vehicles.length > 0) {
+          const top = data.vehicles[0];
+          setSearchQuery(top.plate);
+          setMatchedVehicle(top);
+          if (top.timeline_markers && top.timeline_markers.length > 0) {
+            setSelectedTimestamp(top.timeline_markers[0].timestamp);
           }
+        } else {
+          setMatchedVehicle(null);
         }
-      })
-      .catch((err) => console.error("Error fetching analysis:", err));
+      }
+    };
+
+    fetch(`/api/analysis/${encodeURIComponent(vidName)}`)
+      .then((res) => (res.ok ? res.json() : Promise.reject()))
+      .then(onAnalysisData)
+      .catch(() => {
+        fetch(`${BACKEND_URL}/api/analysis/${encodeURIComponent(vidName)}`)
+          .then((res) => res.json())
+          .then(onAnalysisData)
+          .catch((err) => console.error("Error fetching analysis:", err));
+      });
   };
 
   useEffect(() => {
@@ -149,7 +164,34 @@ export const SearchStudioView: React.FC = () => {
       <PlateSearchSection
         videos={videos}
         selectedVideo={selectedVideo}
-        onSelectVideo={setSelectedVideo}
+        onSelectVideo={(vid) => {
+          setSelectedVideo(vid);
+          if (vid !== selectedVideo) {
+            setCustomVideoUrl(null);
+          }
+        }}
+        onCustomVideoUploaded={(file, objUrl) => {
+          setSelectedVideo(file.name);
+          setCustomVideoUrl(objUrl);
+          setVideos((prev) => {
+            if (prev.some((v) => v.filename === file.name)) return prev;
+            return [
+              {
+                filename: file.name,
+                stem: file.name.replace(/\.[^/.]+$/, ""),
+                size_mb: Number((file.size / (1024 * 1024)).toFixed(2)),
+                duration_seconds: 10,
+                formatted_duration: "00:10",
+                fps: 30,
+                width: 1280,
+                height: 720,
+                has_anpr_annotated: false,
+                plate_count: 1,
+              },
+              ...prev,
+            ];
+          });
+        }}
         searchQuery={searchQuery}
         onSearchQueryChange={setSearchQuery}
         onSearch={handleSearch}
@@ -178,6 +220,7 @@ export const SearchStudioView: React.FC = () => {
             videoDuration={videoDuration}
             onSelectTimestamp={(t) => setSelectedTimestamp(t)}
             selectedTimestamp={selectedTimestamp}
+            customVideoUrl={customVideoUrl}
           />
         </div>
 

@@ -111,7 +111,10 @@ export default function Dashboard() {
         deletedList = stored ? JSON.parse(stored) : [];
       } catch {}
 
-      const res = await fetch(`${BACKEND_URL}/api/videos`);
+      let res = await fetch(`/api/videos`);
+      if (!res.ok) {
+        res = await fetch(`${BACKEND_URL}/api/videos`);
+      }
       if (res.ok) {
         const data = await res.json();
         if (data.videos && data.videos.length > 0) {
@@ -131,7 +134,10 @@ export default function Dashboard() {
 
   const fetchAnalysis = async (vidName: string) => {
     try {
-      const res = await fetch(`${BACKEND_URL}/api/analysis/${vidName}`);
+      let res = await fetch(`/api/analysis/${encodeURIComponent(vidName)}`);
+      if (!res.ok) {
+        res = await fetch(`${BACKEND_URL}/api/analysis/${encodeURIComponent(vidName)}`);
+      }
       if (res.ok) {
         const data: VideoAnalysis = await res.json();
         if (data && data.vehicles) {
