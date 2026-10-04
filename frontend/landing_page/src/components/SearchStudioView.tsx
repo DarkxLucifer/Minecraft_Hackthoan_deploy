@@ -165,12 +165,14 @@ export const SearchStudioView: React.FC = () => {
         videos={videos}
         selectedVideo={selectedVideo}
         onSelectVideo={(vid) => {
+          setMatchedVehicle(null);
           setSelectedVideo(vid);
           if (vid !== selectedVideo) {
             setCustomVideoUrl(null);
           }
         }}
         onCustomVideoUploaded={(file, objUrl) => {
+          setMatchedVehicle(null);
           setSelectedVideo(file.name);
           setCustomVideoUrl(objUrl);
           setVideos((prev) => {
