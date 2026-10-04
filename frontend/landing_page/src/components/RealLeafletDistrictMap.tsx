@@ -5,6 +5,7 @@ import L from 'leaflet';
 import { Layers, Maximize2, Globe, Key, CheckCircle2, ShieldCheck, ExternalLink } from 'lucide-react';
 import type { CameraNode, TransitTrajectory, DistrictInfo } from './GpsTransitMapPage';
 import { BACKEND_URL } from '@/lib/config';
+import realRoadRoutesData from '@/lib/data/real_road_routes.json';
 
 interface RealLeafletDistrictMapProps {
   currentTrajectory: TransitTrajectory;
@@ -121,32 +122,35 @@ export const DISTRICT_GEO_POLYGONS: Record<string, [number, number][]> = {
   ],
 };
 
-// Real Expressways Alignment (Lat/Lng Waypoints)
-export const NH275_EXPRESSWAY_WAYPOINTS: [number, number][] = [
-  [12.9081, 77.4875], // Kengeri NICE Interchange
-  [12.854, 77.432], // Kumbalgodu / Bidadi Industrial
-  [12.7985, 77.3824], // Bidadi Bypass
-  [12.7214, 77.281], // Ramanagara Toll (CAM-CRASH)
-  [12.6512, 77.195], // Channapatna Bypass
-  [12.584, 77.0512], // Maddur Bypass
-  [12.5244, 76.8969], // Mandya Bypass (CAM-TT2)
-  [12.445, 76.782], // Srirangapatna Bypass
-  [12.4215, 76.698], // Paschimavahini
-  [12.3375, 76.6578], // Mysuru Columbia Asia Toll (CAM-MYS)
-];
+// Real Expressways Alignment (High-Density Real Road Geometry from OSRM Network)
+export const NH275_EXPRESSWAY_WAYPOINTS: [number, number][] =
+  ((realRoadRoutesData as any)?.NH275_EXPRESSWAY as [number, number][]) || [
+    [12.9081, 77.4875],
+    [12.854, 77.432],
+    [12.7985, 77.3824],
+    [12.7214, 77.281],
+    [12.6512, 77.195],
+    [12.584, 77.0512],
+    [12.5244, 76.8969],
+    [12.445, 76.782],
+    [12.4215, 76.698],
+    [12.3375, 76.6578],
+  ];
 
-export const NH44_ELEVATED_WAYPOINTS: [number, number][] = [
-  [12.9172, 77.6228], // Silk Board Junction (CAM-01)
-  [12.895, 77.635], // Bommanahalli
-  [12.871, 77.648], // Kudlu Gate
-  [12.8452, 77.6602], // Electronic City Toll Plaza (CAM-02)
-];
+export const NH44_ELEVATED_WAYPOINTS: [number, number][] =
+  ((realRoadRoutesData as any)?.NH44_ELEVATED as [number, number][]) || [
+    [12.9172, 77.6228],
+    [12.895, 77.635],
+    [12.871, 77.648],
+    [12.8452, 77.6602],
+  ];
 
-export const NICE_ROAD_WAYPOINTS: [number, number][] = [
-  [12.8452, 77.6602], // Electronic City NICE Junction
-  [12.855, 77.56], // Bannerghatta / Kanakapura Exit
-  [12.9081, 77.4875], // Kengeri / NH-275 Interchange (CAM-04)
-];
+export const NICE_ROAD_WAYPOINTS: [number, number][] =
+  ((realRoadRoutesData as any)?.NICE_ROAD as [number, number][]) || [
+    [12.8452, 77.6602],
+    [12.855, 77.56],
+    [12.9081, 77.4875],
+  ];
 
 export const RealLeafletDistrictMap: React.FC<RealLeafletDistrictMapProps> = ({
   currentTrajectory,
@@ -170,6 +174,12 @@ export const RealLeafletDistrictMap: React.FC<RealLeafletDistrictMapProps> = ({
   const [showHighways, setShowHighways] = useState<boolean>(true);
   const [cursorCoords, setCursorCoords] = useState<{ lat: number; lng: number } | null>(null);
   const [showApiKeyModal, setShowApiKeyModal] = useState<boolean>(false);
+  const [activeRouteInfo, setActiveRouteInfo] = useState<{
+    distanceKm: number;
+    durationMin: number;
+    pointCount: number;
+    routeName: string;
+  } | null>(null);
 
   // Invalidate map size to prevent gray tiles and ensure proper viewport rendering
   useEffect(() => {
@@ -399,120 +409,122 @@ export const RealLeafletDistrictMap: React.FC<RealLeafletDistrictMapProps> = ({
       }).addTo(vectorGroup);
     }
 
-    // 3. RENDER VEHICLE TRANSIT TRAJECTORY
+    // 3. RENDER REAL ROAD VEHICLE TRANSIT TRAJECTORY (AUTHENTIC HIGHWAY CURVES, NOT A STRAIGHT LINE)
     const originCam = cameras.find((c) => c.id === currentTrajectory.firstSeen.cameraId) || cameras[0];
     const destCam = currentTrajectory.reappearedAt
       ? cameras.find((c) => c.id === currentTrajectory.reappearedAt?.cameraId) || cameras[3]
       : null;
 
     if (destCam) {
-      // Determine real road path between originCam and destCam
-      let routeWaypoints: [number, number][] = [];
       const oId = originCam.id;
       const dId = destCam.id;
+      const forwardKey = `${oId}->${dId}`;
+      const reverseKey = `${dId}->${oId}`;
 
-      if ((oId === 'CAM-01' && dId === 'CAM-02') || (oId === 'CAM-02' && dId === 'CAM-01')) {
-        // NH-44 Elevated Expressway (Silk Board to Electronic City)
-        routeWaypoints = [...NH44_ELEVATED_WAYPOINTS];
-        if (oId === 'CAM-02') routeWaypoints.reverse();
-      } else if (
-        (oId === 'CAM-01' || oId === 'CAM-02' || oId === 'CAM-04') &&
-        (dId === 'CAM-CRASH' || dId === 'CAM-TT2' || dId === 'CAM-MYS')
-      ) {
-        // Multi-corridor route: Outer Ring Road / NICE Road -> NH-275 Expressway
-        const wp: [number, number][] = [];
-        if (oId === 'CAM-01') {
-          wp.push([originCam.lat, originCam.lng]);
-          wp.push([12.871, 77.648]); // Kudlu Gate
-          wp.push([12.8452, 77.6602]); // E-City NICE Junction
-          wp.push([12.855, 77.56]); // NICE Road
-          wp.push([12.9081, 77.4875]); // Kengeri NICE Interchange
-        } else if (oId === 'CAM-02') {
-          wp.push([originCam.lat, originCam.lng]);
-          wp.push([12.855, 77.56]); // NICE Road
-          wp.push([12.9081, 77.4875]); // Kengeri NICE Interchange
-        } else {
-          wp.push([originCam.lat, originCam.lng]);
-        }
+      let routeWaypoints: [number, number][] = [];
+      let drivingDistanceKm = currentTrajectory.distanceKm;
 
-        // Add NH-275 expressway waypoints up to destCam
-        if (dId === 'CAM-CRASH') {
-          wp.push([12.854, 77.432]); // Kumbalgodu
-          wp.push([12.7985, 77.3824]); // Bidadi Bypass
-          wp.push([destCam.lat, destCam.lng]); // Ramanagara Toll (CAM-CRASH)
-        } else if (dId === 'CAM-TT2') {
-          wp.push([12.854, 77.432]);
-          wp.push([12.7985, 77.3824]);
-          wp.push([12.7214, 77.281]); // Ramanagara
-          wp.push([12.6512, 77.195]); // Channapatna
-          wp.push([12.584, 77.0512]); // Maddur
-          wp.push([destCam.lat, destCam.lng]); // Mandya Bypass
-        } else if (dId === 'CAM-MYS') {
-          wp.push(...NH275_EXPRESSWAY_WAYPOINTS.slice(1));
-        }
-        routeWaypoints = wp;
+      // 1. Check precomputed authentic OSRM road coordinates cache
+      const forwardData = (realRoadRoutesData as any)[forwardKey];
+      const reverseData = (realRoadRoutesData as any)[reverseKey];
+
+      if (forwardData && Array.isArray(forwardData.points) && forwardData.points.length > 0) {
+        routeWaypoints = forwardData.points;
+        drivingDistanceKm = forwardData.distance_km || drivingDistanceKm;
+      } else if (reverseData && Array.isArray(reverseData.points) && reverseData.points.length > 0) {
+        routeWaypoints = [...reverseData.points].reverse();
+        drivingDistanceKm = reverseData.distance_km || drivingDistanceKm;
       } else {
-        const midLat = (originCam.lat + destCam.lat) / 2 + 0.015;
-        const midLng = (originCam.lng + destCam.lng) / 2 - 0.02;
-        routeWaypoints = [
-          [originCam.lat, originCam.lng],
-          [midLat, midLng],
-          [destCam.lat, destCam.lng],
-        ];
+        // Fallback to high-density arterial highway waypoint reconstruction
+        const wp: [number, number][] = [[originCam.lat, originCam.lng]];
+        if (
+          (oId === 'CAM-01' || oId === 'CAM-02') &&
+          (dId === 'CAM-04' || dId === 'CAM-07' || dId === 'CAM-CRASH' || dId === 'CAM-TT2' || dId === 'CAM-MYS')
+        ) {
+          const niceWaypoints = (realRoadRoutesData as any).NICE_ROAD || [];
+          wp.push(...niceWaypoints);
+        }
+        if (dId === 'CAM-07' || dId === 'CAM-CRASH' || dId === 'CAM-TT2' || dId === 'CAM-MYS') {
+          const expWaypoints = (realRoadRoutesData as any).NH275_EXPRESSWAY || [];
+          const closestIdx = expWaypoints.reduce((bestIdx: number, pt: [number, number], idx: number) => {
+            const d = Math.hypot(pt[0] - destCam.lat, pt[1] - destCam.lng);
+            const bestD = Math.hypot(expWaypoints[bestIdx][0] - destCam.lat, expWaypoints[bestIdx][1] - destCam.lng);
+            return d < bestD ? idx : bestIdx;
+          }, 0);
+          wp.push(...expWaypoints.slice(0, closestIdx + 1));
+        }
+        wp.push([destCam.lat, destCam.lng]);
+        routeWaypoints = wp;
       }
 
-      // Outer Cyan Halo Glow (super visible against dark satellite imagery)
+      // Update state for HUD display
+      setActiveRouteInfo({
+        distanceKm: drivingDistanceKm,
+        durationMin: currentTrajectory.durationMinutes,
+        pointCount: routeWaypoints.length,
+        routeName: `${originCam.id} (${originCam.name.split('-')[0].trim()}) ➔ ${destCam.id} (${destCam.name.split('-')[0].trim()})`,
+      });
+
+      // Layer 1: Ambient Outer Neon Halo Glow
       L.polyline(routeWaypoints, {
         color: '#00F0FF',
-        weight: 12,
-        opacity: 0.38,
+        weight: 14,
+        opacity: 0.35,
         lineCap: 'round',
         lineJoin: 'round',
       }).addTo(vectorGroup);
 
-      // Deep Contrast Border (provides contrast against bright terrain and satellite features)
+      // Layer 2: Deep Dark Outer Conduit (ensures contrast against satellite/terrain basemaps)
       L.polyline(routeWaypoints, {
         color: '#020617',
-        weight: 6,
+        weight: 7,
         opacity: 0.95,
         lineCap: 'round',
         lineJoin: 'round',
       }).addTo(vectorGroup);
 
-      // Core Vibrant Trajectory Line
+      // Layer 3: Vibrant Core High-Tech Trajectory Ribbon
       L.polyline(routeWaypoints, {
         color: '#00F0FF',
-        weight: 3.5,
+        weight: 4,
         opacity: 1,
         lineCap: 'round',
         lineJoin: 'round',
       }).addTo(vectorGroup);
 
-      // High-Contrast White Center Dashed Line
+      // Layer 4: High-Contrast Directional Pulsing Center Stripe
       L.polyline(routeWaypoints, {
         color: '#FFFFFF',
         weight: 2,
-        dashArray: '6, 10',
+        dashArray: '8, 12',
         opacity: 0.95,
       }).addTo(vectorGroup);
 
-      // Waypoint Pulse Beads along the trajectory path (shows vehicle transit direction)
-      routeWaypoints.forEach((pt, idx) => {
-        if (idx > 0 && idx < routeWaypoints.length - 1) {
+      // Strategic Road Waypoint Milestone Markers (sampled along the real highway curves)
+      if (routeWaypoints.length > 2) {
+        const milestoneRatios = [0.20, 0.40, 0.60, 0.80];
+        milestoneRatios.forEach((ratio, mIdx) => {
+          const sampleIdx = Math.floor(routeWaypoints.length * ratio);
+          const pt = routeWaypoints[sampleIdx];
+          if (!pt) return;
+
           const waypointIcon = L.divIcon({
             html: `
-              <div class="relative flex items-center justify-center">
+              <div class="relative flex items-center justify-center pointer-events-none">
                 <div class="w-3.5 h-3.5 rounded-full bg-cyan-400 opacity-60 animate-ping"></div>
                 <div class="absolute w-2 h-2 rounded-full bg-white border border-cyan-500 shadow"></div>
+                <div class="absolute -top-3.5 whitespace-nowrap bg-black/85 text-cyan-300 text-[8px] font-mono font-bold px-1.5 py-0.5 rounded border border-cyan-500/40 shadow">
+                  CHECKPOINT ${mIdx + 1}
+                </div>
               </div>
             `,
             className: 'custom-waypoint-dot',
-            iconSize: [14, 14],
-            iconAnchor: [7, 7],
+            iconSize: [16, 16],
+            iconAnchor: [8, 8],
           });
           L.marker(pt, { icon: waypointIcon, interactive: false }).addTo(vectorGroup);
-        }
-      });
+        });
+      }
 
       // Auto-fit bounds with smooth fly
       const bounds = L.latLngBounds(routeWaypoints);
@@ -723,6 +735,26 @@ export const RealLeafletDistrictMap: React.FC<RealLeafletDistrictMapProps> = ({
           </button>
         </div>
       </div>
+
+      {/* Real Highway Road Routing HUD Pill */}
+      {activeRouteInfo && (
+        <div className="absolute top-18 left-4 z-[400] bg-black/90 backdrop-blur-xl border border-cyan-500/50 rounded-2xl px-4 py-2 shadow-2xl text-white pointer-events-auto flex items-center gap-3">
+          <div className="relative flex items-center justify-center w-3 h-3">
+            <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 opacity-75 animate-ping absolute"></span>
+            <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
+          </div>
+          <div className="text-[11px] font-mono font-bold uppercase tracking-wider text-cyan-300">
+            Road Network Route (OSRM)
+          </div>
+          <div className="h-3.5 w-px bg-white/20"></div>
+          <div className="text-xs font-mono text-slate-300 flex items-center gap-2">
+            <span>{activeRouteInfo.routeName}</span>
+            <span className="text-cyan-400 font-bold">{activeRouteInfo.distanceKm} km</span>
+            <span className="text-slate-500">•</span>
+            <span className="text-emerald-400 font-medium">{activeRouteInfo.pointCount} Highway Nodes</span>
+          </div>
+        </div>
+      )}
 
       {/* API Key Modal / Guidance Popup */}
       {showApiKeyModal && (

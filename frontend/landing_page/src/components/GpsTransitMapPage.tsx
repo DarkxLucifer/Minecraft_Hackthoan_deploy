@@ -274,10 +274,94 @@ export const DISTRICT_CAMERAS: CameraNode[] = [
     y: 28,
     status: 'ACTIVE',
   },
+  {
+    id: 'CAM-07',
+    name: 'Bidadi - Ramanagara Expressway Gantry',
+    districtId: 'ramanagara',
+    districtName: 'Ramanagara District',
+    corridor: 'Bengaluru - Mysuru Expressway (NH-275)',
+    lat: 12.7650,
+    lng: 77.3450,
+    x: 48,
+    y: 44,
+    status: 'ACTIVE',
+  },
 ];
 
 // District Trajectories Matching Available Dataset
 export const DISTRICT_TRAJECTORIES: Record<string, TransitTrajectory> = {
+  AJ13LVN: {
+    plate: 'AJ13LVN',
+    vehicleModel: 'Executive Sedan (Silver Grey)',
+    vehicleType: 'Highway Patrol Verified Vehicle',
+    originDistrict: 'Bengaluru Urban District',
+    destinationDistrict: 'Ramanagara District',
+    highwayCorridor: 'Bengaluru-Mysuru 10-Lane Expressway (NH-275)',
+    distanceKm: 24.97,
+    durationMinutes: 22.0,
+    avgSpeedKmh: 68.1,
+    transitHeading: 'South-West (235°)',
+    firstSeen: {
+      cameraId: 'CAM-04',
+      cameraName: 'Kengeri NICE Interchange',
+      districtId: 'bengaluru-urban',
+      districtName: 'Bengaluru Urban District',
+      timestamp: '10:45:12 AM',
+      speedKmh: 65.4,
+      photoVehicle: '/crops/15698741_2160_3840_30fps_frame6_AJ13LVN.jpg',
+      photoPlate: '/crops/15698741_2160_3840_30fps_plate_AJ13LVN.jpg',
+      photoLabel1: 'Photo 1: Kengeri Express Entry',
+      photoLabel2: 'Photo 2: Registered Plate Optical Crop',
+    },
+    reappearedAt: {
+      cameraId: 'CAM-07',
+      cameraName: 'Bidadi - Ramanagara Expressway Gantry',
+      districtId: 'ramanagara',
+      districtName: 'Ramanagara District',
+      timestamp: '11:07:12 AM',
+      speedKmh: 72.8,
+      photoVehicle: '/crops/15698741_2160_3840_30fps_frame6_AJ13LVN.jpg',
+      photoPlate: '/crops/15698741_2160_3840_30fps_plate_AJ13LVN.jpg',
+      photoLabel1: 'Photo 1: Expressway Gantry Reappearance',
+      photoLabel2: 'Photo 2: Telemetry Capture Snapshot',
+    },
+  },
+  AJI3LVN: {
+    plate: 'AJ13LVN',
+    vehicleModel: 'Executive Sedan (Silver Grey)',
+    vehicleType: 'Highway Patrol Verified Vehicle',
+    originDistrict: 'Bengaluru Urban District',
+    destinationDistrict: 'Ramanagara District',
+    highwayCorridor: 'Bengaluru-Mysuru 10-Lane Expressway (NH-275)',
+    distanceKm: 24.97,
+    durationMinutes: 22.0,
+    avgSpeedKmh: 68.1,
+    transitHeading: 'South-West (235°)',
+    firstSeen: {
+      cameraId: 'CAM-04',
+      cameraName: 'Kengeri NICE Interchange',
+      districtId: 'bengaluru-urban',
+      districtName: 'Bengaluru Urban District',
+      timestamp: '10:45:12 AM',
+      speedKmh: 65.4,
+      photoVehicle: '/crops/15698741_2160_3840_30fps_frame6_AJ13LVN.jpg',
+      photoPlate: '/crops/15698741_2160_3840_30fps_plate_AJ13LVN.jpg',
+      photoLabel1: 'Photo 1: Kengeri Express Entry',
+      photoLabel2: 'Photo 2: Registered Plate Optical Crop',
+    },
+    reappearedAt: {
+      cameraId: 'CAM-07',
+      cameraName: 'Bidadi - Ramanagara Expressway Gantry',
+      districtId: 'ramanagara',
+      districtName: 'Ramanagara District',
+      timestamp: '11:07:12 AM',
+      speedKmh: 72.8,
+      photoVehicle: '/crops/15698741_2160_3840_30fps_frame6_AJ13LVN.jpg',
+      photoPlate: '/crops/15698741_2160_3840_30fps_plate_AJ13LVN.jpg',
+      photoLabel1: 'Photo 1: Expressway Gantry Reappearance',
+      photoLabel2: 'Photo 2: Telemetry Capture Snapshot',
+    },
+  },
   KA05MR9633: {
     plate: 'KA05MR9633',
     vehicleModel: 'Hyundai Creta (White)',
@@ -611,9 +695,42 @@ export const GpsTransitMapPage: React.FC<GpsTransitMapPageProps> = ({
 
     if (DISTRICT_TRAJECTORIES[cleaned]) {
       setActivePlate(cleaned);
-    } else {
-      setActivePlate('KA05MR9633');
+      return;
     }
+
+    // Fuzzy matching for optical substitutions (I<->1, O<->0, etc.)
+    const normalized = cleaned
+      .replace(/I/g, '1')
+      .replace(/L/g, '1')
+      .replace(/O/g, '0')
+      .replace(/Q/g, '0')
+      .replace(/D/g, '0')
+      .replace(/Z/g, '2')
+      .replace(/S/g, '5')
+      .replace(/B/g, '8')
+      .replace(/G/g, '6')
+      .replace(/U/g, 'V');
+
+    for (const key of Object.keys(DISTRICT_TRAJECTORIES)) {
+      const normKey = key
+        .replace(/I/g, '1')
+        .replace(/L/g, '1')
+        .replace(/O/g, '0')
+        .replace(/Q/g, '0')
+        .replace(/D/g, '0')
+        .replace(/Z/g, '2')
+        .replace(/S/g, '5')
+        .replace(/B/g, '8')
+        .replace(/G/g, '6')
+        .replace(/U/g, 'V');
+
+      if (normKey === normalized || normKey.includes(normalized) || normalized.includes(normKey)) {
+        setActivePlate(key);
+        return;
+      }
+    }
+
+    setActivePlate('KA05MR9633');
   };
 
   const handleSelectChip = (plate: string) => {
@@ -661,7 +778,7 @@ export const GpsTransitMapPage: React.FC<GpsTransitMapPageProps> = ({
               <div className="text-xs text-[#6F6F6F] uppercase tracking-wider mt-1">Express Corridors</div>
             </div>
             <div>
-              <div className="font-serif text-2xl sm:text-3xl font-normal text-[#000000]">6 Nodes</div>
+              <div className="font-serif text-2xl sm:text-3xl font-normal text-[#000000]">7 Nodes</div>
               <div className="text-xs text-[#6F6F6F] uppercase tracking-wider mt-1">Perimeter Feeds</div>
             </div>
             <div>
@@ -682,7 +799,7 @@ export const GpsTransitMapPage: React.FC<GpsTransitMapPageProps> = ({
                 type="text"
                 value={searchPlateInput}
                 onChange={(e) => setSearchPlateInput(e.target.value)}
-                placeholder="Enter License Plate Number (e.g., KA05MR9633, KA09Z4433, KA51AF5156, KA21C5074)..."
+                placeholder="Enter License Plate Number (e.g., AJ13LVN, KA05MR9633, KA09Z4433, KA51AF5156, KA21C5074)..."
                 className="w-full pl-12 pr-4 py-3.5 bg-[#F9FAFB] border border-black/15 rounded-2xl text-[#000000] placeholder-[#6F6F6F] focus:outline-none focus:border-black focus:ring-1 focus:ring-black text-sm font-mono tracking-wider transition-all"
               />
             </div>
@@ -700,8 +817,8 @@ export const GpsTransitMapPage: React.FC<GpsTransitMapPageProps> = ({
             <span className="text-xs text-[#6F6F6F] flex items-center gap-1.5 font-medium mr-1">
               <Zap className="w-3.5 h-3.5 text-amber-500" /> Presets:
             </span>
-            {Object.keys(DISTRICT_TRAJECTORIES).map((p) => {
-              const isSelected = cleanPlate(activePlate) === p;
+            {Array.from(new Set(Object.values(DISTRICT_TRAJECTORIES).map((t) => t.plate))).map((p) => {
+              const isSelected = cleanPlate(activePlate) === p || (p === 'AJ13LVN' && cleanPlate(activePlate) === 'AJI3LVN');
               return (
                 <button
                   key={p}
