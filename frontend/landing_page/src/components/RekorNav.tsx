@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import VisionXLogo from "@/components/VisionXLogo";
 import AuthModal from "@/components/AuthModal";
 import { useAuth } from "@/context/AuthContext";
@@ -12,6 +13,7 @@ type RekorNavProps = {
 };
 
 export default function RekorNav({ theme = "light" }: RekorNavProps) {
+  const router = useRouter();
   const { user, officer, signOut } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
@@ -38,6 +40,16 @@ export default function RekorNav({ theme = "light" }: RekorNavProps) {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+    } catch (err) {
+      console.warn("Sign out warning:", err);
+    }
+    router.push("/");
+    router.refresh();
+  };
 
   const isAuthenticated = Boolean(user || officer);
 
@@ -69,31 +81,34 @@ export default function RekorNav({ theme = "light" }: RekorNavProps) {
           {/* Right Action Buttons */}
           <div className="rekor-nav-actions">
             {isAuthenticated ? (
-              <div className="rekor-auth-user-bar">
+              <div className="rekor-auth-user-bar flex items-center gap-2 sm:gap-3">
                 <Link
                   href="/dashboard"
-                  className="rekor-launch-btn"
+                  className="rekor-launch-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-black text-white text-[11px] sm:text-xs font-bold tracking-wider hover:bg-neutral-800 transition-all shadow-sm"
                   title="Open Surveillance Command Dashboard"
                 >
                   <LayoutDashboard className="w-3.5 h-3.5 text-emerald-400" />
                   <span>DASHBOARD</span>
-                  <span className="launch-arrow" aria-hidden="true">→</span>
+                  <span className="text-emerald-400" aria-hidden="true">→</span>
                 </Link>
 
-                <div className="rekor-user-pill" title={officer?.email || user?.email || "Operator Session"}>
-                  <span className="user-online-dot" />
-                  <span className="user-agency-tag">{officer?.badgeId || "OFFICER"}</span>
+                <div
+                  className="rekor-user-pill inline-flex items-center gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-full bg-neutral-100 border border-neutral-200/80 text-[11px] sm:text-xs font-mono font-bold text-neutral-800"
+                  title={officer?.email || user?.email || "Operator Session"}
+                >
+                  <span className="user-online-dot w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                  <span className="user-agency-tag truncate max-w-[80px] sm:max-w-none">{officer?.badgeId || "OFFICER"}</span>
                 </div>
 
                 <button
                   type="button"
-                  className="rekor-signout-btn"
-                  onClick={() => signOut()}
+                  className="rekor-signout-btn inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full bg-white hover:bg-rose-50 text-neutral-600 hover:text-rose-600 border border-neutral-200 hover:border-rose-300 text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all cursor-pointer shadow-xs"
+                  onClick={handleSignOut}
                   title="Sign out of operator session"
                   aria-label="Sign out"
                 >
-                  <LogOut className="w-3.5 h-3.5" />
-                  <span>SIGN OUT</span>
+                  <LogOut className="w-3.5 h-3.5 text-rose-500" />
+                  <span className="hidden sm:inline">SIGN OUT</span>
                 </button>
               </div>
             ) : (
@@ -141,14 +156,17 @@ export default function RekorNav({ theme = "light" }: RekorNavProps) {
               <a href="#demo" onClick={() => setMobileMenuOpen(false)}>Solutions</a>
               <a href="#pipeline" onClick={() => setMobileMenuOpen(false)}>Pipeline</a>
               {isAuthenticated ? (
-                <div className="rekor-auth-mobile-bar">
-                  <div className="rekor-user-pill mobile-full">
-                    <span className="user-online-dot" />
-                    <span className="user-agency-tag">{officer?.badgeId || "OFFICER"} · ONLINE</span>
+                <div className="rekor-auth-mobile-bar flex flex-col gap-2.5 pt-3 border-t border-neutral-200">
+                  <div className="flex items-center justify-between p-3 rounded-2xl bg-neutral-100 border border-neutral-200">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                      <span className="font-mono text-xs font-bold text-neutral-900">{officer?.badgeId || "OFFICER"}</span>
+                    </div>
+                    <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold">ACTIVE SESSION</span>
                   </div>
                   <Link
                     href="/dashboard"
-                    className="rekor-launch-btn mobile-full"
+                    className="w-full py-3 px-4 rounded-full bg-black text-white text-xs font-bold tracking-wider flex items-center justify-center gap-2 shadow-sm cursor-pointer"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     <LayoutDashboard className="w-4 h-4 text-emerald-400" />
@@ -156,14 +174,14 @@ export default function RekorNav({ theme = "light" }: RekorNavProps) {
                   </Link>
                   <button
                     type="button"
-                    className="rekor-signout-btn mobile-full"
-                    onClick={() => {
+                    className="w-full py-2.5 px-4 rounded-full bg-rose-50 text-rose-700 border border-rose-200 text-xs font-bold tracking-wider flex items-center justify-center gap-2 cursor-pointer hover:bg-rose-100 transition-colors"
+                    onClick={async () => {
                       setMobileMenuOpen(false);
-                      signOut();
+                      await handleSignOut();
                     }}
                   >
-                    <LogOut className="w-4 h-4" />
-                    <span>Sign Out ({officer?.badgeId || "Officer"})</span>
+                    <LogOut className="w-4 h-4 text-rose-500" />
+                    <span>SIGN OUT ({officer?.badgeId || "Officer"})</span>
                   </button>
                 </div>
               ) : (
