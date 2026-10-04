@@ -233,7 +233,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       id: "demo-officer-" + Date.now(),
       email: customEmail,
       agency: customAgency,
-      badgeId: "VX-NCR71",
+      badgeId: `VX-${Math.floor(1000 + Math.random() * 9000)}`,
       role: "Lead Dispatcher",
       isDemo: true,
     };

@@ -891,7 +891,7 @@ export const VideoTimelinePlayer: React.FC<VideoTimelinePlayerProps> = ({
             >
               {/* Progress Fill */}
               <div
-                className="absolute left-0 top-0 bottom-0 bg-white/30 rounded-full pointer-events-none"
+                className="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full pointer-events-none shadow-[0_0_10px_rgba(16,185,129,0.7)]"
                 style={{
                   width: `${Math.min(
                     100,

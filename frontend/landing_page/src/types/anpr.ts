@@ -133,6 +133,7 @@ export interface GpuStatus {
 }
 
 export interface GpuJobProgress {
+  video_name?: string;
   status: 'IDLE' | 'PROCESSING' | 'COMPLETED' | 'FAILED' | 'ALREADY_PROCESSING' | 'STARTED';
   progress_percent: number;
   frame?: number;

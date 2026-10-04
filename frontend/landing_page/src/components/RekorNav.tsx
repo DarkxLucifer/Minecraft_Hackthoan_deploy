@@ -92,23 +92,15 @@ export default function RekorNav({ theme = "light" }: RekorNavProps) {
                   <span className="text-emerald-400" aria-hidden="true">→</span>
                 </Link>
 
-                <div
-                  className="rekor-user-pill inline-flex items-center gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-full bg-neutral-100 border border-neutral-200/80 text-[11px] sm:text-xs font-mono font-bold text-neutral-800"
-                  title={officer?.email || user?.email || "Operator Session"}
-                >
-                  <span className="user-online-dot w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-                  <span className="user-agency-tag truncate max-w-[80px] sm:max-w-none">{officer?.badgeId || "OFFICER"}</span>
-                </div>
-
                 <button
                   type="button"
-                  className="rekor-signout-btn inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full bg-white hover:bg-rose-50 text-neutral-600 hover:text-rose-600 border border-neutral-200 hover:border-rose-300 text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all cursor-pointer shadow-xs"
+                  className="rekor-signout-btn inline-flex items-center gap-1.5 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white hover:bg-rose-50 text-neutral-600 hover:text-rose-600 border border-neutral-200 hover:border-rose-300 text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all cursor-pointer shadow-xs"
                   onClick={handleSignOut}
                   title="Sign out of operator session"
                   aria-label="Sign out"
                 >
                   <LogOut className="w-3.5 h-3.5 text-rose-500" />
-                  <span className="hidden sm:inline">SIGN OUT</span>
+                  <span>SIGN OUT</span>
                 </button>
               </div>
             ) : (
@@ -157,13 +149,6 @@ export default function RekorNav({ theme = "light" }: RekorNavProps) {
               <a href="#pipeline" onClick={() => setMobileMenuOpen(false)}>Pipeline</a>
               {isAuthenticated ? (
                 <div className="rekor-auth-mobile-bar flex flex-col gap-2.5 pt-3 border-t border-neutral-200">
-                  <div className="flex items-center justify-between p-3 rounded-2xl bg-neutral-100 border border-neutral-200">
-                    <div className="flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                      <span className="font-mono text-xs font-bold text-neutral-900">{officer?.badgeId || "OFFICER"}</span>
-                    </div>
-                    <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold">ACTIVE SESSION</span>
-                  </div>
                   <Link
                     href="/dashboard"
                     className="w-full py-3 px-4 rounded-full bg-black text-white text-xs font-bold tracking-wider flex items-center justify-center gap-2 shadow-sm cursor-pointer"
@@ -181,7 +166,7 @@ export default function RekorNav({ theme = "light" }: RekorNavProps) {
                     }}
                   >
                     <LogOut className="w-4 h-4 text-rose-500" />
-                    <span>SIGN OUT ({officer?.badgeId || "Officer"})</span>
+                    <span>SIGN OUT</span>
                   </button>
                 </div>
               ) : (
