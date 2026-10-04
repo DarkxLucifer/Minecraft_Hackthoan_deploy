@@ -2,7 +2,6 @@ import TrajectoryDemo from "@/components/TrajectoryDemo";
 import LaneStrip from "@/components/LaneStrip";
 import RekorNav from "@/components/RekorNav";
 import RekorHero from "@/components/RekorHero";
-import LiveAnprTester from "@/components/LiveAnprTester";
 import VisionXLogo from "@/components/VisionXLogo";
 
 export const dynamic = "force-dynamic";
@@ -205,20 +204,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─────── Demo (Trajectory Search + Live ANPR Tester) ─────── */}
+      {/* ─────── Demo (Trajectory Search) ─────── */}
       <section className="section" id="demo">
         <div className="wrap">
           <div className="sec-head">
-            <h2>Trajectory search &amp; live test bench</h2>
+            <h2>Trajectory search &amp; reconstruction</h2>
             <p>
-              Pick a plate or upload an image. The route is rebuilt from its camera sightings in time
-              order. Try the cloned plate to see an impossible hop, or mistype a character to see
+              Pick a plate to see its camera sightings reconstructed in time order.
+              Try the cloned plate to see an impossible hop, or mistype a character to see
               the closest match recovered.
             </p>
           </div>
 
           <TrajectoryDemo />
-          <LiveAnprTester />
         </div>
       </section>
 

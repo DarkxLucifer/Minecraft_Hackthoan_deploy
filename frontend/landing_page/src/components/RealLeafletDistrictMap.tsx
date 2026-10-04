@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
-import { Layers, Maximize2, Globe, Key, CheckCircle2, ShieldCheck, ExternalLink } from 'lucide-react';
+import { Layers, Maximize2, Globe, CheckCircle2, ShieldCheck, ExternalLink } from 'lucide-react';
 import type { CameraNode, TransitTrajectory, DistrictInfo } from './GpsTransitMapPage';
 import { BACKEND_URL } from '@/lib/config';
 import realRoadRoutesData from '@/lib/data/real_road_routes.json';
@@ -173,7 +173,6 @@ export const RealLeafletDistrictMap: React.FC<RealLeafletDistrictMapProps> = ({
   const [showCameras, setShowCameras] = useState<boolean>(true);
   const [showHighways, setShowHighways] = useState<boolean>(true);
   const [cursorCoords, setCursorCoords] = useState<{ lat: number; lng: number } | null>(null);
-  const [showApiKeyModal, setShowApiKeyModal] = useState<boolean>(false);
   const [activeRouteInfo, setActiveRouteInfo] = useState<{
     distanceKm: number;
     durationMin: number;
@@ -676,25 +675,6 @@ export const RealLeafletDistrictMap: React.FC<RealLeafletDistrictMapProps> = ({
               </button>
             );
           })}
-
-          {/* API Key Status Pill */}
-          <button
-            onClick={() => setShowApiKeyModal(!showApiKeyModal)}
-            className="flex items-center gap-1.5 px-2.5 py-1 ml-0.5 rounded-xl text-[11px] font-mono font-semibold border border-black/10 hover:bg-slate-50 transition-colors cursor-pointer"
-            title="CARTO API Key Settings"
-          >
-            {CARTO_API_KEY ? (
-              <>
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-emerald-700">API Key Active</span>
-              </>
-            ) : (
-              <>
-                <Key className="w-3 h-3 text-amber-600" />
-                <span className="text-amber-800">API Key (.env)</span>
-              </>
-            )}
-          </button>
         </div>
 
         {/* Layer Toggles & Re-center Action */}
@@ -752,41 +732,6 @@ export const RealLeafletDistrictMap: React.FC<RealLeafletDistrictMapProps> = ({
             <span className="text-cyan-400 font-bold">{activeRouteInfo.distanceKm} km</span>
             <span className="text-slate-500">•</span>
             <span className="text-emerald-400 font-medium">{activeRouteInfo.pointCount} Highway Nodes</span>
-          </div>
-        </div>
-      )}
-
-      {/* API Key Modal / Guidance Popup */}
-      {showApiKeyModal && (
-        <div className="absolute top-16 left-4 z-[450] max-w-sm bg-white/98 backdrop-blur-xl border border-black/15 rounded-3xl p-5 shadow-2xl animate-fade-rise">
-          <div className="flex items-center justify-between pb-3 border-b border-black/10">
-            <div className="flex items-center gap-2">
-              <Key className="w-4 h-4 text-black" />
-              <span className="font-serif text-sm font-semibold text-black">CARTO Map API Key</span>
-            </div>
-            <button
-              onClick={() => setShowApiKeyModal(false)}
-              className="text-xs font-mono px-2.5 py-1 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 cursor-pointer font-medium"
-            >
-              Close
-            </button>
-          </div>
-          <div className="mt-3 space-y-2.5 text-xs text-slate-600 font-sans">
-            <p>
-              To authenticate high-throughput CARTO requests or custom datasets, add your key to:
-            </p>
-            <code className="block p-2 rounded-xl bg-slate-100 text-black font-mono text-[11px] border border-black/5 break-all">
-              frontend/.env<br />
-              NEXT_PUBLIC_CARTO_API_KEY=your_key_here
-            </code>
-            <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-[11px] font-mono text-slate-700">
-              Current Engine Status:{' '}
-              {CARTO_API_KEY ? (
-                <span className="text-emerald-700 font-bold">Authenticated with Custom API Key</span>
-              ) : (
-                <span className="text-amber-800 font-bold">Public CDN Basemaps Active (Ready)</span>
-              )}
-            </div>
           </div>
         </div>
       )}
