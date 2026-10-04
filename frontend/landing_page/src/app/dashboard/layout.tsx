@@ -39,9 +39,6 @@ export default function DashboardLayout({
                 ADVANCED MOBILITY &amp; ROADWAY INTELLIGENCE
               </span>
             </div>
-            <span className="text-xs font-mono text-[#5E5E59]">
-              SIH26127 • THREE-STAGE YOLO11 + TROCR LOCAL INFERENCE
-            </span>
           </div>
         </footer>
       </div>

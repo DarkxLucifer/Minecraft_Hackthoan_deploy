@@ -44,7 +44,6 @@ export default function HomePage() {
                 <div className="plate-meta">
                   <span className="meta-tag green">● Conf: 98.4%</span>
                   <span className="meta-tag">HSRP Validated</span>
-                  <span className="meta-tag">18ms GPU</span>
                 </div>
               </div>
             </article>
@@ -230,7 +229,6 @@ export default function HomePage() {
             <VisionXLogo size="sm" />
             <span>ADVANCED MOBILITY &amp; ROADWAY INTELLIGENCE</span>
           </div>
-          <span>SIH26127 • THREE-STAGE YOLO11 + TROCR LOCAL INFERENCE</span>
         </div>
       </footer>
     </div>

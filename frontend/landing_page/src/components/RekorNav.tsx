@@ -5,6 +5,7 @@ import Link from "next/link";
 import VisionXLogo from "@/components/VisionXLogo";
 import AuthModal from "@/components/AuthModal";
 import { useAuth } from "@/context/AuthContext";
+import { LogOut, LayoutDashboard } from "lucide-react";
 
 type RekorNavProps = {
   theme?: "light" | "dark";
@@ -69,17 +70,30 @@ export default function RekorNav({ theme = "light" }: RekorNavProps) {
           <div className="rekor-nav-actions">
             {isAuthenticated ? (
               <div className="rekor-auth-user-bar">
-                <span className="rekor-user-pill" title={officer?.email || user?.email || ""}>
+                <Link
+                  href="/dashboard"
+                  className="rekor-launch-btn"
+                  title="Open Surveillance Command Dashboard"
+                >
+                  <LayoutDashboard className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>DASHBOARD</span>
+                  <span className="launch-arrow" aria-hidden="true">→</span>
+                </Link>
+
+                <div className="rekor-user-pill" title={officer?.email || user?.email || "Operator Session"}>
                   <span className="user-online-dot" />
                   <span className="user-agency-tag">{officer?.badgeId || "OFFICER"}</span>
-                </span>
+                </div>
+
                 <button
                   type="button"
                   className="rekor-signout-btn"
                   onClick={() => signOut()}
                   title="Sign out of operator session"
+                  aria-label="Sign out"
                 >
-                  SIGN OUT
+                  <LogOut className="w-3.5 h-3.5" />
+                  <span>SIGN OUT</span>
                 </button>
               </div>
             ) : (
@@ -127,11 +141,19 @@ export default function RekorNav({ theme = "light" }: RekorNavProps) {
               <a href="#demo" onClick={() => setMobileMenuOpen(false)}>Solutions</a>
               <a href="#pipeline" onClick={() => setMobileMenuOpen(false)}>Pipeline</a>
               {isAuthenticated ? (
-                <>
-                  <div className="rekor-user-pill" style={{ margin: "8px 0" }}>
+                <div className="rekor-auth-mobile-bar">
+                  <div className="rekor-user-pill mobile-full">
                     <span className="user-online-dot" />
-                    <span>{officer?.badgeId || "OFFICER"} · ONLINE</span>
+                    <span className="user-agency-tag">{officer?.badgeId || "OFFICER"} · ONLINE</span>
                   </div>
+                  <Link
+                    href="/dashboard"
+                    className="rekor-launch-btn mobile-full"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <LayoutDashboard className="w-4 h-4 text-emerald-400" />
+                    <span>OPEN DASHBOARD →</span>
+                  </Link>
                   <button
                     type="button"
                     className="rekor-signout-btn mobile-full"
@@ -140,9 +162,10 @@ export default function RekorNav({ theme = "light" }: RekorNavProps) {
                       signOut();
                     }}
                   >
-                    Sign Out ({officer?.badgeId || "Officer"})
+                    <LogOut className="w-4 h-4" />
+                    <span>Sign Out ({officer?.badgeId || "Officer"})</span>
                   </button>
-                </>
+                </div>
               ) : (
                 <>
                   <button

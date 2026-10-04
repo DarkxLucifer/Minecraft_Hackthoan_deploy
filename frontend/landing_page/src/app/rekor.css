@@ -897,6 +897,115 @@
   margin-top: 8px;
 }
 
+/* ─── Authenticated User Nav Bar & Sign Out ─── */
+.rekor-auth-user-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rekor-user-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: #f4f4f5;
+  border: 1px solid #e4e4e7;
+  border-radius: 9999px;
+  font-family: var(--mono-font, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: #18181b;
+  white-space: nowrap;
+}
+
+.rekor-user-pill.mobile-full {
+  width: 100%;
+  justify-content: center;
+  padding: 10px 16px;
+  margin: 6px 0;
+}
+
+.user-online-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #10b981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.7);
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+.user-agency-tag {
+  color: #09090b;
+}
+
+.rekor-signout-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  color: #52525b;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  border-radius: 9999px;
+  border: 1px solid #e4e4e7;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.rekor-signout-btn:hover {
+  background: #fff1f2;
+  color: #e11d48;
+  border-color: #fecdd3;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(225, 29, 72, 0.12);
+}
+
+.rekor-signout-btn:active {
+  transform: translateY(1px);
+}
+
+.rekor-signout-btn.mobile-full {
+  width: 100%;
+  justify-content: center;
+  padding: 12px 20px;
+  margin-top: 4px;
+}
+
+.rekor-auth-mobile-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 0;
+}
+
+.rekor-navbar.theme-dark .rekor-user-pill {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+}
+.rekor-navbar.theme-dark .user-agency-tag {
+  color: #ffffff;
+}
+.rekor-navbar.theme-dark .rekor-signout-btn {
+  background: rgba(255, 255, 255, 0.05);
+  color: #d4d4d8;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+.rekor-navbar.theme-dark .rekor-signout-btn:hover {
+  background: rgba(225, 29, 72, 0.2);
+  color: #fda4af;
+  border-color: rgba(225, 29, 72, 0.4);
+}
+
 .rekor-launch-hero-btn {
   display: inline-flex;
   align-items: center;
