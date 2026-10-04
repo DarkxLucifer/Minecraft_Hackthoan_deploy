@@ -21,13 +21,22 @@ export const SearchStudioView: React.FC = () => {
   const [selectedTimestamp, setSelectedTimestamp] = useState<number | null>(null);
 
   const fetchVideos = () => {
+    let deletedList: string[] = [];
+    try {
+      const stored = localStorage.getItem("visionx_deleted_videos");
+      deletedList = stored ? JSON.parse(stored) : [];
+    } catch {}
+
     fetch(`${BACKEND_URL}/api/videos`)
       .then((res) => res.json())
       .then((data) => {
         if (data.videos && data.videos.length > 0) {
-          setVideos(data.videos);
-          if (!selectedVideo) {
-            setSelectedVideo(data.videos[0].filename);
+          const filtered = data.videos.filter((v: any) => !deletedList.includes(v.filename));
+          setVideos(filtered);
+          if (!selectedVideo || deletedList.includes(selectedVideo)) {
+            if (filtered.length > 0) {
+              setSelectedVideo(filtered[0].filename);
+            }
           }
         }
       })
@@ -149,6 +158,9 @@ export const SearchStudioView: React.FC = () => {
         onAnalysisRefreshed={() => {
           fetchAnalysis(selectedVideo);
           fetchVideos();
+        }}
+        onDeleteVideo={(deletedName) => {
+          setVideos((prev) => prev.filter((v) => v.filename !== deletedName));
         }}
       />
 

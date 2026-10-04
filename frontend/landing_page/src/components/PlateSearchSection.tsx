@@ -14,10 +14,8 @@ interface PlateSearchSectionProps {
   isLoading: boolean;
   suggestedPlates: string[];
   onAnalysisRefreshed?: () => void;
+  onDeleteVideo?: (videoName: string) => void;
 }
-
-
-import { BACKEND_URL } from "@/lib/config";
 
 export const PlateSearchSection: React.FC<PlateSearchSectionProps> = ({
   videos,
@@ -29,6 +27,7 @@ export const PlateSearchSection: React.FC<PlateSearchSectionProps> = ({
   isLoading,
   suggestedPlates,
   onAnalysisRefreshed,
+  onDeleteVideo,
 }) => {
   const [isProcessingGpu, setIsProcessingGpu] = useState(false);
   const [gpuJob, setGpuJob] = useState<GpuJobProgress | null>(null);
@@ -36,6 +35,10 @@ export const PlateSearchSection: React.FC<PlateSearchSectionProps> = ({
   const [activeGpuVideo, setActiveGpuVideo] = useState<string>(selectedVideo);
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const onAnalysisRefreshedRef = useRef(onAnalysisRefreshed);
+  onAnalysisRefreshedRef.current = onAnalysisRefreshed;
+  const isJobActiveRef = useRef(false);
 
   const handleTriggerGpu = async (targetVideo?: string) => {
     const vid = targetVideo || selectedVideo;
@@ -87,10 +90,9 @@ export const PlateSearchSection: React.FC<PlateSearchSectionProps> = ({
           const data = await res.json();
           if (data && data.success) {
             onSelectVideo(data.filename || fileName);
-            if (onAnalysisRefreshed) onAnalysisRefreshed();
             setTimeout(() => {
               handleTriggerGpu(data.filename || fileName);
-            }, 400);
+            }, 300);
             return;
           }
         }
@@ -98,82 +100,73 @@ export const PlateSearchSection: React.FC<PlateSearchSectionProps> = ({
 
       // Seamless Edge Registration: For large videos or when Vercel serverless payload limit is reached
       onSelectVideo(fileName);
-      if (onAnalysisRefreshed) onAnalysisRefreshed();
       setTimeout(() => {
         handleTriggerGpu(fileName);
-      }, 400);
+      }, 300);
     } catch (err) {
       console.warn('Video server upload fallback, proceeding with client registration:', err);
       onSelectVideo(fileName);
-      if (onAnalysisRefreshed) onAnalysisRefreshed();
       setTimeout(() => {
         handleTriggerGpu(fileName);
-      }, 400);
+      }, 300);
     } finally {
       setIsUploading(false);
       if (fileInputRef.current) fileInputRef.current.value = '';
     }
   };
 
-  const [isDeleteMode, setIsDeleteMode] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-  const clickCountRef = useRef(0);
-  const clickTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  // Hidden toggle: Listen for Ctrl + Shift + D or Alt + D
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.ctrlKey && e.shiftKey && (e.key === 'D' || e.key === 'd')) || (e.altKey && (e.key === 'D' || e.key === 'd'))) {
-        e.preventDefault();
-        setIsDeleteMode((prev) => !prev);
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
-  const handleSecretIconClick = () => {
-    clickCountRef.current += 1;
-    if (clickTimerRef.current) clearTimeout(clickTimerRef.current);
-    if (clickCountRef.current >= 3) {
-      setIsDeleteMode((prev) => !prev);
-      clickCountRef.current = 0;
-    } else {
-      clickTimerRef.current = setTimeout(() => {
-        clickCountRef.current = 0;
-      }, 800);
-    }
-  };
 
   const handleDeleteSelectedVideo = async () => {
     if (!selectedVideo) return;
     setIsDeleting(true);
+    const vidToDelete = selectedVideo;
+
     try {
-      const res = await fetch('/api/video/delete', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ video_name: selectedVideo }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        setShowDeleteConfirm(false);
-        // Switch to the next remaining video if available
-        const remaining = videos.filter((v) => v.filename !== selectedVideo);
-        if (remaining.length > 0) {
-          onSelectVideo(remaining[0].filename);
+      // 1. Persist deletion in localStorage so it stays removed across reloads and refetches
+      try {
+        const stored = localStorage.getItem("visionx_deleted_videos");
+        const list: string[] = stored ? JSON.parse(stored) : [];
+        if (!list.includes(vidToDelete)) {
+          list.push(vidToDelete);
+          localStorage.setItem("visionx_deleted_videos", JSON.stringify(list));
         }
-        if (onAnalysisRefreshed) {
-          onAnalysisRefreshed();
-        }
-      } else {
-        alert(data.detail || 'Failed to delete video');
+      } catch (e) {
+        console.warn("Storage write error:", e);
+      }
+
+      // 2. Call backend delete endpoint
+      try {
+        await fetch('/api/video/delete', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ video_name: vidToDelete }),
+          signal: AbortSignal.timeout(3000),
+        });
+      } catch {
+        // Fallback for edge / offline
+      }
+
+      // 3. Switch to remaining video
+      const remaining = videos.filter((v) => v.filename !== vidToDelete);
+      setShowDeleteConfirm(false);
+      if (remaining.length > 0) {
+        onSelectVideo(remaining[0].filename);
+      }
+
+      // 4. Notify parent state
+      if (onDeleteVideo) {
+        onDeleteVideo(vidToDelete);
+      }
+      if (onAnalysisRefreshedRef.current) {
+        onAnalysisRefreshedRef.current();
       }
     } catch (err) {
       console.error('Delete video failed:', err);
-      alert('Failed to delete video. Please check backend connection.');
     } finally {
       setIsDeleting(false);
+      setShowDeleteConfirm(false);
     }
   };
 
@@ -187,9 +180,15 @@ export const PlateSearchSection: React.FC<PlateSearchSectionProps> = ({
     onSearch(plate);
   };
 
-  // Poll for GPU progress when modal is open
+  // Poll for GPU progress when modal is open (single execution, auto-dismissing, zero recursion)
   useEffect(() => {
-    if (!showGpuModal) return;
+    if (!showGpuModal) {
+      isJobActiveRef.current = false;
+      return;
+    }
+
+    if (isJobActiveRef.current) return;
+    isJobActiveRef.current = true;
 
     const vidToPoll = activeGpuVideo || selectedVideo;
     let simProgress = 15;
@@ -221,11 +220,19 @@ export const PlateSearchSection: React.FC<PlateSearchSectionProps> = ({
             if (data.status === 'COMPLETED') {
               setIsProcessingGpu(false);
               clearInterval(interval);
-              if (onAnalysisRefreshed) onAnalysisRefreshed();
+              if (onAnalysisRefreshedRef.current) onAnalysisRefreshedRef.current();
+              setTimeout(() => {
+                setShowGpuModal(false);
+                isJobActiveRef.current = false;
+              }, 1200);
               return;
             } else if (data.status === 'FAILED') {
               setIsProcessingGpu(false);
               clearInterval(interval);
+              setTimeout(() => {
+                setShowGpuModal(false);
+                isJobActiveRef.current = false;
+              }, 1500);
               return;
             }
           }
@@ -252,12 +259,18 @@ export const PlateSearchSection: React.FC<PlateSearchSectionProps> = ({
       if (isDone) {
         setIsProcessingGpu(false);
         clearInterval(interval);
-        if (onAnalysisRefreshed) onAnalysisRefreshed();
+        if (onAnalysisRefreshedRef.current) onAnalysisRefreshedRef.current();
+        setTimeout(() => {
+          setShowGpuModal(false);
+          isJobActiveRef.current = false;
+        }, 1200);
       }
     }, 500);
 
-    return () => clearInterval(interval);
-  }, [showGpuModal, activeGpuVideo, selectedVideo, onAnalysisRefreshed]);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [showGpuModal, activeGpuVideo]);
 
   return (
     <div id="studio" className="w-full max-w-6xl mx-auto px-6 pt-12 pb-8">
@@ -320,20 +333,10 @@ export const PlateSearchSection: React.FC<PlateSearchSectionProps> = ({
           {/* Video Selector Dropdown */}
           <div className="lg:col-span-4 flex flex-col space-y-2">
             <label className="text-xs font-semibold text-[#6F6F6F] uppercase tracking-wider flex items-center justify-between">
-              <span
-                onClick={handleSecretIconClick}
-                className="flex items-center gap-1.5 cursor-pointer select-none"
-                title={isDeleteMode ? 'Delete Mode Active (Ctrl+Shift+D to hide)' : undefined}
-              >
+              <span className="flex items-center gap-1.5 select-none">
                 <Film className="w-3.5 h-3.5 text-black" />
                 Source Video ({videos.length} Available)
               </span>
-              {isDeleteMode && (
-                <span className="text-[10px] font-mono text-red-600 bg-red-50 border border-red-200 px-2 py-0.5 rounded-full flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
-                  Delete Mode Active
-                </span>
-              )}
             </label>
             <div className="flex items-center gap-2">
               <div className="relative flex-1">
@@ -358,18 +361,18 @@ export const PlateSearchSection: React.FC<PlateSearchSectionProps> = ({
                 </div>
               </div>
 
-              {/* Hidden Delete Button (Visible only when Delete Mode is unlocked) */}
-              {isDeleteMode && (
-                <button
-                  type="button"
-                  onClick={() => setShowDeleteConfirm(true)}
-                  disabled={isDeleting || !selectedVideo}
-                  title={`Delete selected video: ${selectedVideo}`}
-                  className="p-4 rounded-2xl bg-red-50 hover:bg-red-100 active:scale-[0.96] text-red-600 border border-red-200 shadow-xs transition-all cursor-pointer disabled:opacity-50 shrink-0 flex items-center justify-center"
-                >
-                  <Trash2 className="w-5 h-5 text-red-600" />
-                </button>
-              )}
+              {/* Always-visible Delete Button for the Selected Video */}
+              <button
+                type="button"
+                onClick={() => setShowDeleteConfirm(true)}
+                disabled={isDeleting || !selectedVideo || videos.length <= 1}
+                title={`Delete selected video: ${selectedVideo}`}
+                className="p-4 rounded-2xl bg-rose-50 hover:bg-rose-100 active:scale-[0.96] text-rose-600 border border-rose-200 shadow-xs transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed shrink-0 flex items-center justify-center gap-1.5"
+                aria-label="Delete selected video"
+              >
+                <Trash2 className="w-5 h-5 text-rose-600" />
+                <span className="hidden sm:inline text-xs font-semibold">Delete</span>
+              </button>
             </div>
           </div>
 
@@ -494,7 +497,11 @@ export const PlateSearchSection: React.FC<PlateSearchSectionProps> = ({
                 </div>
               </div>
               <button
-                onClick={() => setShowGpuModal(false)}
+                onClick={() => {
+                  setShowGpuModal(false);
+                  isJobActiveRef.current = false;
+                  setIsProcessingGpu(false);
+                }}
                 className="text-gray-400 hover:text-black text-sm px-2 py-1 rounded-lg border border-black/5 cursor-pointer"
               >
                 ✕

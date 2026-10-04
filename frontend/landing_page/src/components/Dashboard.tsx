@@ -105,13 +105,22 @@ export default function Dashboard() {
 
   const fetchVideos = async () => {
     try {
+      let deletedList: string[] = [];
+      try {
+        const stored = localStorage.getItem("visionx_deleted_videos");
+        deletedList = stored ? JSON.parse(stored) : [];
+      } catch {}
+
       const res = await fetch(`${BACKEND_URL}/api/videos`);
       if (res.ok) {
         const data = await res.json();
         if (data.videos && data.videos.length > 0) {
-          setVideos(data.videos);
-          if (!selectedVideo) {
-            setSelectedVideo(data.videos[0].filename);
+          const filtered = data.videos.filter((v: any) => !deletedList.includes(v.filename));
+          setVideos(filtered);
+          if (!selectedVideo || deletedList.includes(selectedVideo)) {
+            if (filtered.length > 0) {
+              setSelectedVideo(filtered[0].filename);
+            }
           }
         }
       }
@@ -394,6 +403,9 @@ export default function Dashboard() {
             onAnalysisRefreshed={() => {
               fetchAnalysis(selectedVideo);
               fetchVideos();
+            }}
+            onDeleteVideo={(deletedName) => {
+              setVideos((prev) => prev.filter((v) => v.filename !== deletedName));
             }}
           />
 
