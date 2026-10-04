@@ -34,16 +34,18 @@ export const VehicleSpotCard: React.FC<VehicleSpotCardProps> = ({
   }
 
   const [x1, y1, x2, y2] = vehicle.best_box || [0, 0, 100, 100];
-  const vstem = videoName.replace(/\.mp4$/i, "");
-  const localStaticCrop = `/crops/${vstem}_frame${vehicle.best_frame}_${vehicle.plate}.jpg`;
-  const remoteCropUrl = `${BACKEND_URL}/api/crop/${videoName}?frame=${vehicle.best_frame}&x1=${x1}&y1=${y1}&x2=${x2}&y2=${y2}&plate=${vehicle.plate}`;
+  const targetVideo = vehicle.video_name || videoName;
+  const vstem = targetVideo.replace(/\.mp4$/i, "");
+  const localStaticCrop = vehicle.crop_path || `/crops/${vstem}_frame${vehicle.best_frame}_${vehicle.plate}.jpg`;
+  const remoteCropUrl = `${BACKEND_URL}/api/crop/${targetVideo}?frame=${vehicle.best_frame}&x1=${x1}&y1=${y1}&x2=${x2}&y2=${y2}&plate=${vehicle.plate}`;
 
   const [imgSrc, setImgSrc] = React.useState<string>(localStaticCrop);
 
   React.useEffect(() => {
-    const s = videoName.replace(/\.mp4$/i, "");
-    setImgSrc(`/crops/${s}_frame${vehicle.best_frame}_${vehicle.plate}.jpg`);
-  }, [videoName, vehicle.best_frame, vehicle.plate]);
+    const activeVideo = vehicle.video_name || videoName;
+    const s = activeVideo.replace(/\.mp4$/i, "");
+    setImgSrc(vehicle.crop_path || `/crops/${s}_frame${vehicle.best_frame}_${vehicle.plate}.jpg`);
+  }, [videoName, vehicle.best_frame, vehicle.plate, vehicle.video_name, vehicle.crop_path]);
 
   return (
     <div className="bg-white/90 backdrop-blur-xl border border-black/10 rounded-3xl p-6 sm:p-8 shadow-xl shadow-black/5 space-y-6">

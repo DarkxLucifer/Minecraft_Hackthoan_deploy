@@ -36,6 +36,8 @@ export interface Vehicle {
   timeline_markers: TimelineMarker[];
   is_exact_match?: boolean;
   match_score?: number;
+  video_name?: string;
+  crop_path?: string;
 }
 
 export interface SearchResult {

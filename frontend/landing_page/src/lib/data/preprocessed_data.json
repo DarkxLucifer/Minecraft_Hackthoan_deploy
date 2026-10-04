@@ -245074,7 +245074,7 @@
           "formatted_first_seen": "00:00.701",
           "formatted_last_seen": "00:09.609",
           "total_occurrences": 181,
-          "best_frame": 42,
+          "best_frame": 48,
           "best_box": [
             880,
             1229,
@@ -247437,7 +247437,8 @@
               ],
               "formatted_time": "00:09.609"
             }
-          ]
+          ],
+          "crop_path": "/crops/ttu_frame48_KL01K5214.jpg"
         }
       ],
       "all_occurrences": [
@@ -250174,7 +250175,7 @@
           "formatted_first_seen": "00:00.701",
           "formatted_last_seen": "00:09.609",
           "total_occurrences": 181,
-          "best_frame": 42,
+          "best_frame": 48,
           "best_box": [
             880,
             1229,
@@ -252537,7 +252538,8 @@
               ],
               "formatted_time": "00:09.609"
             }
-          ]
+          ],
+          "crop_path": "/crops/ttu_frame48_KL01K5214.jpg"
         }
       ],
       "all_occurrences": [
@@ -255270,51 +255272,51 @@
       },
       {
         "id": "CAM-01",
-        "label": "CAM-01 • Main Junction"
+        "label": "CAM-01 \u2022 Main Junction"
       },
       {
         "id": "CAM-02",
-        "label": "CAM-02 • East Expressway"
+        "label": "CAM-02 \u2022 East Expressway"
       },
       {
         "id": "CAM-04",
-        "label": "CAM-04 • South Boulevard"
+        "label": "CAM-04 \u2022 South Boulevard"
       },
       {
         "id": "CAM-ARMY",
-        "label": "CAM-ARMY • Tactical Sector"
+        "label": "CAM-ARMY \u2022 Tactical Sector"
       },
       {
         "id": "CAM-CONV",
-        "label": "CAM-CONV • Feed Conv Surveillance"
+        "label": "CAM-CONV \u2022 Feed Conv Surveillance"
       },
       {
         "id": "CAM-CRASH",
-        "label": "CAM-CRASH • Outer Highway Incident Unit"
+        "label": "CAM-CRASH \u2022 Outer Highway Incident Unit"
       },
       {
         "id": "CAM-DEMO1",
-        "label": "CAM-DEMO1 • Feed Demo1 Surveillance"
+        "label": "CAM-DEMO1 \u2022 Feed Demo1 Surveillance"
       },
       {
         "id": "CAM-MODEL",
-        "label": "CAM-MODEL • Feed Model Surveillance"
+        "label": "CAM-MODEL \u2022 Feed Model Surveillance"
       },
       {
         "id": "CAM-TOLL",
-        "label": "CAM-TOLL • Feed Toll Surveillance"
+        "label": "CAM-TOLL \u2022 Feed Toll Surveillance"
       },
       {
         "id": "CAM-TRAF",
-        "label": "CAM-TRAF • Feed Traf Surveillance"
+        "label": "CAM-TRAF \u2022 Feed Traf Surveillance"
       },
       {
         "id": "CAM-TT2",
-        "label": "CAM-TT2 • Feed Tt2 Surveillance"
+        "label": "CAM-TT2 \u2022 Feed Tt2 Surveillance"
       },
       {
         "id": "CAM-TOLL (ONLINE-VIDEO-CUTTER.COM)",
-        "label": "CAM-TOLL (ONLINE-VIDEO-CUTTER.COM) • Feed Toll (Online-Video-Cutter.Com) Surveillance"
+        "label": "CAM-TOLL (ONLINE-VIDEO-CUTTER.COM) \u2022 Feed Toll (Online-Video-Cutter.Com) Surveillance"
       }
     ],
     "records": [
@@ -305268,51 +305270,51 @@
       },
       {
         "id": "CAM-01",
-        "label": "CAM-01 • Main Junction"
+        "label": "CAM-01 \u2022 Main Junction"
       },
       {
         "id": "CAM-02",
-        "label": "CAM-02 • East Expressway"
+        "label": "CAM-02 \u2022 East Expressway"
       },
       {
         "id": "CAM-04",
-        "label": "CAM-04 • South Boulevard"
+        "label": "CAM-04 \u2022 South Boulevard"
       },
       {
         "id": "CAM-ARMY",
-        "label": "CAM-ARMY • Tactical Sector"
+        "label": "CAM-ARMY \u2022 Tactical Sector"
       },
       {
         "id": "CAM-CONV",
-        "label": "CAM-CONV • Feed Conv Surveillance"
+        "label": "CAM-CONV \u2022 Feed Conv Surveillance"
       },
       {
         "id": "CAM-CRASH",
-        "label": "CAM-CRASH • Outer Highway Incident Unit"
+        "label": "CAM-CRASH \u2022 Outer Highway Incident Unit"
       },
       {
         "id": "CAM-DEMO1",
-        "label": "CAM-DEMO1 • Feed Demo1 Surveillance"
+        "label": "CAM-DEMO1 \u2022 Feed Demo1 Surveillance"
       },
       {
         "id": "CAM-MODEL",
-        "label": "CAM-MODEL • Feed Model Surveillance"
+        "label": "CAM-MODEL \u2022 Feed Model Surveillance"
       },
       {
         "id": "CAM-TOLL",
-        "label": "CAM-TOLL • Feed Toll Surveillance"
+        "label": "CAM-TOLL \u2022 Feed Toll Surveillance"
       },
       {
         "id": "CAM-TRAF",
-        "label": "CAM-TRAF • Feed Traf Surveillance"
+        "label": "CAM-TRAF \u2022 Feed Traf Surveillance"
       },
       {
         "id": "CAM-TT2",
-        "label": "CAM-TT2 • Feed Tt2 Surveillance"
+        "label": "CAM-TT2 \u2022 Feed Tt2 Surveillance"
       },
       {
         "id": "CAM-TOLL (ONLINE-VIDEO-CUTTER.COM)",
-        "label": "CAM-TOLL (ONLINE-VIDEO-CUTTER.COM) • Feed Toll (Online-Video-Cutter.Com) Surveillance"
+        "label": "CAM-TOLL (ONLINE-VIDEO-CUTTER.COM) \u2022 Feed Toll (Online-Video-Cutter.Com) Surveillance"
       }
     ],
     "records": [
