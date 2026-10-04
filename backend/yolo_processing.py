@@ -45,6 +45,26 @@ def strip_junk(text: str) -> str:
             t = t[:-len(s)]
     return t[:11]
 
+INDIAN_STATES = {
+    "AN": "Andaman and Nicobar", "AP": "Andhra Pradesh", "AR": "Arunachal Pradesh",
+    "AS": "Assam", "BR": "Bihar", "CG": "Chhattisgarh", "CH": "Chandigarh",
+    "DD": "Daman and Diu", "DL": "Delhi", "DN": "Dadra and Nagar Haveli",
+    "GA": "Goa", "GJ": "Gujarat", "HP": "Himachal Pradesh", "HR": "Haryana",
+    "JH": "Jharkhand", "JK": "Jammu and Kashmir", "KA": "Karnataka",
+    "KL": "Kerala", "LA": "Ladakh", "LD": "Lakshadweep", "MH": "Maharashtra",
+    "ML": "Meghalaya", "MN": "Manipur", "MP": "Madhya Pradesh", "MZ": "Mizoram",
+    "NL": "Nagaland", "OD": "Odisha", "PB": "Punjab", "PY": "Puducherry",
+    "RJ": "Rajasthan", "SK": "Sikkim", "TN": "Tamil Nadu", "TR": "Tripura",
+    "TS": "Telangana", "UK": "Uttarakhand", "UP": "Uttar Pradesh", "WB": "West Bengal",
+    "BH": "Bharat Series",
+}
+
+STATE_CONFUSIONS = {
+    "0L": "DL", "OL": "DL", "D1": "DL", "K4": "KA", "1H": "JH", "M8": "MH",
+    "0D": "OD", "U0": "UP", "K1": "KL", "T5": "TS", "B8": "BR", "P8": "PB",
+    "H8": "HR", "N1": "NL", "G1": "GJ", "R1": "RJ", "A5": "AS", "T1": "TN",
+}
+
 def positional_correct(text: str) -> str:
     """
     Standard Indian License Plate Format:
@@ -60,12 +80,16 @@ def positional_correct(text: str) -> str:
 
     result = list(t)
 
-    # First 2 characters must be State letters
-    for i in range(min(2, n)):
-        if result[i] in DIGIT_TO_LETTER:
-            result[i] = DIGIT_TO_LETTER[result[i]]
+    # First 2 characters: State Code (check confusions or map digits to letters)
+    prefix2 = "".join(result[:2])
+    if prefix2 in STATE_CONFUSIONS:
+        result[0], result[1] = STATE_CONFUSIONS[prefix2][0], STATE_CONFUSIONS[prefix2][1]
+    else:
+        for i in range(min(2, n)):
+            if result[i] in DIGIT_TO_LETTER:
+                result[i] = DIGIT_TO_LETTER[result[i]]
 
-    # Next 2 characters must be RTO digits
+    # Next 2 characters: RTO code (must be digits)
     for i in range(2, min(4, n)):
         if result[i] in LETTER_TO_DIGIT:
             result[i] = LETTER_TO_DIGIT[result[i]]
@@ -165,7 +189,12 @@ class TrOCRPlateReader:
         try:
             pixel_values = self.processor(images=pil_img, return_tensors="pt").pixel_values.to(self.device)
             with torch.no_grad():
-                generated_ids = self.model.generate(pixel_values, max_new_tokens=16)
+                generated_ids = self.model.generate(
+                    pixel_values,
+                    max_new_tokens=16,
+                    num_beams=3,
+                    early_stopping=True,
+                )
             raw_text = self.processor.batch_decode(generated_ids, skip_special_tokens=True)[0]
             clean_text = positional_correct(raw_text)
             return clean_text
@@ -317,11 +346,11 @@ class TwoStageANPR:
                         badge_y = max(0, gy1 - lh - 8)
                         cv2.rectangle(annotated, (gx1, badge_y), (gx1 + lw + 8, gy1), (0, 255, 64), -1)
                         cv2.putText(annotated, p_tag, (gx1 + 4, gy1 - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (0, 0, 0), 2)
-        else:
-            # Fallback direct detection across full frame
+        # Fallback direct detection across full frame if vehicle crops yielded no plates
+        if len(plates) == 0:
             p_res = self.plate_model.predict(
                 frame,
-                conf=0.15,
+                conf=0.06,
                 imgsz=imgsz,
                 device=self.device,
                 verbose=False

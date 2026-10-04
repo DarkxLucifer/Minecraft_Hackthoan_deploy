@@ -90,6 +90,26 @@ LETTER_TO_DIGIT = {"O": "0", "Q": "0", "I": "1", "L": "1", "Z": "2", "S": "5", "
 DIGIT_TO_LETTER = {"0": "O", "1": "I", "8": "B", "5": "S", "6": "G", "2": "Z"}
 JUNK_SUFFIXES = ["IND", "INDIA", "VALID", "TEMP", "REGD"]
 
+INDIAN_STATES = {
+    "AN": "Andaman and Nicobar", "AP": "Andhra Pradesh", "AR": "Arunachal Pradesh",
+    "AS": "Assam", "BR": "Bihar", "CG": "Chhattisgarh", "CH": "Chandigarh",
+    "DD": "Daman and Diu", "DL": "Delhi", "DN": "Dadra and Nagar Haveli",
+    "GA": "Goa", "GJ": "Gujarat", "HP": "Himachal Pradesh", "HR": "Haryana",
+    "JH": "Jharkhand", "JK": "Jammu and Kashmir", "KA": "Karnataka",
+    "KL": "Kerala", "LA": "Ladakh", "LD": "Lakshadweep", "MH": "Maharashtra",
+    "ML": "Meghalaya", "MN": "Manipur", "MP": "Madhya Pradesh", "MZ": "Mizoram",
+    "NL": "Nagaland", "OD": "Odisha", "PB": "Punjab", "PY": "Puducherry",
+    "RJ": "Rajasthan", "SK": "Sikkim", "TN": "Tamil Nadu", "TR": "Tripura",
+    "TS": "Telangana", "UK": "Uttarakhand", "UP": "Uttar Pradesh", "WB": "West Bengal",
+    "BH": "Bharat Series",
+}
+
+STATE_CONFUSIONS = {
+    "0L": "DL", "OL": "DL", "D1": "DL", "K4": "KA", "1H": "JH", "M8": "MH",
+    "0D": "OD", "U0": "UP", "K1": "KL", "T5": "TS", "B8": "BR", "P8": "PB",
+    "H8": "HR", "N1": "NL", "G1": "GJ", "R1": "RJ", "A5": "AS", "T1": "TN",
+}
+
 def normalize_text(text: str) -> str:
     return re.sub(r"[^A-Z0-9]", "", str(text).upper())
 
@@ -107,15 +127,44 @@ def positional_correct(text: str) -> str:
         return t
 
     result = list(t)
-    for i in range(min(2, n)):
-        if result[i] in DIGIT_TO_LETTER:
-            result[i] = DIGIT_TO_LETTER[result[i]]
 
+    # First 2 characters: State Code (check confusions or map digits to letters)
+    prefix2 = "".join(result[:2])
+    if prefix2 in STATE_CONFUSIONS:
+        result[0], result[1] = STATE_CONFUSIONS[prefix2][0], STATE_CONFUSIONS[prefix2][1]
+    else:
+        for i in range(min(2, n)):
+            if result[i] in DIGIT_TO_LETTER:
+                result[i] = DIGIT_TO_LETTER[result[i]]
+
+    # Next 2 characters: RTO code (must be digits)
     for i in range(2, min(4, n)):
         if result[i] in LETTER_TO_DIGIT:
             result[i] = LETTER_TO_DIGIT[result[i]]
 
-    trailing_start = 5 if n > 6 else 4
+    # Dynamically find trailing digit group
+    trailing_start = n
+    i = n - 1
+    while i >= 4:
+        c = result[i]
+        if c.isdigit() or (c.isalpha() and c in LETTER_TO_DIGIT):
+            trailing_start = i
+            i -= 1
+        else:
+            break
+
+    dlen = n - trailing_start
+    if dlen > 4:
+        trailing_start = n - 4
+    elif dlen < 1:
+        trailing_start = n
+
+    # Characters between RTO code and trailing digits should be letters
+    for i in range(4, trailing_start):
+        if result[i] in DIGIT_TO_LETTER:
+            result[i] = DIGIT_TO_LETTER[result[i]]
+
+    # Trailing characters must be digits
     for i in range(trailing_start, n):
         if result[i] in LETTER_TO_DIGIT:
             result[i] = LETTER_TO_DIGIT[result[i]]
@@ -152,15 +201,15 @@ def run_anpr_inference(img_bgr: np.ndarray):
     if vehicles:
         for v in vehicles:
             vx1, vy1, vx2, vy2 = v["box"]
-            pad_x = int((vx2 - vx1) * 0.05)
-            pad_y = int((vy2 - vy1) * 0.05)
+            pad_x = int((vx2 - vx1) * 0.10)
+            pad_y = int((vy2 - vy1) * 0.10)
             x1_p, y1_p = max(0, vx1 - pad_x), max(0, vy1 - pad_y)
             x2_p, y2_p = min(orig_w, vx2 + pad_x), min(orig_h, vy2 + pad_y)
             car_crop = img_bgr[y1_p:y2_p, x1_p:x2_p]
             if car_crop.size == 0:
                 continue
 
-            p_res = plate_detector.predict(car_crop, conf=0.08, imgsz=640, verbose=False)[0]
+            p_res = plate_detector.predict(car_crop, conf=0.06, imgsz=640, verbose=False)[0]
             if p_res.boxes is not None:
                 for pb in p_res.boxes:
                     px1, py1, px2, py2 = map(int, pb.xyxy[0])
@@ -168,9 +217,10 @@ def run_anpr_inference(img_bgr: np.ndarray):
                     gx1, gy1 = x1_p + px1, y1_p + py1
                     gx2, gy2 = x1_p + px2, y1_p + py2
                     plate_crops.append(([gx1, gy1, gx2, gy2], pconf, car_crop[py1:py2, px1:px2]))
-    else:
-        # Fallback: scan whole image for plate
-        p_res = plate_detector.predict(img_bgr, conf=0.15, imgsz=960, verbose=False)[0]
+
+    # Fallback: scan whole image if no plates were detected inside vehicles
+    if not plate_crops:
+        p_res = plate_detector.predict(img_bgr, conf=0.06, imgsz=960, verbose=False)[0]
         if p_res.boxes is not None:
             for pb in p_res.boxes:
                 gx1, gy1, gx2, gy2 = map(int, pb.xyxy[0])
@@ -189,12 +239,26 @@ def run_anpr_inference(img_bgr: np.ndarray):
             scale = 64 / h
             crop = cv2.resize(crop, (int(w * scale), 64), interpolation=cv2.INTER_CUBIC)
 
+        # Contrast enhancement using CLAHE in LAB color space
+        try:
+            lab = cv2.cvtColor(crop, cv2.COLOR_BGR2LAB)
+            clahe = cv2.createCLAHE(clipLimit=2.5, tileGridSize=(4, 4))
+            lab[:, :, 0] = clahe.apply(lab[:, :, 0])
+            crop = cv2.cvtColor(lab, cv2.COLOR_LAB2BGR)
+        except Exception:
+            pass
+
         crop_rgb = cv2.cvtColor(crop, cv2.COLOR_BGR2RGB)
         crop_pil = Image.fromarray(crop_rgb)
         pixel_values = processor(crop_pil, return_tensors="pt").pixel_values.to(DEVICE)
 
         with torch.no_grad():
-            generated_ids = ocr_model.generate(pixel_values, max_new_tokens=15)
+            generated_ids = ocr_model.generate(
+                pixel_values,
+                max_new_tokens=16,
+                num_beams=3,
+                early_stopping=True,
+            )
         raw_text = processor.batch_decode(generated_ids, skip_special_tokens=True)[0]
         plate_text = positional_correct(raw_text)
 
@@ -460,6 +524,68 @@ def gradio_process(image_input):
     summary = "\n".join(lines) if plates else "No license plates detected in image."
     return result_rgb, summary
 
+def gradio_process_video(video_path, sample_rate=5):
+    if not video_path:
+        return None, "No video file provided."
+
+    cap = cv2.VideoCapture(str(video_path))
+    if not cap.isOpened():
+        return None, "Could not open video file."
+
+    fps = cap.get(cv2.CAP_PROP_FPS) or 25.0
+    width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+
+    output_dir = CURRENT_DIR / "cache"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    output_path = output_dir / "annotated_gradio_output.mp4"
+
+    fourcc = cv2.VideoWriter_fourcc(*"mp4v")
+    out = cv2.VideoWriter(str(output_path), fourcc, fps, (width, height))
+
+    all_plates = {}
+    frame_idx = 0
+    last_annotated = None
+
+    while cap.isOpened():
+        ret, frame = cap.read()
+        if not ret:
+            break
+
+        if frame_idx % sample_rate == 0:
+            v, p, ann = run_anpr_inference(frame)
+            for item in p:
+                plate_txt = item["plate_text"]
+                if plate_txt:
+                    if plate_txt not in all_plates:
+                        all_plates[plate_txt] = {
+                            "conf": item["confidence"],
+                            "time": frame_idx / fps,
+                            "frame": frame_idx,
+                        }
+                    else:
+                        all_plates[plate_txt]["conf"] = max(all_plates[plate_txt]["conf"], item["confidence"])
+            last_annotated = ann
+            out.write(ann)
+        else:
+            out.write(last_annotated if last_annotated is not None else frame)
+
+        frame_idx += 1
+
+    cap.release()
+    out.release()
+
+    lines = [
+        f"🎬 Video Analyzed: {frame_idx} frames ({frame_idx / fps:.1f}s)",
+        f"🏷️ Unique Number Plates Identified: {len(all_plates)}",
+        "-" * 42,
+    ]
+    for pt, info in sorted(all_plates.items(), key=lambda x: x[1]["conf"], reverse=True):
+        lines.append(f"• {pt} — Conf: {info['conf']:.1%} — First Seen at {info['time']:.2f}s (Frame {info['frame']})")
+
+    summary = "\n".join(lines) if all_plates else "No license plates detected in video frames."
+    return str(output_path), summary
+
 with gr.Blocks(title="VisionX - Indian ANPR", theme=gr.themes.Soft()) as demo:
     gr.Markdown("""
     # 🇮🇳 VisionX — Indian Automated Number Plate Recognition (ANPR)
@@ -468,15 +594,27 @@ with gr.Blocks(title="VisionX - Indian ANPR", theme=gr.themes.Soft()) as demo:
     - **REST API**: `/api/health`, `/api/anpr/detect`
     """)
 
-    with gr.Row():
-        with gr.Column():
-            input_image = gr.Image(type="pil", label="Upload CCTV / Vehicle Frame")
-            btn = gr.Button("⚡ Run 3-Stage ANPR Detection", variant="primary")
-        with gr.Column():
-            output_image = gr.Image(type="numpy", label="Visual Detection & Bounding Boxes")
-            output_text = gr.Textbox(label="Telemetry & Recognized Plates", lines=6)
+    with gr.Tabs():
+        with gr.Tab("📸 Single Frame / Image ANPR"):
+            with gr.Row():
+                with gr.Column():
+                    input_image = gr.Image(type="pil", label="Upload CCTV / Vehicle Frame")
+                    btn_img = gr.Button("⚡ Run 3-Stage ANPR Detection", variant="primary")
+                with gr.Column():
+                    output_image = gr.Image(type="numpy", label="Visual Detection & Bounding Boxes")
+                    output_text_img = gr.Textbox(label="Telemetry & Recognized Plates", lines=6)
+            btn_img.click(fn=gradio_process, inputs=input_image, outputs=[output_image, output_text_img])
 
-    btn.click(fn=gradio_process, inputs=input_image, outputs=[output_image, output_text])
+        with gr.Tab("📹 Video Stream & File ANPR"):
+            with gr.Row():
+                with gr.Column():
+                    input_video = gr.Video(label="Upload CCTV / Traffic Video (.mp4)")
+                    sample_slider = gr.Slider(minimum=1, maximum=15, value=5, step=1, label="Frame Sampling Interval (1 = every frame, 5 = every 5th frame)")
+                    btn_vid = gr.Button("⚡ Process Video with AI Tracking", variant="primary")
+                with gr.Column():
+                    output_video = gr.Video(label="Annotated Video with Overlays")
+                    output_text_vid = gr.Textbox(label="Detected Vehicle Plate Timeline", lines=8)
+            btn_vid.click(fn=gradio_process_video, inputs=[input_video, sample_slider], outputs=[output_video, output_text_vid])
 
 # Mount Gradio app onto FastAPI
 app = gr.mount_gradio_app(fastapi_app, demo, path="/")

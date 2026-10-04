@@ -61,6 +61,7 @@ export const VideoTimelinePlayer: React.FC<VideoTimelinePlayerProps> = ({
   }, [videoName]);
 
   const markers: TimelineMarker[] = matchedVehicle?.timeline_markers || [];
+  const pendingSeekRef = useRef<number | null>(null);
 
   // Draw bounding box & OCR plate tags on overlay canvas with exact letterbox/pillarbox compensation
   const drawBoundingBoxOverlay = useCallback((time: number) => {
@@ -89,8 +90,9 @@ export const VideoTimelinePlayer: React.FC<VideoTimelinePlayerProps> = ({
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    const vWidth = video.videoWidth || 1920;
-    const vHeight = video.videoHeight || 1080;
+    const vWidth = video.videoWidth;
+    const vHeight = video.videoHeight;
+    // Don't render until video dimensions are known to prevent misaligned boxes
     if (!vWidth || !vHeight || !cWidth || !cHeight) return;
 
     // Calculate letterbox & pillarbox offsets
@@ -134,18 +136,69 @@ export const VideoTimelinePlayer: React.FC<VideoTimelinePlayerProps> = ({
       const isTarget = matchedVehicle && veh.plate === matchedVehicle.plate;
       const vehMarkers = veh.timeline_markers || [];
 
-      // Find detection marker within ~0.35s of current time
-      const activeMarker = vehMarkers.find(
-        (m) => Math.abs(m.timestamp - time) < 0.35
-      );
+      let activeBox: number[] | null = null;
+      const firstSeen = veh.first_seen ?? (vehMarkers[0]?.timestamp ?? 0);
+      const lastSeen = veh.last_seen ?? (vehMarkers[vehMarkers.length - 1]?.timestamp ?? 10);
 
-      if (!activeMarker || !activeMarker.box) continue;
+      if (vehMarkers.length > 0) {
+        // Find closest markers and interpolate if between them
+        let closest = vehMarkers[0];
+        let minDiff = Math.abs(vehMarkers[0].timestamp - time);
+        let beforeMarker: TimelineMarker | null = null;
+        let afterMarker: TimelineMarker | null = null;
 
-      const [x1, y1, x2, y2] = activeMarker.box;
+        for (const m of vehMarkers) {
+          const diff = Math.abs(m.timestamp - time);
+          if (diff < minDiff) {
+            minDiff = diff;
+            closest = m;
+          }
+          if (m.timestamp <= time) {
+            if (!beforeMarker || m.timestamp > beforeMarker.timestamp) {
+              beforeMarker = m;
+            }
+          }
+          if (m.timestamp >= time) {
+            if (!afterMarker || m.timestamp < afterMarker.timestamp) {
+              afterMarker = m;
+            }
+          }
+        }
+
+        // Visible if time is within [firstSeen - 0.4, lastSeen + 0.4] OR closest marker is within 1.0s
+        const isVisible = (time >= firstSeen - 0.4 && time <= lastSeen + 0.4) || minDiff <= 1.0;
+
+        if (isVisible) {
+          if (beforeMarker && afterMarker && beforeMarker !== afterMarker && beforeMarker.box && afterMarker.box) {
+            // Smooth linear interpolation between detections
+            const tSpan = afterMarker.timestamp - beforeMarker.timestamp;
+            const factor = tSpan > 0 ? Math.max(0, Math.min(1, (time - beforeMarker.timestamp) / tSpan)) : 0;
+            const b1 = beforeMarker.box;
+            const b2 = afterMarker.box;
+            activeBox = [
+              b1[0] + (b2[0] - b1[0]) * factor,
+              b1[1] + (b2[1] - b1[1]) * factor,
+              b1[2] + (b2[2] - b1[2]) * factor,
+              b1[3] + (b2[3] - b1[3]) * factor,
+            ];
+          } else if (closest && closest.box) {
+            activeBox = closest.box;
+          }
+        }
+      } else if (veh.best_box) {
+        // Fallback to recorded best_box when within duration
+        if (time >= firstSeen - 0.5 && time <= lastSeen + 0.5) {
+          activeBox = veh.best_box;
+        }
+      }
+
+      if (!activeBox) continue;
+
+      const [x1, y1, x2, y2] = activeBox;
       const rx = offsetX + (x1 * scaleX);
       const ry = offsetY + (y1 * scaleY);
-      const rw = Math.max(10, (x2 - x1) * scaleX);
-      const rh = Math.max(10, (y2 - y1) * scaleY);
+      const rw = Math.max(12, (x2 - x1) * scaleX);
+      const rh = Math.max(12, (y2 - y1) * scaleY);
 
       // Color scheme: Emerald for selected target vehicle, Cyan for other spotted vehicles
       const strokeColor = isTarget ? '#00FF66' : '#38BDF8';
@@ -244,13 +297,50 @@ export const VideoTimelinePlayer: React.FC<VideoTimelinePlayerProps> = ({
       }
       setIsBuffering(false);
       setHasError(false);
-      if (selectedTimestamp !== null && selectedTimestamp !== undefined) {
-        videoRef.current.currentTime = selectedTimestamp;
-        setCurrentTime(selectedTimestamp);
+
+      const target = pendingSeekRef.current ?? selectedTimestamp;
+      if (target !== null && target !== undefined) {
+        videoRef.current.currentTime = target;
+        setCurrentTime(target);
+        pendingSeekRef.current = null;
       }
       drawBoundingBoxOverlay(videoRef.current.currentTime || 0);
     }
   };
+
+  const handleCanPlay = () => {
+    setIsBuffering(false);
+    setHasError(false);
+    if (pendingSeekRef.current !== null && videoRef.current) {
+      videoRef.current.currentTime = pendingSeekRef.current;
+      setCurrentTime(pendingSeekRef.current);
+      drawBoundingBoxOverlay(pendingSeekRef.current);
+      pendingSeekRef.current = null;
+    }
+  };
+
+  // 60 FPS Smooth Canvas Animation Loop during playback
+  useEffect(() => {
+    let animId: number;
+    const updateLoop = () => {
+      if (videoRef.current && !videoRef.current.paused) {
+        const curr = videoRef.current.currentTime;
+        setCurrentTime(curr);
+        drawBoundingBoxOverlay(curr);
+        animId = requestAnimationFrame(updateLoop);
+      }
+    };
+
+    if (isPlaying) {
+      animId = requestAnimationFrame(updateLoop);
+    } else if (videoRef.current) {
+      drawBoundingBoxOverlay(videoRef.current.currentTime);
+    }
+
+    return () => {
+      if (animId) cancelAnimationFrame(animId);
+    };
+  }, [isPlaying, drawBoundingBoxOverlay]);
 
   // Reload video element whenever videoName changes
   useEffect(() => {
@@ -273,10 +363,12 @@ export const VideoTimelinePlayer: React.FC<VideoTimelinePlayerProps> = ({
       videoRef.current
     ) {
       const video = videoRef.current;
+      pendingSeekRef.current = selectedTimestamp;
       if (video.readyState >= 1) {
         video.currentTime = selectedTimestamp;
         setCurrentTime(selectedTimestamp);
         drawBoundingBoxOverlay(selectedTimestamp);
+        pendingSeekRef.current = null;
       }
     }
   }, [selectedTimestamp, drawBoundingBoxOverlay]);
@@ -441,9 +533,21 @@ export const VideoTimelinePlayer: React.FC<VideoTimelinePlayerProps> = ({
               Feed: {videoName}
             </span>
             {matchedVehicle && (
-              <span className="text-xs bg-white/10 text-white px-2.5 py-0.5 rounded-full font-mono">
-                Target: <strong className="text-emerald-400">{matchedVehicle.plate}</strong>
-              </span>
+              <div className="flex items-center gap-2">
+                <span className="text-xs bg-white/10 text-white px-2.5 py-0.5 rounded-full font-mono">
+                  Target: <strong className="text-emerald-400">{matchedVehicle.plate}</strong>
+                </span>
+                {matchedVehicle.first_seen !== undefined && Math.abs(currentTime - matchedVehicle.first_seen) > 0.8 && (
+                  <button
+                    type="button"
+                    onClick={() => seekTo(matchedVehicle.first_seen)}
+                    className="text-[11px] bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded-full font-mono transition-all flex items-center gap-1 cursor-pointer"
+                    title={`Jump to plate ${matchedVehicle.plate} detection`}
+                  >
+                    <span>⚡ Jump to Plate ({formatSecs(matchedVehicle.first_seen)})</span>
+                  </button>
+                )}
+              </div>
             )}
           </div>
 
@@ -482,6 +586,12 @@ export const VideoTimelinePlayer: React.FC<VideoTimelinePlayerProps> = ({
           crossOrigin="anonymous"
           onTimeUpdate={handleTimeUpdate}
           onLoadedMetadata={handleLoadedMetadata}
+          onCanPlay={handleCanPlay}
+          onSeeked={() => {
+            if (videoRef.current) {
+              drawBoundingBoxOverlay(videoRef.current.currentTime);
+            }
+          }}
           onLoadedData={() => {
             setIsBuffering(false);
             setHasError(false);
@@ -493,7 +603,12 @@ export const VideoTimelinePlayer: React.FC<VideoTimelinePlayerProps> = ({
             setHasError(false);
           }}
           onPlay={() => setIsPlaying(true)}
-          onPause={() => setIsPlaying(false)}
+          onPause={() => {
+            setIsPlaying(false);
+            if (videoRef.current) {
+              drawBoundingBoxOverlay(videoRef.current.currentTime);
+            }
+          }}
           onError={(e) => {
             if (videoUrl !== remoteVideoUrl && remoteVideoUrl) {
               console.log('Inbuilt video feed missed, trying remote stream:', remoteVideoUrl);
